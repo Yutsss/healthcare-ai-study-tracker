@@ -106,37 +106,46 @@ user_problem_statement: "Yuta's Lab — private, owner-only Healthcare-AI learni
 backend:
   - task: "Supabase clients (browser/server/admin) + middleware session refresh & route protection"
     implemented: true
-    working: "NA"
+    working: true
     file: "lib/supabase/*.ts, middleware.ts"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Implemented per VERIFIED Supabase playbook. BLOCKED for live testing: NEXT_PUBLIC_SUPABASE_URL not yet provided by user (keys present). App renders SetupRequired screen until then."
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: Supabase authentication working correctly. Successfully signed in with owner credentials (adyuta123@gmail.com), obtained access token, and verified user ID (0b17b319-ffeb-460e-ab51-1d99e5a66d84). Bearer token authentication working for protected API routes."
   - task: "SQL schema + RLS + gamification triggers (supabase/migrations/001_init.sql)"
     implemented: true
-    working: "NA"
+    working: true
     file: "supabase/migrations/001_init.sql, 000_bootstrap_exec_sql.sql, scripts/apply-migrations.mjs"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "16 tables, owner_id RLS on all, triggers: new user->owner_settings, module_progress->activity+XP (module 20xp/unit 50/phase 200 bonuses), study_log->XP, exercise_report->XP. Must be applied by user in Supabase SQL Editor (API keys cannot run DDL)."
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: All RLS policies and triggers working correctly. (1) Retrieved 265 modules successfully. (2) Module progress upsert to 'done' correctly triggered XP event (+20 XP) and activity event (module_completed). (3) XP trigger is idempotent - setting status to 'done' again did NOT create duplicate XP. (4) RLS correctly blocked insert with spoofed owner_id (42501 policy violation). (5) Anonymous client correctly denied access to modules table. All gamification triggers functioning as designed."
   - task: "API routes: /api/health, /api/auth/owner-exists, POST /api/auth/register-owner (first user only), GET /api/seed/preview (dry-run), POST /api/seed/import (idempotent), GET /api/seed/status"
     implemented: true
-    working: "NA"
+    working: true
     file: "app/api/[[...path]]/route.ts, lib/seed/importSeed.ts"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Auth via session cookies OR Authorization: Bearer <supabase access_token>. Seed bundled from data/yutas-lab-course-seed.json. /api/health verified locally (returns supabaseConfigured:false until URL set)."
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: All API endpoints working correctly. (1) GET /api/health returns 200 with ok:true, supabaseConfigured:true, adminConfigured:true. (2) GET /api/auth/owner-exists returns 200 with exists:true, configured:true. (3) POST /api/auth/register-owner correctly rejects second owner with 403 'owner already exists', validates bad email (400), validates short password (400). (4) GET /api/seed/preview: rejects without auth (401), returns correct counts with auth (14 roadmap_items, 58 course_units, 265 modules, 4 milestones, 1 projects), shows idempotent state (inserted:0, updated:totals). (5) POST /api/seed/import: rejects without auth (401), idempotent import with auth (inserted:0, updated:totals). (6) GET /api/seed/status: rejects without auth (401), returns correct counts with auth. (7) Unknown path /api/nope returns 404. All 19 tests passed (100% success rate)."
 
 frontend:
   - task: "Login page (sign in / first-run create owner), SetupRequired screen"
@@ -145,7 +154,7 @@ frontend:
     file: "app/login/page.tsx, components/setup-required.tsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
@@ -156,7 +165,7 @@ frontend:
     file: "app/(app)/*, components/app-shell/app-shell.tsx, components/roadmap/*.tsx, lib/hooks/*.ts"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
@@ -165,7 +174,7 @@ frontend:
 metadata:
   created_by: "main_agent"
   version: "1.0"
-  test_sequence: 0
+  test_sequence: 1
   run_ui: false
 
 test_plan:
@@ -178,4 +187,10 @@ test_plan:
 
 agent_communication:
   - agent: "main"
-    message: "Phase 1-2 code complete but live testing blocked: waiting for user's NEXT_PUBLIC_SUPABASE_URL and for 001_init.sql to be run in the Supabase SQL Editor. Once set + server restarted: create owner via login page (or POST /api/auth/register-owner), import seed in Settings, verify roadmap status changes award XP."
+    message: "GO LIVE done: Supabase URL set, migrations 001+002 applied (002 makes sort_order numeric for fractional seed orders), owner created (see memory/test_credentials.md), seed imported twice (idempotent: 2nd run 0 inserted). Verified manually: XP trigger (+20 on done), activity events, RLS blocks spoofed owner_id and anon reads. Ready for backend test agent."
+  - agent: "main"
+    message: "(older) Phase 1-2 code complete but live testing blocked: waiting for user's NEXT_PUBLIC_SUPABASE_URL and for 001_init.sql to be run in the Supabase SQL Editor. Once set + server restarted: create owner via login page (or POST /api/auth/register-owner), import seed in Settings, verify roadmap status changes award XP."
+  - agent: "testing"
+    message: "✅ BACKEND TESTING COMPLETE - ALL TESTS PASSED (19/19, 100% success rate). Comprehensive test suite created at /app/tests/backend_test.mjs covering: (1) Public endpoints: health, owner-exists, register-owner validation, 404 handling. (2) Authentication: Supabase sign-in with bearer token. (3) Protected endpoints: seed/preview, seed/import, seed/status with proper 401 rejection without auth. (4) Direct Supabase operations: module selection (265 rows), RLS enforcement (blocked spoofed owner_id), anonymous access denial, XP/activity triggers (module completion awards 20 XP + activity event), trigger idempotency. All API routes working correctly with proper authentication, authorization, validation, and error handling. Seed import is idempotent as expected. RLS policies are strict and secure. Gamification triggers functioning perfectly. No critical issues found. Backend is production-ready."
+  - agent: "main"
+    message: "Backend test agent: 19/19 passed. Main agent manually verified UI via screenshots: login -> dashboard (stats, continue card, activity, phase overview) -> roadmap (expand, status control persisted to DB, toast). Test progress rows wiped afterwards (scripts/reset-progress.mjs). Frontend automated testing NOT run (needs user permission)."
