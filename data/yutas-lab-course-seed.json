@@ -1,0 +1,3651 @@
+{
+  "schema_version": 2,
+  "product": "Yuta's Lab",
+  "subtitle": "Healthcare AI Journey",
+  "generated_on": "2026-09-02",
+  "runtime_scraping_required": false,
+  "source_note": "Editable baseline curriculum verified against the official Coursera course pages listed in source_catalog. It contains course and module names only. Coursera quizzes, labs, assignments, and exercises are intentionally excluded. No runtime scraping is required.",
+  "verification": {
+    "status": "verified_against_official_coursera_course_pages",
+    "checked_on": "2026-09-02",
+    "course_units_checked": 58,
+    "module_titles_checked": 265,
+    "official_source_urls_retained": true,
+    "coursera_exercise_data_included": false
+  },
+  "curriculum_editing": {
+    "manual_editing_supported": true,
+    "stable_ids_must_survive_edits": true,
+    "archive_instead_of_delete_when_activity_exists": true,
+    "seed_refresh_requires_preview": true,
+    "seed_refresh_must_preserve_manual_edits_and_progress": true
+  },
+  "exercise_model": {
+    "type": "self_report",
+    "seeded_exercise_records": 0,
+    "activity_title_is_manual": true,
+    "coursera_activity_names_may_be_entered_manually": true
+  },
+  "progress_states": [
+    {
+      "key": "not_started",
+      "label": "Not Started",
+      "progress": 0
+    },
+    {
+      "key": "learning",
+      "label": "Learning",
+      "progress": 0.25
+    },
+    {
+      "key": "exercise",
+      "label": "Exercise",
+      "progress": 0.75
+    },
+    {
+      "key": "done",
+      "label": "Done",
+      "progress": 1
+    }
+  ],
+  "roadmap": [
+    {
+      "id": "roadmap-01",
+      "title": "IBM Data Science Professional Certificate",
+      "phase_label": "Phase 1 — Data Science Fundamentals",
+      "order": 1,
+      "provider": "IBM",
+      "category": "Data Science",
+      "priority": "Required",
+      "access": "Coursera Plus",
+      "target_competency": "Comfortable using Python, NumPy, Pandas, SQL, data cleaning, EDA, visualization, Jupyter, and the Data Science workflow.",
+      "official_source_url": null
+    },
+    {
+      "id": "roadmap-02",
+      "title": "Mathematics for Machine Learning Specialization",
+      "phase_label": "Phase 2 — Mathematics for Machine Learning",
+      "order": 2,
+      "provider": "Imperial College London",
+      "category": "Mathematics",
+      "priority": "Required",
+      "access": "Coursera Plus",
+      "target_competency": "Understand the mathematics behind regression, gradient descent, neural networks, dimensionality reduction, and optimization.",
+      "official_source_url": null
+    },
+    {
+      "id": "roadmap-03",
+      "title": "Statistics with Python Specialization",
+      "phase_label": "Phase 3 — Statistics",
+      "order": 3,
+      "provider": "University of Michigan",
+      "category": "Statistics",
+      "priority": "Required",
+      "access": "Coursera Plus",
+      "target_competency": "Reason about uncertainty, sampling, inference, hypothesis testing, and statistical regression using Python.",
+      "official_source_url": null
+    },
+    {
+      "id": "roadmap-04",
+      "title": "Machine Learning Specialization",
+      "phase_label": "Phase 4 — Machine Learning Fundamentals",
+      "order": 4,
+      "provider": "Stanford Online + DeepLearning.AI",
+      "category": "Machine Learning",
+      "priority": "Highly Recommended",
+      "access": "Premium",
+      "target_competency": "Understand the full problem-to-generalization workflow, not only how to call fit() and predict().",
+      "official_source_url": null
+    },
+    {
+      "id": "roadmap-05",
+      "title": "Deep Learning Specialization",
+      "phase_label": "Phase 5 — Deep Learning Fundamentals",
+      "order": 5,
+      "provider": "DeepLearning.AI",
+      "category": "Deep Learning",
+      "priority": "Highly Recommended",
+      "access": "Premium",
+      "target_competency": "Understand forward propagation, loss calculation, backpropagation, gradient updates, optimization, CNNs, and sequence models.",
+      "official_source_url": null
+    },
+    {
+      "id": "roadmap-06",
+      "title": "Introduction to Healthcare",
+      "phase_label": "Phase 6A — Healthcare Domain Bridge",
+      "order": 6.1,
+      "provider": "Stanford Online",
+      "category": "Healthcare",
+      "priority": "Required",
+      "access": "Coursera Plus",
+      "target_competency": "Understand healthcare stakeholders, delivery, financing, access, quality, costs, and the context in which clinical data is generated.",
+      "official_source_url": null
+    },
+    {
+      "id": "roadmap-07",
+      "title": "Medical Terminology Specialization",
+      "phase_label": "Phase 6B — Healthcare Domain Bridge",
+      "order": 6.2,
+      "provider": "Rice University",
+      "category": "Healthcare",
+      "priority": "Highly Recommended",
+      "access": "Coursera Plus",
+      "target_competency": "Read basic clinical datasets, EHR fields, medical papers, and healthcare documentation without being blocked by basic terminology.",
+      "official_source_url": null
+    },
+    {
+      "id": "roadmap-08",
+      "title": "Epidemiology for Public Health Specialization",
+      "phase_label": "Phase 7 — Epidemiology",
+      "order": 7,
+      "provider": "Imperial College London",
+      "category": "Epidemiology",
+      "priority": "Required",
+      "access": "Coursera Plus",
+      "target_competency": "Frame healthcare questions using incidence, prevalence, risk, study design, bias, confounding, and causal reasoning.",
+      "official_source_url": null
+    },
+    {
+      "id": "roadmap-09",
+      "title": "Biostatistics in Public Health Specialization",
+      "phase_label": "Phase 8 — Biostatistics",
+      "order": 8,
+      "provider": "Johns Hopkins University",
+      "category": "Biostatistics",
+      "priority": "Required",
+      "access": "Coursera Plus",
+      "target_competency": "Apply and interpret statistical methods in public-health and clinical-research contexts.",
+      "official_source_url": null
+    },
+    {
+      "id": "roadmap-10",
+      "title": "Clinical Data Science Specialization",
+      "phase_label": "Phase 9 — Clinical Data Science",
+      "order": 9,
+      "provider": "University of Colorado",
+      "category": "Clinical Data",
+      "priority": "Required",
+      "access": "Coursera Plus",
+      "target_competency": "Understand how clinical information is represented, extracted, cleaned, and analyzed in EHR and healthcare datasets.",
+      "official_source_url": null
+    },
+    {
+      "id": "roadmap-11",
+      "title": "AI in Healthcare Specialization — Continued",
+      "phase_label": "Phase 10 — Healthcare AI Context & Evaluation",
+      "order": 10,
+      "provider": "Stanford Online",
+      "category": "Healthcare",
+      "priority": "Highly Recommended",
+      "access": "Coursera Plus",
+      "target_competency": "Evaluate whether AI is safe, fair, clinically useful, and compatible with healthcare workflows.",
+      "official_source_url": null
+    },
+    {
+      "id": "roadmap-12",
+      "title": "AI for Medicine Specialization",
+      "phase_label": "Phase 11 — Medical AI",
+      "order": 11,
+      "provider": "DeepLearning.AI",
+      "category": "Medical AI",
+      "priority": "Highly Recommended",
+      "access": "Premium",
+      "target_competency": "Apply ML and DL to diagnosis, prognosis, and treatment while using clinically meaningful evaluation.",
+      "official_source_url": null
+    },
+    {
+      "id": "roadmap-13",
+      "title": "Informed Clinical Decision Making Using Deep Learning",
+      "phase_label": "Phase 12 — Advanced Clinical AI",
+      "order": 12,
+      "provider": "University of Glasgow",
+      "category": "Medical AI",
+      "priority": "Highly Recommended",
+      "access": "Coursera Plus",
+      "target_competency": "Reason about clinical prediction, EHR modeling, explainability, calibration, fairness, and decision support.",
+      "official_source_url": null
+    },
+    {
+      "id": "roadmap-14",
+      "title": "Machine Learning Operations (MLOps) Specialization",
+      "phase_label": "Phase 13 — MLOps",
+      "order": 13,
+      "provider": "Board Infinity",
+      "category": "MLOps",
+      "priority": null,
+      "access": "Coursera Plus",
+      "target_competency": "Build, deploy, and operate reliable machine learning services across CI/CD pipelines, cloud platforms, and scalable model-serving systems.",
+      "official_source_url": null
+    }
+  ],
+  "course_units": [
+    {
+      "id": "unit-001",
+      "roadmap_id": "roadmap-01",
+      "title": "What is Data Science?",
+      "order": 1,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/what-is-datascience"
+      ]
+    },
+    {
+      "id": "unit-002",
+      "roadmap_id": "roadmap-01",
+      "title": "Tools for Data Science",
+      "order": 2,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/open-source-tools-for-data-science"
+      ]
+    },
+    {
+      "id": "unit-003",
+      "roadmap_id": "roadmap-01",
+      "title": "Data Science Methodology",
+      "order": 3,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/data-science-methodology"
+      ]
+    },
+    {
+      "id": "unit-004",
+      "roadmap_id": "roadmap-01",
+      "title": "Python for Data Science, AI & Development",
+      "order": 4,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/python-for-applied-data-science-ai"
+      ]
+    },
+    {
+      "id": "unit-005",
+      "roadmap_id": "roadmap-01",
+      "title": "Python Project for Data Science",
+      "order": 5,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/python-project-for-data-science"
+      ]
+    },
+    {
+      "id": "unit-006",
+      "roadmap_id": "roadmap-01",
+      "title": "Databases and SQL for Data Science with Python",
+      "order": 6,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/sql-data-science"
+      ]
+    },
+    {
+      "id": "unit-007",
+      "roadmap_id": "roadmap-01",
+      "title": "Data Analysis with Python",
+      "order": 7,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/data-analysis-with-python"
+      ]
+    },
+    {
+      "id": "unit-008",
+      "roadmap_id": "roadmap-01",
+      "title": "Data Visualization with Python",
+      "order": 8,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/python-for-data-visualization"
+      ]
+    },
+    {
+      "id": "unit-009",
+      "roadmap_id": "roadmap-01",
+      "title": "Machine Learning with Python",
+      "order": 9,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/machine-learning-with-python"
+      ]
+    },
+    {
+      "id": "unit-010",
+      "roadmap_id": "roadmap-01",
+      "title": "Applied Data Science Capstone",
+      "order": 10,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/applied-data-science-capstone"
+      ]
+    },
+    {
+      "id": "unit-011",
+      "roadmap_id": "roadmap-01",
+      "title": "Generative AI: Elevate Your Data Science Career",
+      "order": 11,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/generative-ai-elevate-your-data-science-career"
+      ]
+    },
+    {
+      "id": "unit-012",
+      "roadmap_id": "roadmap-01",
+      "title": "Data Scientist Career Guide and Interview Preparation",
+      "order": 12,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/career-guide-and-interview-prep-for-data-science-pc"
+      ]
+    },
+    {
+      "id": "unit-013",
+      "roadmap_id": "roadmap-02",
+      "title": "Mathematics for Machine Learning: Linear Algebra",
+      "order": 1,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/linear-algebra-machine-learning"
+      ]
+    },
+    {
+      "id": "unit-014",
+      "roadmap_id": "roadmap-02",
+      "title": "Mathematics for Machine Learning: Multivariate Calculus",
+      "order": 2,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/multivariate-calculus-machine-learning"
+      ]
+    },
+    {
+      "id": "unit-015",
+      "roadmap_id": "roadmap-02",
+      "title": "Mathematics for Machine Learning: PCA",
+      "order": 3,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/pca-machine-learning"
+      ]
+    },
+    {
+      "id": "unit-016",
+      "roadmap_id": "roadmap-03",
+      "title": "Understanding and Visualizing Data with Python",
+      "order": 1,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/understanding-visualization-data"
+      ]
+    },
+    {
+      "id": "unit-017",
+      "roadmap_id": "roadmap-03",
+      "title": "Inferential Statistical Analysis with Python",
+      "order": 2,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/inferential-statistical-analysis-python"
+      ]
+    },
+    {
+      "id": "unit-018",
+      "roadmap_id": "roadmap-03",
+      "title": "Fitting Statistical Models to Data with Python",
+      "order": 3,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/fitting-statistical-models-data-python"
+      ]
+    },
+    {
+      "id": "unit-019",
+      "roadmap_id": "roadmap-04",
+      "title": "Supervised Machine Learning: Regression and Classification",
+      "order": 1,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/machine-learning"
+      ]
+    },
+    {
+      "id": "unit-020",
+      "roadmap_id": "roadmap-04",
+      "title": "Advanced Learning Algorithms",
+      "order": 2,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/advanced-learning-algorithms"
+      ]
+    },
+    {
+      "id": "unit-021",
+      "roadmap_id": "roadmap-04",
+      "title": "Unsupervised Learning, Recommenders, Reinforcement Learning",
+      "order": 3,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/unsupervised-learning-recommenders-reinforcement-learning"
+      ]
+    },
+    {
+      "id": "unit-022",
+      "roadmap_id": "roadmap-05",
+      "title": "Neural Networks and Deep Learning",
+      "order": 1,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/neural-networks-deep-learning"
+      ]
+    },
+    {
+      "id": "unit-023",
+      "roadmap_id": "roadmap-05",
+      "title": "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization",
+      "order": 2,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/deep-neural-network"
+      ]
+    },
+    {
+      "id": "unit-024",
+      "roadmap_id": "roadmap-05",
+      "title": "Structuring Machine Learning Projects",
+      "order": 3,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/machine-learning-projects"
+      ]
+    },
+    {
+      "id": "unit-025",
+      "roadmap_id": "roadmap-05",
+      "title": "Convolutional Neural Networks",
+      "order": 4,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/convolutional-neural-networks"
+      ]
+    },
+    {
+      "id": "unit-026",
+      "roadmap_id": "roadmap-05",
+      "title": "Sequence Models",
+      "order": 5,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/nlp-sequence-models"
+      ]
+    },
+    {
+      "id": "unit-027",
+      "roadmap_id": "roadmap-06",
+      "title": "Introduction to Healthcare",
+      "order": 1,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/intro-to-healthcare"
+      ]
+    },
+    {
+      "id": "unit-028",
+      "roadmap_id": "roadmap-07",
+      "title": "Medical Terminology I",
+      "order": 1,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/medical-terminology-1"
+      ]
+    },
+    {
+      "id": "unit-029",
+      "roadmap_id": "roadmap-07",
+      "title": "Medical Terminology II",
+      "order": 2,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/medicalterminology-2"
+      ]
+    },
+    {
+      "id": "unit-030",
+      "roadmap_id": "roadmap-07",
+      "title": "Medical Terminology III",
+      "order": 3,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/medical-terminology-iii"
+      ]
+    },
+    {
+      "id": "unit-031",
+      "roadmap_id": "roadmap-08",
+      "title": "Measuring Disease in Epidemiology",
+      "order": 1,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/measuring-disease-epidemiology"
+      ]
+    },
+    {
+      "id": "unit-032",
+      "roadmap_id": "roadmap-08",
+      "title": "Study Designs in Epidemiology",
+      "order": 2,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/study-designs-epidemiology"
+      ]
+    },
+    {
+      "id": "unit-033",
+      "roadmap_id": "roadmap-08",
+      "title": "Validity and Bias in Epidemiology",
+      "order": 3,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/validity-bias-epidemiology"
+      ]
+    },
+    {
+      "id": "unit-035",
+      "roadmap_id": "roadmap-09",
+      "title": "Hypothesis Testing in Public Health",
+      "order": 8,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/hypothesis-testing-public-health"
+      ]
+    },
+    {
+      "id": "unit-037",
+      "roadmap_id": "roadmap-09",
+      "title": "Multiple Regression Analysis in Public Health",
+      "order": 8,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/multiple-regression-analysis-public-health"
+      ]
+    },
+    {
+      "id": "unit-036",
+      "roadmap_id": "roadmap-09",
+      "title": "Simple Regression Analysis in Public Health",
+      "order": 8,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/simple-regression-analysis-public-health"
+      ]
+    },
+    {
+      "id": "unit-034",
+      "roadmap_id": "roadmap-09",
+      "title": "Summary Statistics in Public Health",
+      "order": 8,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/summary-statistics"
+      ]
+    },
+    {
+      "id": "unit-038",
+      "roadmap_id": "roadmap-10",
+      "title": "Introduction to Clinical Data Science",
+      "order": 1,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/introduction-clinical-data-science"
+      ]
+    },
+    {
+      "id": "unit-039",
+      "roadmap_id": "roadmap-10",
+      "title": "Clinical Data Models and Data Quality Assessments",
+      "order": 2,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-data-models-and-data-quality-assessments"
+      ]
+    },
+    {
+      "id": "unit-040",
+      "roadmap_id": "roadmap-10",
+      "title": "Identifying Patient Populations",
+      "order": 3,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/computational-phenotyping"
+      ]
+    },
+    {
+      "id": "unit-041",
+      "roadmap_id": "roadmap-10",
+      "title": "Clinical Natural Language Processing",
+      "order": 4,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-natural-language-processing"
+      ]
+    },
+    {
+      "id": "unit-042",
+      "roadmap_id": "roadmap-10",
+      "title": "Predictive Modeling and Transforming Clinical Practice",
+      "order": 5,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-predictive-modeling"
+      ]
+    },
+    {
+      "id": "unit-043",
+      "roadmap_id": "roadmap-10",
+      "title": "Advanced Clinical Data Science",
+      "order": 6,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/advanced-clinical-data-science"
+      ]
+    },
+    {
+      "id": "unit-044",
+      "roadmap_id": "roadmap-11",
+      "title": "Introduction to Clinical Data",
+      "order": 1,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/introduction-clinical-data"
+      ]
+    },
+    {
+      "id": "unit-045",
+      "roadmap_id": "roadmap-11",
+      "title": "Fundamentals of Machine Learning for Healthcare",
+      "order": 2,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/fundamental-machine-learning-healthcare"
+      ]
+    },
+    {
+      "id": "unit-046",
+      "roadmap_id": "roadmap-11",
+      "title": "Evaluations of AI Applications in Healthcare",
+      "order": 3,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/evaluations-ai-applications-healthcare"
+      ]
+    },
+    {
+      "id": "unit-047",
+      "roadmap_id": "roadmap-11",
+      "title": "AI in Healthcare Capstone",
+      "order": 4,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/ai-in-healthcare-capstone"
+      ]
+    },
+    {
+      "id": "unit-048",
+      "roadmap_id": "roadmap-12",
+      "title": "AI for Medical Diagnosis",
+      "order": 11,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/ai-for-medical-diagnosis"
+      ]
+    },
+    {
+      "id": "unit-049",
+      "roadmap_id": "roadmap-12",
+      "title": "AI for Medical Prognosis",
+      "order": 11,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/ai-for-medical-prognosis"
+      ]
+    },
+    {
+      "id": "unit-050",
+      "roadmap_id": "roadmap-12",
+      "title": "AI For Medical Treatment",
+      "order": 11,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/ai-for-medical-treatment"
+      ]
+    },
+    {
+      "id": "unit-055",
+      "roadmap_id": "roadmap-13",
+      "title": "Capstone Assignment",
+      "order": 12,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-decision-deep-learning-capstone"
+      ]
+    },
+    {
+      "id": "unit-054",
+      "roadmap_id": "roadmap-13",
+      "title": "Clinical Decision Support Systems",
+      "order": 12,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-decision-support-systems"
+      ]
+    },
+    {
+      "id": "unit-051",
+      "roadmap_id": "roadmap-13",
+      "title": "Data Mining of Clinical Databases",
+      "order": 12,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-decision-deep-learning-data-mining"
+      ]
+    },
+    {
+      "id": "unit-052",
+      "roadmap_id": "roadmap-13",
+      "title": "Deep Learning in Electronic Health Records",
+      "order": 12,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-decision-deep-learning-ehr"
+      ]
+    },
+    {
+      "id": "unit-053",
+      "roadmap_id": "roadmap-13",
+      "title": "Explainable Deep Learning Models for Healthcare",
+      "order": 12,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-decision-deep-learning-explainable-models"
+      ]
+    },
+    {
+      "id": "unit-057",
+      "roadmap_id": "roadmap-14",
+      "title": "Cloud Platforms for ML: AWS, Azure & GCP Deployment",
+      "order": 13,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/cloud-platforms-for-ml-aws-azure-and-gcp-deployment"
+      ]
+    },
+    {
+      "id": "unit-056",
+      "roadmap_id": "roadmap-14",
+      "title": "DevOps for Machine Learning: CI/CD, APIs & Deployment",
+      "order": 13,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/devops-for-machine-learning-ci-cd-apis-and-deployment"
+      ]
+    },
+    {
+      "id": "unit-058",
+      "roadmap_id": "roadmap-14",
+      "title": "Model Serving Systems: Containers, APIs & Scalability",
+      "order": 13,
+      "official_source_urls": [
+        "https://www.coursera.org/learn/model-serving-systems-containers-apis-and-scalability"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "module-001",
+      "roadmap_id": "roadmap-01",
+      "title": "Defining Data Science and What Data Scientists Do",
+      "order": 101,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/what-is-datascience",
+      "course_unit_id": "unit-001"
+    },
+    {
+      "id": "module-002",
+      "roadmap_id": "roadmap-01",
+      "title": "Data Science Topics",
+      "order": 102,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/what-is-datascience",
+      "course_unit_id": "unit-001"
+    },
+    {
+      "id": "module-003",
+      "roadmap_id": "roadmap-01",
+      "title": "Applications and Careers in Data Science",
+      "order": 103,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/what-is-datascience",
+      "course_unit_id": "unit-001"
+    },
+    {
+      "id": "module-004",
+      "roadmap_id": "roadmap-01",
+      "title": "Data literacy for Data Science (Optional)",
+      "order": 104,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/what-is-datascience",
+      "course_unit_id": "unit-001"
+    },
+    {
+      "id": "module-005",
+      "roadmap_id": "roadmap-01",
+      "title": "Overview of Data Science Tools",
+      "order": 201,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/open-source-tools-for-data-science",
+      "course_unit_id": "unit-002"
+    },
+    {
+      "id": "module-006",
+      "roadmap_id": "roadmap-01",
+      "title": "Languages of Data Science",
+      "order": 202,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/open-source-tools-for-data-science",
+      "course_unit_id": "unit-002"
+    },
+    {
+      "id": "module-007",
+      "roadmap_id": "roadmap-01",
+      "title": "Packages, APIs, Data Sets, and Models",
+      "order": 203,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/open-source-tools-for-data-science",
+      "course_unit_id": "unit-002"
+    },
+    {
+      "id": "module-008",
+      "roadmap_id": "roadmap-01",
+      "title": "Jupyter Notebooks and JupyterLab",
+      "order": 204,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/open-source-tools-for-data-science",
+      "course_unit_id": "unit-002"
+    },
+    {
+      "id": "module-009",
+      "roadmap_id": "roadmap-01",
+      "title": "RStudio & GitHub",
+      "order": 205,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/open-source-tools-for-data-science",
+      "course_unit_id": "unit-002"
+    },
+    {
+      "id": "module-010",
+      "roadmap_id": "roadmap-01",
+      "title": "Final Project and Submission",
+      "order": 206,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/open-source-tools-for-data-science",
+      "course_unit_id": "unit-002"
+    },
+    {
+      "id": "module-011",
+      "roadmap_id": "roadmap-01",
+      "title": "From Problem to Approach and From Requirements to Collection",
+      "order": 301,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/data-science-methodology",
+      "course_unit_id": "unit-003"
+    },
+    {
+      "id": "module-012",
+      "roadmap_id": "roadmap-01",
+      "title": "From Understanding to Preparation and From Modeling to Evaluation",
+      "order": 302,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/data-science-methodology",
+      "course_unit_id": "unit-003"
+    },
+    {
+      "id": "module-013",
+      "roadmap_id": "roadmap-01",
+      "title": "From Deployment to Feedback and Final Evaluation",
+      "order": 303,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/data-science-methodology",
+      "course_unit_id": "unit-003"
+    },
+    {
+      "id": "module-014",
+      "roadmap_id": "roadmap-01",
+      "title": "Final Project and Assessment",
+      "order": 304,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/data-science-methodology",
+      "course_unit_id": "unit-003"
+    },
+    {
+      "id": "module-015",
+      "roadmap_id": "roadmap-01",
+      "title": "Python Basics",
+      "order": 401,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/python-for-applied-data-science-ai",
+      "course_unit_id": "unit-004"
+    },
+    {
+      "id": "module-016",
+      "roadmap_id": "roadmap-01",
+      "title": "Python Data Structures",
+      "order": 402,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/python-for-applied-data-science-ai",
+      "course_unit_id": "unit-004"
+    },
+    {
+      "id": "module-017",
+      "roadmap_id": "roadmap-01",
+      "title": "Python Programming Fundamentals",
+      "order": 403,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/python-for-applied-data-science-ai",
+      "course_unit_id": "unit-004"
+    },
+    {
+      "id": "module-018",
+      "roadmap_id": "roadmap-01",
+      "title": "Working with Data in Python",
+      "order": 404,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/python-for-applied-data-science-ai",
+      "course_unit_id": "unit-004"
+    },
+    {
+      "id": "module-019",
+      "roadmap_id": "roadmap-01",
+      "title": "APIs and Data Collection",
+      "order": 405,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/python-for-applied-data-science-ai",
+      "course_unit_id": "unit-004"
+    },
+    {
+      "id": "module-020",
+      "roadmap_id": "roadmap-01",
+      "title": "Crowdsourcing Short squeeze Dashboard",
+      "order": 501,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/python-project-for-data-science",
+      "course_unit_id": "unit-005"
+    },
+    {
+      "id": "module-021",
+      "roadmap_id": "roadmap-01",
+      "title": "Final Project",
+      "order": 502,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/python-project-for-data-science",
+      "course_unit_id": "unit-005"
+    },
+    {
+      "id": "module-022",
+      "roadmap_id": "roadmap-01",
+      "title": "Getting Started with SQL",
+      "order": 601,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/sql-data-science",
+      "course_unit_id": "unit-006"
+    },
+    {
+      "id": "module-023",
+      "roadmap_id": "roadmap-01",
+      "title": "Introduction to Relational Databases and Tables",
+      "order": 602,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/sql-data-science",
+      "course_unit_id": "unit-006"
+    },
+    {
+      "id": "module-024",
+      "roadmap_id": "roadmap-01",
+      "title": "Intermediate SQL",
+      "order": 603,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/sql-data-science",
+      "course_unit_id": "unit-006"
+    },
+    {
+      "id": "module-025",
+      "roadmap_id": "roadmap-01",
+      "title": "Accessing Databases using Python",
+      "order": 604,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/sql-data-science",
+      "course_unit_id": "unit-006"
+    },
+    {
+      "id": "module-026",
+      "roadmap_id": "roadmap-01",
+      "title": "Course Assignment",
+      "order": 605,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/sql-data-science",
+      "course_unit_id": "unit-006"
+    },
+    {
+      "id": "module-027",
+      "roadmap_id": "roadmap-01",
+      "title": "Bonus Module: Advanced SQL for Data Engineers",
+      "order": 606,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/sql-data-science",
+      "course_unit_id": "unit-006"
+    },
+    {
+      "id": "module-028",
+      "roadmap_id": "roadmap-01",
+      "title": "Importing Data Sets",
+      "order": 701,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/data-analysis-with-python",
+      "course_unit_id": "unit-007"
+    },
+    {
+      "id": "module-029",
+      "roadmap_id": "roadmap-01",
+      "title": "Data Wrangling",
+      "order": 702,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/data-analysis-with-python",
+      "course_unit_id": "unit-007"
+    },
+    {
+      "id": "module-030",
+      "roadmap_id": "roadmap-01",
+      "title": "Exploratory Data Analysis",
+      "order": 703,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/data-analysis-with-python",
+      "course_unit_id": "unit-007"
+    },
+    {
+      "id": "module-031",
+      "roadmap_id": "roadmap-01",
+      "title": "Model Development",
+      "order": 704,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/data-analysis-with-python",
+      "course_unit_id": "unit-007"
+    },
+    {
+      "id": "module-032",
+      "roadmap_id": "roadmap-01",
+      "title": "Model Evaluation and Refinement",
+      "order": 705,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/data-analysis-with-python",
+      "course_unit_id": "unit-007"
+    },
+    {
+      "id": "module-033",
+      "roadmap_id": "roadmap-01",
+      "title": "Final Assignment",
+      "order": 706,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/data-analysis-with-python",
+      "course_unit_id": "unit-007"
+    },
+    {
+      "id": "module-034",
+      "roadmap_id": "roadmap-01",
+      "title": "Introduction to Data Visualization Tools",
+      "order": 801,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/python-for-data-visualization",
+      "course_unit_id": "unit-008"
+    },
+    {
+      "id": "module-035",
+      "roadmap_id": "roadmap-01",
+      "title": "Basic and Specialized Visualization Tools",
+      "order": 802,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/python-for-data-visualization",
+      "course_unit_id": "unit-008"
+    },
+    {
+      "id": "module-036",
+      "roadmap_id": "roadmap-01",
+      "title": "Advanced Visualizations and Geospatial Data",
+      "order": 803,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/python-for-data-visualization",
+      "course_unit_id": "unit-008"
+    },
+    {
+      "id": "module-037",
+      "roadmap_id": "roadmap-01",
+      "title": "Creating Dashboards with Plotly and Dash",
+      "order": 804,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/python-for-data-visualization",
+      "course_unit_id": "unit-008"
+    },
+    {
+      "id": "module-038",
+      "roadmap_id": "roadmap-01",
+      "title": "Final Project and Exam",
+      "order": 805,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/python-for-data-visualization",
+      "course_unit_id": "unit-008"
+    },
+    {
+      "id": "module-039",
+      "roadmap_id": "roadmap-01",
+      "title": "Introduction to Machine Learning",
+      "order": 901,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/machine-learning-with-python",
+      "course_unit_id": "unit-009"
+    },
+    {
+      "id": "module-040",
+      "roadmap_id": "roadmap-01",
+      "title": "Linear and Logistic Regression",
+      "order": 902,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/machine-learning-with-python",
+      "course_unit_id": "unit-009"
+    },
+    {
+      "id": "module-041",
+      "roadmap_id": "roadmap-01",
+      "title": "Building Supervised Learning Models",
+      "order": 903,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/machine-learning-with-python",
+      "course_unit_id": "unit-009"
+    },
+    {
+      "id": "module-042",
+      "roadmap_id": "roadmap-01",
+      "title": "Building Unsupervised Learning Models",
+      "order": 904,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/machine-learning-with-python",
+      "course_unit_id": "unit-009"
+    },
+    {
+      "id": "module-043",
+      "roadmap_id": "roadmap-01",
+      "title": "Evaluating and Validating Machine Learning Models",
+      "order": 905,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/machine-learning-with-python",
+      "course_unit_id": "unit-009"
+    },
+    {
+      "id": "module-044",
+      "roadmap_id": "roadmap-01",
+      "title": "Final Project and Exam",
+      "order": 906,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/machine-learning-with-python",
+      "course_unit_id": "unit-009"
+    },
+    {
+      "id": "module-045",
+      "roadmap_id": "roadmap-01",
+      "title": "Introduction",
+      "order": 1001,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/applied-data-science-capstone",
+      "course_unit_id": "unit-010"
+    },
+    {
+      "id": "module-046",
+      "roadmap_id": "roadmap-01",
+      "title": "Exploratory Data Analysis (EDA)",
+      "order": 1002,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/applied-data-science-capstone",
+      "course_unit_id": "unit-010"
+    },
+    {
+      "id": "module-047",
+      "roadmap_id": "roadmap-01",
+      "title": "Interactive Visual Analytics and Dashboard",
+      "order": 1003,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/applied-data-science-capstone",
+      "course_unit_id": "unit-010"
+    },
+    {
+      "id": "module-048",
+      "roadmap_id": "roadmap-01",
+      "title": "Predictive Analysis (Classification)",
+      "order": 1004,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/applied-data-science-capstone",
+      "course_unit_id": "unit-010"
+    },
+    {
+      "id": "module-049",
+      "roadmap_id": "roadmap-01",
+      "title": "Present Your Data-Driven Insights",
+      "order": 1005,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/applied-data-science-capstone",
+      "course_unit_id": "unit-010"
+    },
+    {
+      "id": "module-050",
+      "roadmap_id": "roadmap-01",
+      "title": "Data Science and Generative AI",
+      "order": 1101,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/generative-ai-elevate-your-data-science-career",
+      "course_unit_id": "unit-011"
+    },
+    {
+      "id": "module-051",
+      "roadmap_id": "roadmap-01",
+      "title": "Use of Generative AI for Data Science",
+      "order": 1102,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/generative-ai-elevate-your-data-science-career",
+      "course_unit_id": "unit-011"
+    },
+    {
+      "id": "module-052",
+      "roadmap_id": "roadmap-01",
+      "title": "Final Project and Exam",
+      "order": 1103,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/generative-ai-elevate-your-data-science-career",
+      "course_unit_id": "unit-011"
+    },
+    {
+      "id": "module-053",
+      "roadmap_id": "roadmap-01",
+      "title": "Building a Foundation",
+      "order": 1201,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/career-guide-and-interview-prep-for-data-science-pc",
+      "course_unit_id": "unit-012"
+    },
+    {
+      "id": "module-054",
+      "roadmap_id": "roadmap-01",
+      "title": "Applying and Preparing to Interview",
+      "order": 1202,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/career-guide-and-interview-prep-for-data-science-pc",
+      "course_unit_id": "unit-012"
+    },
+    {
+      "id": "module-055",
+      "roadmap_id": "roadmap-01",
+      "title": "Interviewing",
+      "order": 1203,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/career-guide-and-interview-prep-for-data-science-pc",
+      "course_unit_id": "unit-012"
+    },
+    {
+      "id": "module-056",
+      "roadmap_id": "roadmap-02",
+      "title": "Introduction to Linear Algebra and to Mathematics for Machine Learning",
+      "order": 101,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/linear-algebra-machine-learning",
+      "course_unit_id": "unit-013"
+    },
+    {
+      "id": "module-057",
+      "roadmap_id": "roadmap-02",
+      "title": "Vectors are objects that move around space",
+      "order": 102,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/linear-algebra-machine-learning",
+      "course_unit_id": "unit-013"
+    },
+    {
+      "id": "module-058",
+      "roadmap_id": "roadmap-02",
+      "title": "Matrices in Linear Algebra: Objects that operate on Vectors",
+      "order": 103,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/linear-algebra-machine-learning",
+      "course_unit_id": "unit-013"
+    },
+    {
+      "id": "module-059",
+      "roadmap_id": "roadmap-02",
+      "title": "Matrices make linear mappings",
+      "order": 104,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/linear-algebra-machine-learning",
+      "course_unit_id": "unit-013"
+    },
+    {
+      "id": "module-060",
+      "roadmap_id": "roadmap-02",
+      "title": "Eigenvalues and Eigenvectors: Application to Data Problems",
+      "order": 105,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/linear-algebra-machine-learning",
+      "course_unit_id": "unit-013"
+    },
+    {
+      "id": "module-061",
+      "roadmap_id": "roadmap-02",
+      "title": "What is calculus?",
+      "order": 201,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/multivariate-calculus-machine-learning",
+      "course_unit_id": "unit-014"
+    },
+    {
+      "id": "module-062",
+      "roadmap_id": "roadmap-02",
+      "title": "Multivariate calculus",
+      "order": 202,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/multivariate-calculus-machine-learning",
+      "course_unit_id": "unit-014"
+    },
+    {
+      "id": "module-063",
+      "roadmap_id": "roadmap-02",
+      "title": "Multivariate chain rule and its applications",
+      "order": 203,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/multivariate-calculus-machine-learning",
+      "course_unit_id": "unit-014"
+    },
+    {
+      "id": "module-064",
+      "roadmap_id": "roadmap-02",
+      "title": "Taylor series and linearisation",
+      "order": 204,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/multivariate-calculus-machine-learning",
+      "course_unit_id": "unit-014"
+    },
+    {
+      "id": "module-065",
+      "roadmap_id": "roadmap-02",
+      "title": "Intro to optimisation",
+      "order": 205,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/multivariate-calculus-machine-learning",
+      "course_unit_id": "unit-014"
+    },
+    {
+      "id": "module-066",
+      "roadmap_id": "roadmap-02",
+      "title": "Regression",
+      "order": 206,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/multivariate-calculus-machine-learning",
+      "course_unit_id": "unit-014"
+    },
+    {
+      "id": "module-067",
+      "roadmap_id": "roadmap-02",
+      "title": "Statistics of Datasets",
+      "order": 301,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/pca-machine-learning",
+      "course_unit_id": "unit-015"
+    },
+    {
+      "id": "module-068",
+      "roadmap_id": "roadmap-02",
+      "title": "Inner Products",
+      "order": 302,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/pca-machine-learning",
+      "course_unit_id": "unit-015"
+    },
+    {
+      "id": "module-069",
+      "roadmap_id": "roadmap-02",
+      "title": "Orthogonal Projections",
+      "order": 303,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/pca-machine-learning",
+      "course_unit_id": "unit-015"
+    },
+    {
+      "id": "module-070",
+      "roadmap_id": "roadmap-02",
+      "title": "Principal Component Analysis",
+      "order": 304,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/pca-machine-learning",
+      "course_unit_id": "unit-015"
+    },
+    {
+      "id": "module-071",
+      "roadmap_id": "roadmap-03",
+      "title": "WEEK 1 - INTRODUCTION TO DATA",
+      "order": 101,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/understanding-visualization-data",
+      "course_unit_id": "unit-016"
+    },
+    {
+      "id": "module-072",
+      "roadmap_id": "roadmap-03",
+      "title": "WEEK 2 - UNIVARIATE DATA",
+      "order": 102,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/understanding-visualization-data",
+      "course_unit_id": "unit-016"
+    },
+    {
+      "id": "module-073",
+      "roadmap_id": "roadmap-03",
+      "title": "WEEK 3 - MULTIVARIATE DATA",
+      "order": 103,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/understanding-visualization-data",
+      "course_unit_id": "unit-016"
+    },
+    {
+      "id": "module-074",
+      "roadmap_id": "roadmap-03",
+      "title": "WEEK 4 - POPULATIONS AND SAMPLES",
+      "order": 104,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/understanding-visualization-data",
+      "course_unit_id": "unit-016"
+    },
+    {
+      "id": "module-075",
+      "roadmap_id": "roadmap-03",
+      "title": "WEEK 1 - OVERVIEW & INFERENCE PROCEDURES",
+      "order": 201,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/inferential-statistical-analysis-python",
+      "course_unit_id": "unit-017"
+    },
+    {
+      "id": "module-076",
+      "roadmap_id": "roadmap-03",
+      "title": "WEEK 2 - CONFIDENCE INTERVALS",
+      "order": 202,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/inferential-statistical-analysis-python",
+      "course_unit_id": "unit-017"
+    },
+    {
+      "id": "module-077",
+      "roadmap_id": "roadmap-03",
+      "title": "WEEK 3 - HYPOTHESIS TESTING",
+      "order": 203,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/inferential-statistical-analysis-python",
+      "course_unit_id": "unit-017"
+    },
+    {
+      "id": "module-078",
+      "roadmap_id": "roadmap-03",
+      "title": "WEEK 4 - LEARNER APPLICATION",
+      "order": 204,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/inferential-statistical-analysis-python",
+      "course_unit_id": "unit-017"
+    },
+    {
+      "id": "module-079",
+      "roadmap_id": "roadmap-03",
+      "title": "WEEK 1 - OVERVIEW & CONSIDERATIONS FOR STATISTICAL MODELING",
+      "order": 301,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/fitting-statistical-models-data-python",
+      "course_unit_id": "unit-018"
+    },
+    {
+      "id": "module-080",
+      "roadmap_id": "roadmap-03",
+      "title": "WEEK 2 - FITTING MODELS TO INDEPENDENT DATA",
+      "order": 302,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/fitting-statistical-models-data-python",
+      "course_unit_id": "unit-018"
+    },
+    {
+      "id": "module-081",
+      "roadmap_id": "roadmap-03",
+      "title": "WEEK 3 - FITTING MODELS TO DEPENDENT DATA",
+      "order": 303,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/fitting-statistical-models-data-python",
+      "course_unit_id": "unit-018"
+    },
+    {
+      "id": "module-082",
+      "roadmap_id": "roadmap-03",
+      "title": "WEEK 4: Special Topics",
+      "order": 304,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/fitting-statistical-models-data-python",
+      "course_unit_id": "unit-018"
+    },
+    {
+      "id": "module-083",
+      "roadmap_id": "roadmap-04",
+      "title": "Week 1: Introduction to Machine Learning",
+      "order": 101,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/machine-learning",
+      "course_unit_id": "unit-019"
+    },
+    {
+      "id": "module-084",
+      "roadmap_id": "roadmap-04",
+      "title": "Week 2: Regression with multiple input variables",
+      "order": 102,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/machine-learning",
+      "course_unit_id": "unit-019"
+    },
+    {
+      "id": "module-085",
+      "roadmap_id": "roadmap-04",
+      "title": "Week 3: Classification",
+      "order": 103,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/machine-learning",
+      "course_unit_id": "unit-019"
+    },
+    {
+      "id": "module-086",
+      "roadmap_id": "roadmap-04",
+      "title": "Neural Networks",
+      "order": 201,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/advanced-learning-algorithms",
+      "course_unit_id": "unit-020"
+    },
+    {
+      "id": "module-087",
+      "roadmap_id": "roadmap-04",
+      "title": "Neural network training",
+      "order": 202,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/advanced-learning-algorithms",
+      "course_unit_id": "unit-020"
+    },
+    {
+      "id": "module-088",
+      "roadmap_id": "roadmap-04",
+      "title": "Advice for applying machine learning",
+      "order": 203,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/advanced-learning-algorithms",
+      "course_unit_id": "unit-020"
+    },
+    {
+      "id": "module-089",
+      "roadmap_id": "roadmap-04",
+      "title": "Decision trees",
+      "order": 204,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/advanced-learning-algorithms",
+      "course_unit_id": "unit-020"
+    },
+    {
+      "id": "module-090",
+      "roadmap_id": "roadmap-04",
+      "title": "Unsupervised Learning",
+      "order": 301,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/unsupervised-learning-recommenders-reinforcement-learning",
+      "course_unit_id": "unit-021"
+    },
+    {
+      "id": "module-091",
+      "roadmap_id": "roadmap-04",
+      "title": "Recommender Systems",
+      "order": 302,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/unsupervised-learning-recommenders-reinforcement-learning",
+      "course_unit_id": "unit-021"
+    },
+    {
+      "id": "module-092",
+      "roadmap_id": "roadmap-04",
+      "title": "Reinforcement Learning",
+      "order": 303,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/unsupervised-learning-recommenders-reinforcement-learning",
+      "course_unit_id": "unit-021"
+    },
+    {
+      "id": "module-093",
+      "roadmap_id": "roadmap-05",
+      "title": "Introduction to Deep Learning",
+      "order": 101,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/neural-networks-deep-learning",
+      "course_unit_id": "unit-022"
+    },
+    {
+      "id": "module-094",
+      "roadmap_id": "roadmap-05",
+      "title": "Neural Networks Basics",
+      "order": 102,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/neural-networks-deep-learning",
+      "course_unit_id": "unit-022"
+    },
+    {
+      "id": "module-095",
+      "roadmap_id": "roadmap-05",
+      "title": "Shallow Neural Networks",
+      "order": 103,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/neural-networks-deep-learning",
+      "course_unit_id": "unit-022"
+    },
+    {
+      "id": "module-096",
+      "roadmap_id": "roadmap-05",
+      "title": "Deep Neural Networks",
+      "order": 104,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/neural-networks-deep-learning",
+      "course_unit_id": "unit-022"
+    },
+    {
+      "id": "module-097",
+      "roadmap_id": "roadmap-05",
+      "title": "Practical Aspects of Deep Learning",
+      "order": 201,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/deep-neural-network",
+      "course_unit_id": "unit-023"
+    },
+    {
+      "id": "module-098",
+      "roadmap_id": "roadmap-05",
+      "title": "Optimization Algorithms",
+      "order": 202,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/deep-neural-network",
+      "course_unit_id": "unit-023"
+    },
+    {
+      "id": "module-099",
+      "roadmap_id": "roadmap-05",
+      "title": "Hyperparameter Tuning, Batch Normalization and Programming Frameworks",
+      "order": 203,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/deep-neural-network",
+      "course_unit_id": "unit-023"
+    },
+    {
+      "id": "module-100",
+      "roadmap_id": "roadmap-05",
+      "title": "ML Strategy",
+      "order": 301,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/machine-learning-projects",
+      "course_unit_id": "unit-024"
+    },
+    {
+      "id": "module-101",
+      "roadmap_id": "roadmap-05",
+      "title": "ML Strategy",
+      "order": 302,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/machine-learning-projects",
+      "course_unit_id": "unit-024"
+    },
+    {
+      "id": "module-102",
+      "roadmap_id": "roadmap-05",
+      "title": "Foundations of Convolutional Neural Networks",
+      "order": 401,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/convolutional-neural-networks",
+      "course_unit_id": "unit-025"
+    },
+    {
+      "id": "module-103",
+      "roadmap_id": "roadmap-05",
+      "title": "Deep Convolutional Models: Case Studies",
+      "order": 402,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/convolutional-neural-networks",
+      "course_unit_id": "unit-025"
+    },
+    {
+      "id": "module-104",
+      "roadmap_id": "roadmap-05",
+      "title": "Object Detection",
+      "order": 403,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/convolutional-neural-networks",
+      "course_unit_id": "unit-025"
+    },
+    {
+      "id": "module-105",
+      "roadmap_id": "roadmap-05",
+      "title": "Special Applications: Face recognition & Neural Style Transfer",
+      "order": 404,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/convolutional-neural-networks",
+      "course_unit_id": "unit-025"
+    },
+    {
+      "id": "module-106",
+      "roadmap_id": "roadmap-05",
+      "title": "Recurrent Neural Networks",
+      "order": 501,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/nlp-sequence-models",
+      "course_unit_id": "unit-026"
+    },
+    {
+      "id": "module-107",
+      "roadmap_id": "roadmap-05",
+      "title": "Natural Language Processing & Word Embeddings",
+      "order": 502,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/nlp-sequence-models",
+      "course_unit_id": "unit-026"
+    },
+    {
+      "id": "module-108",
+      "roadmap_id": "roadmap-05",
+      "title": "Sequence Models & Attention Mechanism",
+      "order": 503,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/nlp-sequence-models",
+      "course_unit_id": "unit-026"
+    },
+    {
+      "id": "module-109",
+      "roadmap_id": "roadmap-05",
+      "title": "Transformer Network",
+      "order": 504,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/nlp-sequence-models",
+      "course_unit_id": "unit-026"
+    },
+    {
+      "id": "module-110",
+      "roadmap_id": "roadmap-06",
+      "title": "Overview of Health Care Systems and Key Challenges They Face",
+      "order": 101,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/intro-to-healthcare",
+      "course_unit_id": "unit-027"
+    },
+    {
+      "id": "module-111",
+      "roadmap_id": "roadmap-06",
+      "title": "Physicians, Physician Practices, and Physician Payment",
+      "order": 102,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/intro-to-healthcare",
+      "course_unit_id": "unit-027"
+    },
+    {
+      "id": "module-112",
+      "roadmap_id": "roadmap-06",
+      "title": "Hospitals, Other Provider Organizations, and Related Payment Systems",
+      "order": 103,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/intro-to-healthcare",
+      "course_unit_id": "unit-027"
+    },
+    {
+      "id": "module-113",
+      "roadmap_id": "roadmap-06",
+      "title": "Intermediaries, Health Insurance Plans, and Health Care Financing",
+      "order": 104,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/intro-to-healthcare",
+      "course_unit_id": "unit-027"
+    },
+    {
+      "id": "module-114",
+      "roadmap_id": "roadmap-06",
+      "title": "Health Care Products and Prescription Drugs, and Quality Measurement and Improvement",
+      "order": 105,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/intro-to-healthcare",
+      "course_unit_id": "unit-027"
+    },
+    {
+      "id": "module-115",
+      "roadmap_id": "roadmap-06",
+      "title": "Ethics",
+      "order": 106,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/intro-to-healthcare",
+      "course_unit_id": "unit-027"
+    },
+    {
+      "id": "module-116",
+      "roadmap_id": "roadmap-06",
+      "title": "Course Wrap Up",
+      "order": 107,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/intro-to-healthcare",
+      "course_unit_id": "unit-027"
+    },
+    {
+      "id": "module-117",
+      "roadmap_id": "roadmap-07",
+      "title": "Welcome to Medical Terminology Part 1",
+      "order": 101,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medical-terminology-1",
+      "course_unit_id": "unit-028"
+    },
+    {
+      "id": "module-118",
+      "roadmap_id": "roadmap-07",
+      "title": "Introduction to Medical Language and Records",
+      "order": 102,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medical-terminology-1",
+      "course_unit_id": "unit-028"
+    },
+    {
+      "id": "module-119",
+      "roadmap_id": "roadmap-07",
+      "title": "Integumentary System",
+      "order": 103,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medical-terminology-1",
+      "course_unit_id": "unit-028"
+    },
+    {
+      "id": "module-120",
+      "roadmap_id": "roadmap-07",
+      "title": "Musculoskeletal System",
+      "order": 104,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medical-terminology-1",
+      "course_unit_id": "unit-028"
+    },
+    {
+      "id": "module-121",
+      "roadmap_id": "roadmap-07",
+      "title": "Urinary System",
+      "order": 105,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medical-terminology-1",
+      "course_unit_id": "unit-028"
+    },
+    {
+      "id": "module-122",
+      "roadmap_id": "roadmap-07",
+      "title": "Course Final Assessments and Conclusion",
+      "order": 106,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medical-terminology-1",
+      "course_unit_id": "unit-028"
+    },
+    {
+      "id": "module-123",
+      "roadmap_id": "roadmap-07",
+      "title": "Welcome to Medical Terminology Part II",
+      "order": 201,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medicalterminology-2",
+      "course_unit_id": "unit-029"
+    },
+    {
+      "id": "module-124",
+      "roadmap_id": "roadmap-07",
+      "title": "Endocrine System",
+      "order": 202,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medicalterminology-2",
+      "course_unit_id": "unit-029"
+    },
+    {
+      "id": "module-125",
+      "roadmap_id": "roadmap-07",
+      "title": "Blood and Lymphatic Systems",
+      "order": 203,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medicalterminology-2",
+      "course_unit_id": "unit-029"
+    },
+    {
+      "id": "module-126",
+      "roadmap_id": "roadmap-07",
+      "title": "Cardiovascular System",
+      "order": 204,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medicalterminology-2",
+      "course_unit_id": "unit-029"
+    },
+    {
+      "id": "module-127",
+      "roadmap_id": "roadmap-07",
+      "title": "Respiratory System",
+      "order": 205,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medicalterminology-2",
+      "course_unit_id": "unit-029"
+    },
+    {
+      "id": "module-128",
+      "roadmap_id": "roadmap-07",
+      "title": "Course II Final Assessments and Conclusion",
+      "order": 206,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medicalterminology-2",
+      "course_unit_id": "unit-029"
+    },
+    {
+      "id": "module-129",
+      "roadmap_id": "roadmap-07",
+      "title": "Welcome to Medical Terminology Part 3",
+      "order": 301,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medical-terminology-iii",
+      "course_unit_id": "unit-030"
+    },
+    {
+      "id": "module-130",
+      "roadmap_id": "roadmap-07",
+      "title": "Nervous System",
+      "order": 302,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medical-terminology-iii",
+      "course_unit_id": "unit-030"
+    },
+    {
+      "id": "module-131",
+      "roadmap_id": "roadmap-07",
+      "title": "Special Senses",
+      "order": 303,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medical-terminology-iii",
+      "course_unit_id": "unit-030"
+    },
+    {
+      "id": "module-132",
+      "roadmap_id": "roadmap-07",
+      "title": "Digestive System",
+      "order": 304,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medical-terminology-iii",
+      "course_unit_id": "unit-030"
+    },
+    {
+      "id": "module-133",
+      "roadmap_id": "roadmap-07",
+      "title": "Reproductive System",
+      "order": 305,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medical-terminology-iii",
+      "course_unit_id": "unit-030"
+    },
+    {
+      "id": "module-134",
+      "roadmap_id": "roadmap-07",
+      "title": "Course Final Assessment and Specialization Conclusion",
+      "order": 306,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/medical-terminology-iii",
+      "course_unit_id": "unit-030"
+    },
+    {
+      "id": "module-135",
+      "roadmap_id": "roadmap-08",
+      "title": "Measures of disease frequency",
+      "order": 101,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/measuring-disease-epidemiology",
+      "course_unit_id": "unit-031"
+    },
+    {
+      "id": "module-136",
+      "roadmap_id": "roadmap-08",
+      "title": "Measures of association",
+      "order": 102,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/measuring-disease-epidemiology",
+      "course_unit_id": "unit-031"
+    },
+    {
+      "id": "module-137",
+      "roadmap_id": "roadmap-08",
+      "title": "Attributable risk and strategies for prevention",
+      "order": 103,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/measuring-disease-epidemiology",
+      "course_unit_id": "unit-031"
+    },
+    {
+      "id": "module-138",
+      "roadmap_id": "roadmap-08",
+      "title": "Disease detection and screening",
+      "order": 104,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/measuring-disease-epidemiology",
+      "course_unit_id": "unit-031"
+    },
+    {
+      "id": "module-139",
+      "roadmap_id": "roadmap-08",
+      "title": "Introduction to Study Designs: Ecological and Cross-Sectional Studies",
+      "order": 201,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/study-designs-epidemiology",
+      "course_unit_id": "unit-032"
+    },
+    {
+      "id": "module-140",
+      "roadmap_id": "roadmap-08",
+      "title": "Case Control Studies",
+      "order": 202,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/study-designs-epidemiology",
+      "course_unit_id": "unit-032"
+    },
+    {
+      "id": "module-141",
+      "roadmap_id": "roadmap-08",
+      "title": "Cohort Studies and Nested Studies",
+      "order": 203,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/study-designs-epidemiology",
+      "course_unit_id": "unit-032"
+    },
+    {
+      "id": "module-142",
+      "roadmap_id": "roadmap-08",
+      "title": "Randomised Controlled Trials",
+      "order": 204,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/study-designs-epidemiology",
+      "course_unit_id": "unit-032"
+    },
+    {
+      "id": "module-143",
+      "roadmap_id": "roadmap-08",
+      "title": "Module 1: Introduction to Validity and Bias",
+      "order": 301,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/validity-bias-epidemiology",
+      "course_unit_id": "unit-033"
+    },
+    {
+      "id": "module-144",
+      "roadmap_id": "roadmap-08",
+      "title": "Module 2: Confounding",
+      "order": 302,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/validity-bias-epidemiology",
+      "course_unit_id": "unit-033"
+    },
+    {
+      "id": "module-145",
+      "roadmap_id": "roadmap-08",
+      "title": "Module 3: Dealing with Confounding",
+      "order": 303,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/validity-bias-epidemiology",
+      "course_unit_id": "unit-033"
+    },
+    {
+      "id": "module-146",
+      "roadmap_id": "roadmap-08",
+      "title": "Module 4: Effect Modification",
+      "order": 304,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/validity-bias-epidemiology",
+      "course_unit_id": "unit-033"
+    },
+    {
+      "id": "module-147",
+      "roadmap_id": "roadmap-09",
+      "title": "The Role of Statistics in Public Health Research",
+      "order": 801,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/summary-statistics",
+      "course_unit_id": "unit-034"
+    },
+    {
+      "id": "module-148",
+      "roadmap_id": "roadmap-09",
+      "title": "Continuous Data Measures",
+      "order": 802,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/summary-statistics",
+      "course_unit_id": "unit-034"
+    },
+    {
+      "id": "module-149",
+      "roadmap_id": "roadmap-09",
+      "title": "The Normal Distribution",
+      "order": 803,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/summary-statistics",
+      "course_unit_id": "unit-034"
+    },
+    {
+      "id": "module-150",
+      "roadmap_id": "roadmap-09",
+      "title": "Binary Data",
+      "order": 804,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/summary-statistics",
+      "course_unit_id": "unit-034"
+    },
+    {
+      "id": "module-151",
+      "roadmap_id": "roadmap-09",
+      "title": "Dealing with the Element of Time",
+      "order": 805,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/summary-statistics",
+      "course_unit_id": "unit-034"
+    },
+    {
+      "id": "module-152",
+      "roadmap_id": "roadmap-09",
+      "title": "Course Project",
+      "order": 806,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/summary-statistics",
+      "course_unit_id": "unit-034"
+    },
+    {
+      "id": "module-153",
+      "roadmap_id": "roadmap-09",
+      "title": "Sampling Distributions and Standard Errors",
+      "order": 807,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/hypothesis-testing-public-health",
+      "course_unit_id": "unit-035"
+    },
+    {
+      "id": "module-154",
+      "roadmap_id": "roadmap-09",
+      "title": "Confidence Intervals for Single Population Parameters",
+      "order": 808,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/hypothesis-testing-public-health",
+      "course_unit_id": "unit-035"
+    },
+    {
+      "id": "module-155",
+      "roadmap_id": "roadmap-09",
+      "title": "Confidence Intervals for Population Comparison Measures",
+      "order": 809,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/hypothesis-testing-public-health",
+      "course_unit_id": "unit-035"
+    },
+    {
+      "id": "module-156",
+      "roadmap_id": "roadmap-09",
+      "title": "Two-Group Hypothesis Testing: The General Concept and Comparing Means",
+      "order": 810,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/hypothesis-testing-public-health",
+      "course_unit_id": "unit-035"
+    },
+    {
+      "id": "module-157",
+      "roadmap_id": "roadmap-09",
+      "title": "Hypothesis Testing (Comparing Proportions and Incidence Rates Between Two Populations) & Extended Hypothesis Testing",
+      "order": 811,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/hypothesis-testing-public-health",
+      "course_unit_id": "unit-035"
+    },
+    {
+      "id": "module-158",
+      "roadmap_id": "roadmap-09",
+      "title": "Project",
+      "order": 812,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/hypothesis-testing-public-health",
+      "course_unit_id": "unit-035"
+    },
+    {
+      "id": "module-159",
+      "roadmap_id": "roadmap-09",
+      "title": "Simple Regression Methods",
+      "order": 813,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/simple-regression-analysis-public-health",
+      "course_unit_id": "unit-036"
+    },
+    {
+      "id": "module-160",
+      "roadmap_id": "roadmap-09",
+      "title": "Simple Logistic Regression",
+      "order": 814,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/simple-regression-analysis-public-health",
+      "course_unit_id": "unit-036"
+    },
+    {
+      "id": "module-161",
+      "roadmap_id": "roadmap-09",
+      "title": "Simple Cox Proportional Hazards Regression",
+      "order": 815,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/simple-regression-analysis-public-health",
+      "course_unit_id": "unit-036"
+    },
+    {
+      "id": "module-162",
+      "roadmap_id": "roadmap-09",
+      "title": "Confounding, Adjustment, and Effect Modification",
+      "order": 816,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/simple-regression-analysis-public-health",
+      "course_unit_id": "unit-036"
+    },
+    {
+      "id": "module-163",
+      "roadmap_id": "roadmap-09",
+      "title": "Course Project",
+      "order": 817,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/simple-regression-analysis-public-health",
+      "course_unit_id": "unit-036"
+    },
+    {
+      "id": "module-164",
+      "roadmap_id": "roadmap-09",
+      "title": "An Overview of Multiple Regression for Estimation, Adjustment, and Basic Prediction, and Multiple Linear Regression",
+      "order": 818,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/multiple-regression-analysis-public-health",
+      "course_unit_id": "unit-037"
+    },
+    {
+      "id": "module-165",
+      "roadmap_id": "roadmap-09",
+      "title": "Multiple Logistic Regression",
+      "order": 819,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/multiple-regression-analysis-public-health",
+      "course_unit_id": "unit-037"
+    },
+    {
+      "id": "module-166",
+      "roadmap_id": "roadmap-09",
+      "title": "Multiple Cox Regression",
+      "order": 820,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/multiple-regression-analysis-public-health",
+      "course_unit_id": "unit-037"
+    },
+    {
+      "id": "module-167",
+      "roadmap_id": "roadmap-09",
+      "title": "Course Project",
+      "order": 821,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/multiple-regression-analysis-public-health",
+      "course_unit_id": "unit-037"
+    },
+    {
+      "id": "module-168",
+      "roadmap_id": "roadmap-10",
+      "title": "Welcome to the Clinical Data Science Specialization",
+      "order": 101,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/introduction-clinical-data-science",
+      "course_unit_id": "unit-038"
+    },
+    {
+      "id": "module-169",
+      "roadmap_id": "roadmap-10",
+      "title": "Introduction: Clinical Data",
+      "order": 102,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/introduction-clinical-data-science",
+      "course_unit_id": "unit-038"
+    },
+    {
+      "id": "module-170",
+      "roadmap_id": "roadmap-10",
+      "title": "Tools: SQL",
+      "order": 103,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/introduction-clinical-data-science",
+      "course_unit_id": "unit-038"
+    },
+    {
+      "id": "module-171",
+      "roadmap_id": "roadmap-10",
+      "title": "Tools: R and the Tidyverse",
+      "order": 104,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/introduction-clinical-data-science",
+      "course_unit_id": "unit-038"
+    },
+    {
+      "id": "module-172",
+      "roadmap_id": "roadmap-10",
+      "title": "Introduction: Clinical Data Models and Common Data Models",
+      "order": 201,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-data-models-and-data-quality-assessments",
+      "course_unit_id": "unit-039"
+    },
+    {
+      "id": "module-173",
+      "roadmap_id": "roadmap-10",
+      "title": "Tools: Querying Clinical Data Models",
+      "order": 202,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-data-models-and-data-quality-assessments",
+      "course_unit_id": "unit-039"
+    },
+    {
+      "id": "module-174",
+      "roadmap_id": "roadmap-10",
+      "title": "Techniques: Extract-Transform-Load and Terminology Mapping",
+      "order": 203,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-data-models-and-data-quality-assessments",
+      "course_unit_id": "unit-039"
+    },
+    {
+      "id": "module-175",
+      "roadmap_id": "roadmap-10",
+      "title": "Techniques: Data Quality Assessments",
+      "order": 204,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-data-models-and-data-quality-assessments",
+      "course_unit_id": "unit-039"
+    },
+    {
+      "id": "module-176",
+      "roadmap_id": "roadmap-10",
+      "title": "Practical Application: Create an ETL Process to Transform a MIMIC-III Table to OMOP",
+      "order": 205,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-data-models-and-data-quality-assessments",
+      "course_unit_id": "unit-039"
+    },
+    {
+      "id": "module-177",
+      "roadmap_id": "roadmap-10",
+      "title": "Introduction: Identifying Patient Populations",
+      "order": 301,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/computational-phenotyping",
+      "course_unit_id": "unit-040"
+    },
+    {
+      "id": "module-178",
+      "roadmap_id": "roadmap-10",
+      "title": "Tools: Clinical Data Types",
+      "order": 302,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/computational-phenotyping",
+      "course_unit_id": "unit-040"
+    },
+    {
+      "id": "module-179",
+      "roadmap_id": "roadmap-10",
+      "title": "Techniques: Data Manipulations and Combinations",
+      "order": 303,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/computational-phenotyping",
+      "course_unit_id": "unit-040"
+    },
+    {
+      "id": "module-180",
+      "roadmap_id": "roadmap-10",
+      "title": "Techniques: Algorithm Selection and Portability",
+      "order": 304,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/computational-phenotyping",
+      "course_unit_id": "unit-040"
+    },
+    {
+      "id": "module-181",
+      "roadmap_id": "roadmap-10",
+      "title": "Practical Application: Develop a Computational Phenotyping Algorithm to Identify Patients with Hypertension",
+      "order": 305,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/computational-phenotyping",
+      "course_unit_id": "unit-040"
+    },
+    {
+      "id": "module-182",
+      "roadmap_id": "roadmap-10",
+      "title": "Introduction: Clinical Natural Language Processing",
+      "order": 401,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-natural-language-processing",
+      "course_unit_id": "unit-041"
+    },
+    {
+      "id": "module-183",
+      "roadmap_id": "roadmap-10",
+      "title": "Tools: Regular Expressions",
+      "order": 402,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-natural-language-processing",
+      "course_unit_id": "unit-041"
+    },
+    {
+      "id": "module-184",
+      "roadmap_id": "roadmap-10",
+      "title": "Techniques: Note Sections",
+      "order": 403,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-natural-language-processing",
+      "course_unit_id": "unit-041"
+    },
+    {
+      "id": "module-185",
+      "roadmap_id": "roadmap-10",
+      "title": "Techniques: Keyword Windows",
+      "order": 404,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-natural-language-processing",
+      "course_unit_id": "unit-041"
+    },
+    {
+      "id": "module-186",
+      "roadmap_id": "roadmap-10",
+      "title": "Practical Application: Identifying Patients with Diabetic Complications",
+      "order": 405,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-natural-language-processing",
+      "course_unit_id": "unit-041"
+    },
+    {
+      "id": "module-187",
+      "roadmap_id": "roadmap-10",
+      "title": "Introduction: Clinical Prediction Models",
+      "order": 501,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-predictive-modeling",
+      "course_unit_id": "unit-042"
+    },
+    {
+      "id": "module-188",
+      "roadmap_id": "roadmap-10",
+      "title": "Tools: Ensuring Model Usability",
+      "order": 502,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-predictive-modeling",
+      "course_unit_id": "unit-042"
+    },
+    {
+      "id": "module-189",
+      "roadmap_id": "roadmap-10",
+      "title": "Techniques: Model Implementation and Sustainability",
+      "order": 503,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-predictive-modeling",
+      "course_unit_id": "unit-042"
+    },
+    {
+      "id": "module-190",
+      "roadmap_id": "roadmap-10",
+      "title": "Techniques: Data Selection, Model Building, and Evaluation",
+      "order": 504,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-predictive-modeling",
+      "course_unit_id": "unit-042"
+    },
+    {
+      "id": "module-191",
+      "roadmap_id": "roadmap-10",
+      "title": "Practical Application: Developing a Clinical Prediction Model",
+      "order": 505,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-predictive-modeling",
+      "course_unit_id": "unit-042"
+    },
+    {
+      "id": "module-192",
+      "roadmap_id": "roadmap-10",
+      "title": "Introduction: Advanced Clinical Data Science",
+      "order": 601,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/advanced-clinical-data-science",
+      "course_unit_id": "unit-043"
+    },
+    {
+      "id": "module-193",
+      "roadmap_id": "roadmap-10",
+      "title": "Tools and Techniques: Temporality",
+      "order": 602,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/advanced-clinical-data-science",
+      "course_unit_id": "unit-043"
+    },
+    {
+      "id": "module-194",
+      "roadmap_id": "roadmap-10",
+      "title": "Tools and Techniques: Missing Data",
+      "order": 603,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/advanced-clinical-data-science",
+      "course_unit_id": "unit-043"
+    },
+    {
+      "id": "module-195",
+      "roadmap_id": "roadmap-10",
+      "title": "Practical Application: Careers in Clinical Data Science",
+      "order": 604,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/advanced-clinical-data-science",
+      "course_unit_id": "unit-043"
+    },
+    {
+      "id": "module-196",
+      "roadmap_id": "roadmap-11",
+      "title": "Asking and answering questions via clinical data mining",
+      "order": 101,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/introduction-clinical-data",
+      "course_unit_id": "unit-044"
+    },
+    {
+      "id": "module-197",
+      "roadmap_id": "roadmap-11",
+      "title": "Data available from Healthcare systems",
+      "order": 102,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/introduction-clinical-data",
+      "course_unit_id": "unit-044"
+    },
+    {
+      "id": "module-198",
+      "roadmap_id": "roadmap-11",
+      "title": "Representing time, and timing of events, for clinical data mining",
+      "order": 103,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/introduction-clinical-data",
+      "course_unit_id": "unit-044"
+    },
+    {
+      "id": "module-199",
+      "roadmap_id": "roadmap-11",
+      "title": "Creating analysis ready datasets from patient timelines",
+      "order": 104,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/introduction-clinical-data",
+      "course_unit_id": "unit-044"
+    },
+    {
+      "id": "module-200",
+      "roadmap_id": "roadmap-11",
+      "title": "Handling unstructured healthcare data: text, images, signals",
+      "order": 105,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/introduction-clinical-data",
+      "course_unit_id": "unit-044"
+    },
+    {
+      "id": "module-201",
+      "roadmap_id": "roadmap-11",
+      "title": "Putting the pieces together: Electronic phenotyping",
+      "order": 106,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/introduction-clinical-data",
+      "course_unit_id": "unit-044"
+    },
+    {
+      "id": "module-202",
+      "roadmap_id": "roadmap-11",
+      "title": "Ethics",
+      "order": 107,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/introduction-clinical-data",
+      "course_unit_id": "unit-044"
+    },
+    {
+      "id": "module-203",
+      "roadmap_id": "roadmap-11",
+      "title": "Course Conclusion",
+      "order": 108,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/introduction-clinical-data",
+      "course_unit_id": "unit-044"
+    },
+    {
+      "id": "module-204",
+      "roadmap_id": "roadmap-11",
+      "title": "Why machine learning in healthcare?",
+      "order": 201,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/fundamental-machine-learning-healthcare",
+      "course_unit_id": "unit-045"
+    },
+    {
+      "id": "module-205",
+      "roadmap_id": "roadmap-11",
+      "title": "Concepts and Principles of machine learning in healthcare part 1",
+      "order": 202,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/fundamental-machine-learning-healthcare",
+      "course_unit_id": "unit-045"
+    },
+    {
+      "id": "module-206",
+      "roadmap_id": "roadmap-11",
+      "title": "Concepts and Principles of machine learning in healthcare part 2",
+      "order": 203,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/fundamental-machine-learning-healthcare",
+      "course_unit_id": "unit-045"
+    },
+    {
+      "id": "module-207",
+      "roadmap_id": "roadmap-11",
+      "title": "Evaluation and Metrics for machine learning in healthcare",
+      "order": 204,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/fundamental-machine-learning-healthcare",
+      "course_unit_id": "unit-045"
+    },
+    {
+      "id": "module-208",
+      "roadmap_id": "roadmap-11",
+      "title": "Strategies and Challenges in Machine Learning in Healthcare",
+      "order": 205,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/fundamental-machine-learning-healthcare",
+      "course_unit_id": "unit-045"
+    },
+    {
+      "id": "module-209",
+      "roadmap_id": "roadmap-11",
+      "title": "Best practices, teams, and launching your machine learning journey",
+      "order": 206,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/fundamental-machine-learning-healthcare",
+      "course_unit_id": "unit-045"
+    },
+    {
+      "id": "module-210",
+      "roadmap_id": "roadmap-11",
+      "title": "Foundation models (Optional Content)",
+      "order": 207,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/fundamental-machine-learning-healthcare",
+      "course_unit_id": "unit-045"
+    },
+    {
+      "id": "module-211",
+      "roadmap_id": "roadmap-11",
+      "title": "Course Conclusion",
+      "order": 208,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/fundamental-machine-learning-healthcare",
+      "course_unit_id": "unit-045"
+    },
+    {
+      "id": "module-212",
+      "roadmap_id": "roadmap-11",
+      "title": "AI in Healthcare",
+      "order": 301,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/evaluations-ai-applications-healthcare",
+      "course_unit_id": "unit-046"
+    },
+    {
+      "id": "module-213",
+      "roadmap_id": "roadmap-11",
+      "title": "Evaluations of AI in Healthcare",
+      "order": 302,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/evaluations-ai-applications-healthcare",
+      "course_unit_id": "unit-046"
+    },
+    {
+      "id": "module-214",
+      "roadmap_id": "roadmap-11",
+      "title": "AI Deployment",
+      "order": 303,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/evaluations-ai-applications-healthcare",
+      "course_unit_id": "unit-046"
+    },
+    {
+      "id": "module-215",
+      "roadmap_id": "roadmap-11",
+      "title": "Downstream Evaluations of AI in Healthcare: Bias and Fairness",
+      "order": 304,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/evaluations-ai-applications-healthcare",
+      "course_unit_id": "unit-046"
+    },
+    {
+      "id": "module-216",
+      "roadmap_id": "roadmap-11",
+      "title": "The Regulatory Environment for AI in Healthcare",
+      "order": 305,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/evaluations-ai-applications-healthcare",
+      "course_unit_id": "unit-046"
+    },
+    {
+      "id": "module-217",
+      "roadmap_id": "roadmap-11",
+      "title": "Best Ethical Practices for AI in Health Care",
+      "order": 306,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/evaluations-ai-applications-healthcare",
+      "course_unit_id": "unit-046"
+    },
+    {
+      "id": "module-218",
+      "roadmap_id": "roadmap-11",
+      "title": "AI and Medicine (Optional Content)",
+      "order": 307,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/evaluations-ai-applications-healthcare",
+      "course_unit_id": "unit-046"
+    },
+    {
+      "id": "module-219",
+      "roadmap_id": "roadmap-11",
+      "title": "Course Wrap Up",
+      "order": 308,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/evaluations-ai-applications-healthcare",
+      "course_unit_id": "unit-046"
+    },
+    {
+      "id": "module-220",
+      "roadmap_id": "roadmap-11",
+      "title": "Getting Started, Phase 1: Data Collection",
+      "order": 401,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-in-healthcare-capstone",
+      "course_unit_id": "unit-047"
+    },
+    {
+      "id": "module-221",
+      "roadmap_id": "roadmap-11",
+      "title": "Phase 2: Model Training Part 1",
+      "order": 402,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-in-healthcare-capstone",
+      "course_unit_id": "unit-047"
+    },
+    {
+      "id": "module-222",
+      "roadmap_id": "roadmap-11",
+      "title": "Phase 3: Model Training Part 2",
+      "order": 403,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-in-healthcare-capstone",
+      "course_unit_id": "unit-047"
+    },
+    {
+      "id": "module-223",
+      "roadmap_id": "roadmap-11",
+      "title": "Phase 4: Model Evaluation",
+      "order": 404,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-in-healthcare-capstone",
+      "course_unit_id": "unit-047"
+    },
+    {
+      "id": "module-224",
+      "roadmap_id": "roadmap-11",
+      "title": "Phase 5: Model Deployment and Regulation, Wrap Up",
+      "order": 405,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-in-healthcare-capstone",
+      "course_unit_id": "unit-047"
+    },
+    {
+      "id": "module-225",
+      "roadmap_id": "roadmap-12",
+      "title": "Disease Detection with Computer Vision",
+      "order": 1101,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-for-medical-diagnosis",
+      "course_unit_id": "unit-048"
+    },
+    {
+      "id": "module-226",
+      "roadmap_id": "roadmap-12",
+      "title": "Evaluating Models",
+      "order": 1102,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-for-medical-diagnosis",
+      "course_unit_id": "unit-048"
+    },
+    {
+      "id": "module-227",
+      "roadmap_id": "roadmap-12",
+      "title": "Image Segmentation on MRI Images",
+      "order": 1103,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-for-medical-diagnosis",
+      "course_unit_id": "unit-048"
+    },
+    {
+      "id": "module-228",
+      "roadmap_id": "roadmap-12",
+      "title": "Linear Prognostic Models",
+      "order": 1104,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-for-medical-prognosis",
+      "course_unit_id": "unit-049"
+    },
+    {
+      "id": "module-229",
+      "roadmap_id": "roadmap-12",
+      "title": "Prognosis with Tree-based Models",
+      "order": 1105,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-for-medical-prognosis",
+      "course_unit_id": "unit-049"
+    },
+    {
+      "id": "module-230",
+      "roadmap_id": "roadmap-12",
+      "title": "Survival Models and Time",
+      "order": 1106,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-for-medical-prognosis",
+      "course_unit_id": "unit-049"
+    },
+    {
+      "id": "module-231",
+      "roadmap_id": "roadmap-12",
+      "title": "Build a Risk Model Using Linear and Tree-based Models",
+      "order": 1107,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-for-medical-prognosis",
+      "course_unit_id": "unit-049"
+    },
+    {
+      "id": "module-232",
+      "roadmap_id": "roadmap-12",
+      "title": "Treatment Effect Estimation",
+      "order": 1108,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-for-medical-treatment",
+      "course_unit_id": "unit-050"
+    },
+    {
+      "id": "module-233",
+      "roadmap_id": "roadmap-12",
+      "title": "Medical Question Answering",
+      "order": 1109,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-for-medical-treatment",
+      "course_unit_id": "unit-050"
+    },
+    {
+      "id": "module-234",
+      "roadmap_id": "roadmap-12",
+      "title": "ML Interpretation",
+      "order": 1110,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/ai-for-medical-treatment",
+      "course_unit_id": "unit-050"
+    },
+    {
+      "id": "module-235",
+      "roadmap_id": "roadmap-13",
+      "title": "Electronic Health Records and Public Databases",
+      "order": 1201,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-data-mining",
+      "course_unit_id": "unit-051"
+    },
+    {
+      "id": "module-236",
+      "roadmap_id": "roadmap-13",
+      "title": "MIMIC III as a relational database",
+      "order": 1202,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-data-mining",
+      "course_unit_id": "unit-051"
+    },
+    {
+      "id": "module-237",
+      "roadmap_id": "roadmap-13",
+      "title": "International Classification of Disease System",
+      "order": 1203,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-data-mining",
+      "course_unit_id": "unit-051"
+    },
+    {
+      "id": "module-238",
+      "roadmap_id": "roadmap-13",
+      "title": "Concepts in MIMIC-III and an example of patients inclusion flowchart",
+      "order": 1204,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-data-mining",
+      "course_unit_id": "unit-051"
+    },
+    {
+      "id": "module-239",
+      "roadmap_id": "roadmap-13",
+      "title": "Artificial Intelligence and Multi-Layer Perceptron",
+      "order": 1205,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-ehr",
+      "course_unit_id": "unit-052"
+    },
+    {
+      "id": "module-240",
+      "roadmap_id": "roadmap-13",
+      "title": "Convolutional and Recurrent Neural Networks.",
+      "order": 1206,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-ehr",
+      "course_unit_id": "unit-052"
+    },
+    {
+      "id": "module-241",
+      "roadmap_id": "roadmap-13",
+      "title": "Preprocessing and imputation of MIMIC III data",
+      "order": 1207,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-ehr",
+      "course_unit_id": "unit-052"
+    },
+    {
+      "id": "module-242",
+      "roadmap_id": "roadmap-13",
+      "title": "EHR Encodings for machine learning models",
+      "order": 1208,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-ehr",
+      "course_unit_id": "unit-052"
+    },
+    {
+      "id": "module-243",
+      "roadmap_id": "roadmap-13",
+      "title": "Interpretable vs Explainable Machine Learning Models in Healthcare",
+      "order": 1209,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-explainable-models",
+      "course_unit_id": "unit-053"
+    },
+    {
+      "id": "module-244",
+      "roadmap_id": "roadmap-13",
+      "title": "Local Explainability Methods for Deep Learning Models",
+      "order": 1210,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-explainable-models",
+      "course_unit_id": "unit-053"
+    },
+    {
+      "id": "module-245",
+      "roadmap_id": "roadmap-13",
+      "title": "Gradient-weighted Class Activation Mapping and Integrated Gradients",
+      "order": 1211,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-explainable-models",
+      "course_unit_id": "unit-053"
+    },
+    {
+      "id": "module-246",
+      "roadmap_id": "roadmap-13",
+      "title": "Attention mechanisms in Deep Learning",
+      "order": 1212,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-explainable-models",
+      "course_unit_id": "unit-053"
+    },
+    {
+      "id": "module-247",
+      "roadmap_id": "roadmap-13",
+      "title": "From machine learning models to clinical decision support systems",
+      "order": 1213,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-support-systems",
+      "course_unit_id": "unit-054"
+    },
+    {
+      "id": "module-248",
+      "roadmap_id": "roadmap-13",
+      "title": "'Fairness' in Machine Learning Models",
+      "order": 1214,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-support-systems",
+      "course_unit_id": "unit-054"
+    },
+    {
+      "id": "module-249",
+      "roadmap_id": "roadmap-13",
+      "title": "Decision Curve Analysis and Human-Centered CDSS",
+      "order": 1215,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-support-systems",
+      "course_unit_id": "unit-054"
+    },
+    {
+      "id": "module-250",
+      "roadmap_id": "roadmap-13",
+      "title": "Privacy Concerns in CDSS",
+      "order": 1216,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-support-systems",
+      "course_unit_id": "unit-054"
+    },
+    {
+      "id": "module-251",
+      "roadmap_id": "roadmap-13",
+      "title": "Permutation feature importance on the MIMIC critical care database",
+      "order": 1217,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-capstone",
+      "course_unit_id": "unit-055"
+    },
+    {
+      "id": "module-252",
+      "roadmap_id": "roadmap-13",
+      "title": "LIME on the MIMIC critical care database",
+      "order": 1218,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-capstone",
+      "course_unit_id": "unit-055"
+    },
+    {
+      "id": "module-253",
+      "roadmap_id": "roadmap-13",
+      "title": "Grad-CAM on the MIMIC critical care database",
+      "order": 1219,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/clinical-decision-deep-learning-capstone",
+      "course_unit_id": "unit-055"
+    },
+    {
+      "id": "module-254",
+      "roadmap_id": "roadmap-14",
+      "title": "Version Control and Automation Foundations",
+      "order": 1301,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/devops-for-machine-learning-ci-cd-apis-and-deployment",
+      "course_unit_id": "unit-056"
+    },
+    {
+      "id": "module-255",
+      "roadmap_id": "roadmap-14",
+      "title": "ML Pipeline Automation",
+      "order": 1302,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/devops-for-machine-learning-ci-cd-apis-and-deployment",
+      "course_unit_id": "unit-056"
+    },
+    {
+      "id": "module-256",
+      "roadmap_id": "roadmap-14",
+      "title": "Building and Serving ML APIs",
+      "order": 1303,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/devops-for-machine-learning-ci-cd-apis-and-deployment",
+      "course_unit_id": "unit-056"
+    },
+    {
+      "id": "module-257",
+      "roadmap_id": "roadmap-14",
+      "title": "Packaging and Deployment",
+      "order": 1304,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/devops-for-machine-learning-ci-cd-apis-and-deployment",
+      "course_unit_id": "unit-056"
+    },
+    {
+      "id": "module-258",
+      "roadmap_id": "roadmap-14",
+      "title": "AWS ML Services",
+      "order": 1305,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/cloud-platforms-for-ml-aws-azure-and-gcp-deployment",
+      "course_unit_id": "unit-057"
+    },
+    {
+      "id": "module-259",
+      "roadmap_id": "roadmap-14",
+      "title": "Azure ML Services",
+      "order": 1306,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/cloud-platforms-for-ml-aws-azure-and-gcp-deployment",
+      "course_unit_id": "unit-057"
+    },
+    {
+      "id": "module-260",
+      "roadmap_id": "roadmap-14",
+      "title": "Google Cloud ML Services",
+      "order": 1307,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/cloud-platforms-for-ml-aws-azure-and-gcp-deployment",
+      "course_unit_id": "unit-057"
+    },
+    {
+      "id": "module-261",
+      "roadmap_id": "roadmap-14",
+      "title": "Comparing and Choosing Platforms",
+      "order": 1308,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/cloud-platforms-for-ml-aws-azure-and-gcp-deployment",
+      "course_unit_id": "unit-057"
+    },
+    {
+      "id": "module-262",
+      "roadmap_id": "roadmap-14",
+      "title": "Docker for ML",
+      "order": 1309,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/model-serving-systems-containers-apis-and-scalability",
+      "course_unit_id": "unit-058"
+    },
+    {
+      "id": "module-263",
+      "roadmap_id": "roadmap-14",
+      "title": "API Design for ML Serving",
+      "order": 1310,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/model-serving-systems-containers-apis-and-scalability",
+      "course_unit_id": "unit-058"
+    },
+    {
+      "id": "module-264",
+      "roadmap_id": "roadmap-14",
+      "title": "Scaling Model Serving",
+      "order": 1311,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/model-serving-systems-containers-apis-and-scalability",
+      "course_unit_id": "unit-058"
+    },
+    {
+      "id": "module-265",
+      "roadmap_id": "roadmap-14",
+      "title": "Model Serialization and Deployment",
+      "order": 1312,
+      "source_type": "Official Syllabus",
+      "official_source_url": "https://www.coursera.org/learn/model-serving-systems-containers-apis-and-scalability",
+      "course_unit_id": "unit-058"
+    }
+  ],
+  "milestones": [
+    {
+      "id": "milestone-01",
+      "title": "General Data Science / AI Foundation",
+      "order": 1,
+      "competency_criteria": "Python; Pandas, NumPy, SQL; cleaning, EDA, visualization; linear algebra and calculus for ML; probability and inference; classical ML; neural networks; training, validation, and error analysis."
+    },
+    {
+      "id": "milestone-02",
+      "title": "Healthcare Literacy",
+      "order": 2,
+      "competency_criteria": "Healthcare stakeholders and delivery; patient journey; medical terminology; basic clinical records; understands that the goal is clinical literacy rather than medical practice."
+    },
+    {
+      "id": "milestone-03",
+      "title": "Healthcare Data Science Foundation",
+      "order": 3,
+      "competency_criteria": "Epidemiology; biostatistics; clinical data and EHR; healthcare AI context, evaluation, workflow, safety, fairness, and clinical usefulness."
+    },
+    {
+      "id": "milestone-04",
+      "title": "Medical AI & Deployment",
+      "order": 4,
+      "competency_criteria": "Diagnosis, prognosis, treatment modeling; clinical decision support; calibration, fairness, explainability; MLOps; one strong independent end-to-end Healthcare AI portfolio project."
+    }
+  ],
+  "starter_projects": [
+    {
+      "id": "project-01",
+      "title": "Phase 14 — Independent End-to-End Healthcare AI Project",
+      "type": "Major Portfolio",
+      "skills": [
+        "Python",
+        "SQL",
+        "Statistics",
+        "Machine Learning",
+        "Deep Learning",
+        "Healthcare",
+        "Epidemiology",
+        "Biostatistics",
+        "EHR",
+        "MLOps"
+      ],
+      "github_url": null
+    }
+  ],
+  "source_catalog": [
+    {
+      "course_unit_id": "unit-001",
+      "roadmap_id": "roadmap-01",
+      "course_unit": "What is Data Science?",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/what-is-datascience"
+      ]
+    },
+    {
+      "course_unit_id": "unit-002",
+      "roadmap_id": "roadmap-01",
+      "course_unit": "Tools for Data Science",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/open-source-tools-for-data-science"
+      ]
+    },
+    {
+      "course_unit_id": "unit-003",
+      "roadmap_id": "roadmap-01",
+      "course_unit": "Data Science Methodology",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/data-science-methodology"
+      ]
+    },
+    {
+      "course_unit_id": "unit-004",
+      "roadmap_id": "roadmap-01",
+      "course_unit": "Python for Data Science, AI & Development",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/python-for-applied-data-science-ai"
+      ]
+    },
+    {
+      "course_unit_id": "unit-005",
+      "roadmap_id": "roadmap-01",
+      "course_unit": "Python Project for Data Science",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/python-project-for-data-science"
+      ]
+    },
+    {
+      "course_unit_id": "unit-006",
+      "roadmap_id": "roadmap-01",
+      "course_unit": "Databases and SQL for Data Science with Python",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/sql-data-science"
+      ]
+    },
+    {
+      "course_unit_id": "unit-007",
+      "roadmap_id": "roadmap-01",
+      "course_unit": "Data Analysis with Python",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/data-analysis-with-python"
+      ]
+    },
+    {
+      "course_unit_id": "unit-008",
+      "roadmap_id": "roadmap-01",
+      "course_unit": "Data Visualization with Python",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/python-for-data-visualization"
+      ]
+    },
+    {
+      "course_unit_id": "unit-009",
+      "roadmap_id": "roadmap-01",
+      "course_unit": "Machine Learning with Python",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/machine-learning-with-python"
+      ]
+    },
+    {
+      "course_unit_id": "unit-010",
+      "roadmap_id": "roadmap-01",
+      "course_unit": "Applied Data Science Capstone",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/applied-data-science-capstone"
+      ]
+    },
+    {
+      "course_unit_id": "unit-011",
+      "roadmap_id": "roadmap-01",
+      "course_unit": "Generative AI: Elevate Your Data Science Career",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/generative-ai-elevate-your-data-science-career"
+      ]
+    },
+    {
+      "course_unit_id": "unit-012",
+      "roadmap_id": "roadmap-01",
+      "course_unit": "Data Scientist Career Guide and Interview Preparation",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/career-guide-and-interview-prep-for-data-science-pc"
+      ]
+    },
+    {
+      "course_unit_id": "unit-013",
+      "roadmap_id": "roadmap-02",
+      "course_unit": "Mathematics for Machine Learning: Linear Algebra",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/linear-algebra-machine-learning"
+      ]
+    },
+    {
+      "course_unit_id": "unit-014",
+      "roadmap_id": "roadmap-02",
+      "course_unit": "Mathematics for Machine Learning: Multivariate Calculus",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/multivariate-calculus-machine-learning"
+      ]
+    },
+    {
+      "course_unit_id": "unit-015",
+      "roadmap_id": "roadmap-02",
+      "course_unit": "Mathematics for Machine Learning: PCA",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/pca-machine-learning"
+      ]
+    },
+    {
+      "course_unit_id": "unit-016",
+      "roadmap_id": "roadmap-03",
+      "course_unit": "Understanding and Visualizing Data with Python",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/understanding-visualization-data"
+      ]
+    },
+    {
+      "course_unit_id": "unit-017",
+      "roadmap_id": "roadmap-03",
+      "course_unit": "Inferential Statistical Analysis with Python",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/inferential-statistical-analysis-python"
+      ]
+    },
+    {
+      "course_unit_id": "unit-018",
+      "roadmap_id": "roadmap-03",
+      "course_unit": "Fitting Statistical Models to Data with Python",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/fitting-statistical-models-data-python"
+      ]
+    },
+    {
+      "course_unit_id": "unit-019",
+      "roadmap_id": "roadmap-04",
+      "course_unit": "Supervised Machine Learning: Regression and Classification",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/machine-learning"
+      ]
+    },
+    {
+      "course_unit_id": "unit-020",
+      "roadmap_id": "roadmap-04",
+      "course_unit": "Advanced Learning Algorithms",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/advanced-learning-algorithms"
+      ]
+    },
+    {
+      "course_unit_id": "unit-021",
+      "roadmap_id": "roadmap-04",
+      "course_unit": "Unsupervised Learning, Recommenders, Reinforcement Learning",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/unsupervised-learning-recommenders-reinforcement-learning"
+      ]
+    },
+    {
+      "course_unit_id": "unit-022",
+      "roadmap_id": "roadmap-05",
+      "course_unit": "Neural Networks and Deep Learning",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/neural-networks-deep-learning"
+      ]
+    },
+    {
+      "course_unit_id": "unit-023",
+      "roadmap_id": "roadmap-05",
+      "course_unit": "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/deep-neural-network"
+      ]
+    },
+    {
+      "course_unit_id": "unit-024",
+      "roadmap_id": "roadmap-05",
+      "course_unit": "Structuring Machine Learning Projects",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/machine-learning-projects"
+      ]
+    },
+    {
+      "course_unit_id": "unit-025",
+      "roadmap_id": "roadmap-05",
+      "course_unit": "Convolutional Neural Networks",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/convolutional-neural-networks"
+      ]
+    },
+    {
+      "course_unit_id": "unit-026",
+      "roadmap_id": "roadmap-05",
+      "course_unit": "Sequence Models",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/nlp-sequence-models"
+      ]
+    },
+    {
+      "course_unit_id": "unit-027",
+      "roadmap_id": "roadmap-06",
+      "course_unit": "Introduction to Healthcare",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/intro-to-healthcare"
+      ]
+    },
+    {
+      "course_unit_id": "unit-028",
+      "roadmap_id": "roadmap-07",
+      "course_unit": "Medical Terminology I",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/medical-terminology-1"
+      ]
+    },
+    {
+      "course_unit_id": "unit-029",
+      "roadmap_id": "roadmap-07",
+      "course_unit": "Medical Terminology II",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/medicalterminology-2"
+      ]
+    },
+    {
+      "course_unit_id": "unit-030",
+      "roadmap_id": "roadmap-07",
+      "course_unit": "Medical Terminology III",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/medical-terminology-iii"
+      ]
+    },
+    {
+      "course_unit_id": "unit-031",
+      "roadmap_id": "roadmap-08",
+      "course_unit": "Measuring Disease in Epidemiology",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/measuring-disease-epidemiology"
+      ]
+    },
+    {
+      "course_unit_id": "unit-032",
+      "roadmap_id": "roadmap-08",
+      "course_unit": "Study Designs in Epidemiology",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/study-designs-epidemiology"
+      ]
+    },
+    {
+      "course_unit_id": "unit-033",
+      "roadmap_id": "roadmap-08",
+      "course_unit": "Validity and Bias in Epidemiology",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/validity-bias-epidemiology"
+      ]
+    },
+    {
+      "course_unit_id": "unit-035",
+      "roadmap_id": "roadmap-09",
+      "course_unit": "Hypothesis Testing in Public Health",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/hypothesis-testing-public-health"
+      ]
+    },
+    {
+      "course_unit_id": "unit-037",
+      "roadmap_id": "roadmap-09",
+      "course_unit": "Multiple Regression Analysis in Public Health",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/multiple-regression-analysis-public-health"
+      ]
+    },
+    {
+      "course_unit_id": "unit-036",
+      "roadmap_id": "roadmap-09",
+      "course_unit": "Simple Regression Analysis in Public Health",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/simple-regression-analysis-public-health"
+      ]
+    },
+    {
+      "course_unit_id": "unit-034",
+      "roadmap_id": "roadmap-09",
+      "course_unit": "Summary Statistics in Public Health",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/summary-statistics"
+      ]
+    },
+    {
+      "course_unit_id": "unit-038",
+      "roadmap_id": "roadmap-10",
+      "course_unit": "Introduction to Clinical Data Science",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/introduction-clinical-data-science"
+      ]
+    },
+    {
+      "course_unit_id": "unit-039",
+      "roadmap_id": "roadmap-10",
+      "course_unit": "Clinical Data Models and Data Quality Assessments",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-data-models-and-data-quality-assessments"
+      ]
+    },
+    {
+      "course_unit_id": "unit-040",
+      "roadmap_id": "roadmap-10",
+      "course_unit": "Identifying Patient Populations",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/computational-phenotyping"
+      ]
+    },
+    {
+      "course_unit_id": "unit-041",
+      "roadmap_id": "roadmap-10",
+      "course_unit": "Clinical Natural Language Processing",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-natural-language-processing"
+      ]
+    },
+    {
+      "course_unit_id": "unit-042",
+      "roadmap_id": "roadmap-10",
+      "course_unit": "Predictive Modeling and Transforming Clinical Practice",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-predictive-modeling"
+      ]
+    },
+    {
+      "course_unit_id": "unit-043",
+      "roadmap_id": "roadmap-10",
+      "course_unit": "Advanced Clinical Data Science",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/advanced-clinical-data-science"
+      ]
+    },
+    {
+      "course_unit_id": "unit-044",
+      "roadmap_id": "roadmap-11",
+      "course_unit": "Introduction to Clinical Data",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/introduction-clinical-data"
+      ]
+    },
+    {
+      "course_unit_id": "unit-045",
+      "roadmap_id": "roadmap-11",
+      "course_unit": "Fundamentals of Machine Learning for Healthcare",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/fundamental-machine-learning-healthcare"
+      ]
+    },
+    {
+      "course_unit_id": "unit-046",
+      "roadmap_id": "roadmap-11",
+      "course_unit": "Evaluations of AI Applications in Healthcare",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/evaluations-ai-applications-healthcare"
+      ]
+    },
+    {
+      "course_unit_id": "unit-047",
+      "roadmap_id": "roadmap-11",
+      "course_unit": "AI in Healthcare Capstone",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/ai-in-healthcare-capstone"
+      ]
+    },
+    {
+      "course_unit_id": "unit-048",
+      "roadmap_id": "roadmap-12",
+      "course_unit": "AI for Medical Diagnosis",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/ai-for-medical-diagnosis"
+      ]
+    },
+    {
+      "course_unit_id": "unit-049",
+      "roadmap_id": "roadmap-12",
+      "course_unit": "AI for Medical Prognosis",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/ai-for-medical-prognosis"
+      ]
+    },
+    {
+      "course_unit_id": "unit-050",
+      "roadmap_id": "roadmap-12",
+      "course_unit": "AI For Medical Treatment",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/ai-for-medical-treatment"
+      ]
+    },
+    {
+      "course_unit_id": "unit-055",
+      "roadmap_id": "roadmap-13",
+      "course_unit": "Capstone Assignment",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-decision-deep-learning-capstone"
+      ]
+    },
+    {
+      "course_unit_id": "unit-054",
+      "roadmap_id": "roadmap-13",
+      "course_unit": "Clinical Decision Support Systems",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-decision-support-systems"
+      ]
+    },
+    {
+      "course_unit_id": "unit-051",
+      "roadmap_id": "roadmap-13",
+      "course_unit": "Data Mining of Clinical Databases",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-decision-deep-learning-data-mining"
+      ]
+    },
+    {
+      "course_unit_id": "unit-052",
+      "roadmap_id": "roadmap-13",
+      "course_unit": "Deep Learning in Electronic Health Records",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-decision-deep-learning-ehr"
+      ]
+    },
+    {
+      "course_unit_id": "unit-053",
+      "roadmap_id": "roadmap-13",
+      "course_unit": "Explainable Deep Learning Models for Healthcare",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/clinical-decision-deep-learning-explainable-models"
+      ]
+    },
+    {
+      "course_unit_id": "unit-057",
+      "roadmap_id": "roadmap-14",
+      "course_unit": "Cloud Platforms for ML: AWS, Azure & GCP Deployment",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/cloud-platforms-for-ml-aws-azure-and-gcp-deployment"
+      ]
+    },
+    {
+      "course_unit_id": "unit-056",
+      "roadmap_id": "roadmap-14",
+      "course_unit": "DevOps for Machine Learning: CI/CD, APIs & Deployment",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/devops-for-machine-learning-ci-cd-apis-and-deployment"
+      ]
+    },
+    {
+      "course_unit_id": "unit-058",
+      "roadmap_id": "roadmap-14",
+      "course_unit": "Model Serving Systems: Containers, APIs & Scalability",
+      "official_source_urls": [
+        "https://www.coursera.org/learn/model-serving-systems-containers-apis-and-scalability"
+      ]
+    }
+  ],
+  "metadata": {
+    "roadmap_entries": 14,
+    "course_units": 58,
+    "modules": 265,
+    "milestones": 4,
+    "starter_projects": 1
+  }
+}
