@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { FlaskConical, Loader2, ShieldCheck, Sparkles } from 'lucide-react';
 import { createClient } from '@/lib/supabase/browser';
 import { isSupabaseConfigured, missingPublicEnv } from '@/lib/supabase/env';
+import { safeNextPath } from '@/lib/security/redirect';
 import { SetupRequired } from '@/components/setup-required';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -24,14 +25,16 @@ export default function LoginPage() {
 function LoginForm() {
   const router = useRouter();
   const params = useSearchParams();
-  const next = params.get('next') || '/';
+  const next = safeNextPath(params.get('next'));
 
   const [mode, setMode] = useState<Mode>('signin');
   const [ownerExists, setOwnerExists] = useState<boolean | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [notice, setNotice] = useState('');
   const [busy, setBusy] = useState(false);
+  const [resetBusy, setResetBusy] = useState(false);
 
   useEffect(() => {
     fetch('/api/auth/owner-exists')
@@ -48,6 +51,7 @@ function LoginForm() {
   async function submit(e: FormEvent) {
     e.preventDefault();
     setError('');
+    setNotice('');
     setBusy(true);
     try {
       const supabase = createClient();
@@ -57,17 +61,40 @@ function LoginForm() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password }),
         });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data?.error || 'Could not create owner account');
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data?.error || 'Could not create the owner account.');
       }
       const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
-      if (signInError) throw new Error(signInError.message);
-      router.replace(next.startsWith('/') ? next : '/');
+      // Generic message: never reveal whether the email exists or the exact reason.
+      if (signInError) throw new Error('Invalid email or password.');
+      router.replace(next);
       router.refresh();
     } catch (err: any) {
-      setError(err?.message || 'Something went wrong');
+      setError(err?.message || 'Invalid email or password.');
     } finally {
       setBusy(false);
+    }
+  }
+
+  async function forgotPassword() {
+    setError('');
+    setNotice('');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      setError('Enter your email above, then tap "Forgot password".');
+      return;
+    }
+    setResetBusy(true);
+    try {
+      const supabase = createClient();
+      await supabase.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
+        redirectTo: `${window.location.origin}/reset-password`,
+      });
+    } catch {
+      // ignore
+    } finally {
+      // Always show the same message regardless of whether the account exists.
+      setNotice('If an account exists for that email, a password reset link has been sent.');
+      setResetBusy(false);
     }
   }
 
@@ -108,10 +135,20 @@ function LoginForm() {
                 <Input id="email" data-testid="email-input" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className="space-y-2">
+              <div className="flex items-center justify-between gap-2">
                 <Label htmlFor="password">Password</Label>
+                {mode === 'signin' && (
+                  <button type="button" data-testid="forgot-password" disabled={resetBusy}
+                    onClick={forgotPassword}
+                    className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground disabled:opacity-50">
+                    {resetBusy ? 'Sending…' : 'Forgot password?'}
+                  </button>
+                )}
+              </div>
                 <Input id="password" data-testid="password-input" type="password" autoComplete={mode === 'signin' ? 'current-password' : 'new-password'} minLength={8} required value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
               {error && <p role="alert" data-testid="login-error" className="text-sm text-destructive">{error}</p>}
+              {notice && <p role="status" data-testid="login-notice" className="text-sm text-emerald-600">{notice}</p>}
               <Button type="submit" className="w-full" disabled={busy} data-testid="login-submit">
                 {busy && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
                 {mode === 'signin' ? 'Sign in' : 'Create owner & sign in'}

@@ -16,6 +16,7 @@ import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { safeExternalUrl } from '@/lib/security/url';
 
 function greeting() {
   const h = new Date().getHours();
@@ -141,8 +142,8 @@ export default function DashboardPage() {
                   <Button variant="outline" size="sm" data-testid="continue-report" onClick={() => setReport({ module: target.module, unitTitle: target.unit.title, phaseLabel: target.phase.phase_label })}>
                     <ClipboardPen className="h-3.5 w-3.5 mr-1" /> Log exercise
                   </Button>
-                  {target.module.source_url && (
-                    <Button asChild variant="outline" size="sm"><a href={target.module.source_url} target="_blank" rel="noreferrer">Open course <ArrowRight className="h-3.5 w-3.5 ml-1" /></a></Button>
+                  {safeExternalUrl(target.module.source_url) && (
+                    <Button asChild variant="outline" size="sm"><a href={safeExternalUrl(target.module.source_url)!} target="_blank" rel="noopener noreferrer">Open course <ArrowRight className="h-3.5 w-3.5 ml-1" /></a></Button>
                   )}
                   <Button asChild variant="ghost" size="sm" className="ml-auto"><Link href={`/roadmap#phase-${target.phase.key}`}>View in roadmap</Link></Button>
                 </div>

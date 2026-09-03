@@ -1,5 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { MILESTONE_PHASE_MAP } from './milestoneMap';
+import { safeExternalUrl } from '@/lib/security/url';
 
 export type SeedFile = {
   schema_version?: number;
@@ -137,7 +138,7 @@ export async function importSeed(
     priority: r.priority ?? null,
     access: r.access ?? null,
     target_competency: r.target_competency ?? null,
-    source_url: r.official_source_url ?? null,
+    source_url: safeExternalUrl(r.official_source_url),
     sort_order: r.order ?? i + 1,
   }));
   const roadmapIds = await syncEntity(admin, 'roadmap_items', ownerId, roadmapRows, dryRun, res.roadmap_items);
@@ -156,7 +157,7 @@ export async function importSeed(
       key: u.id,
       roadmap_item_id: parent,
       title: u.title,
-      source_urls: u.official_source_urls ?? [],
+      source_urls: (u.official_source_urls ?? []).map(safeExternalUrl).filter(Boolean) as string[],
       sort_order: u.order ?? i + 1,
     });
   }
@@ -177,7 +178,7 @@ export async function importSeed(
       course_unit_id: parent,
       title: m.title,
       source_type: m.source_type ?? null,
-      source_url: m.official_source_url ?? null,
+      source_url: safeExternalUrl(m.official_source_url),
       sort_order: m.order ?? i + 1,
     });
   }
@@ -217,7 +218,7 @@ export async function importSeed(
     title: p.title,
     project_type: p.type ?? null,
     tags: p.skills ?? [],
-    github_url: p.github_url ?? null,
+    github_url: safeExternalUrl(p.github_url),
     sort_order: i + 1,
   }));
   if (projectRows.length) await syncEntity(admin, 'projects', ownerId, projectRows, dryRun, res.projects);

@@ -41,3 +41,12 @@ NEXT_PUBLIC_SUPABASE_URL (PENDING from user), NEXT_PUBLIC_SUPABASE_PUBLISHABLE_K
 - Achievements defined in code (lib/achievements.ts, 20 defs), synced to achievement_definitions per owner; unlocked client-side -> earned_achievements insert -> trigger awards xp_reward (003).
 - Milestone->phase mapping in lib/seed/milestoneMap.ts, written to milestone_roadmap_items on seed import.
 - Study logs: 1 XP/10min (max 30); delete removes XP/activity. Weekly goal in owner_settings.weekly_goal_minutes (default 300), week starts Monday.
+
+## Security hardening (session 4)
+- Migration 004: single-owner trigger on auth.users (blocks 2nd user & anon signUp), re-revoke anon/public on all tables, hide schema_migrations.
+- API: no-store headers, same-origin CSRF check on all POST, register-owner rate-limit (5/hr/IP) + optional OWNER_SETUP_TOKEN + generic errors; seed/import 30/min.
+- Open-redirect fixed via lib/security/redirect.safeNextPath (login + middleware). External links sanitized to http(s) via lib/security/url.safeExternalUrl (seed import + phase-card + dashboard).
+- Security headers in next.config.js + middleware (nosniff, referrer-policy, permissions-policy). Framing left permissive for preview iframe.
+- Password reset: login 'Forgot password?' -> resetPasswordForEmail -> /reset-password page (updateUser). MANUAL: add {origin}/reset-password to Supabase Auth Redirect URLs.
+- .env now gitignored; .env.example added. Deps updated: next 15.5.25, postcss 8.5.26, nanoid/browserslist/postcss-selector-parser -> 0 vulns.
+- admin client throws if constructed in browser.

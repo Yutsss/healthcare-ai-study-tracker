@@ -1,7 +1,16 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
-const PUBLIC_PATHS = ['/login'];
+const PUBLIC_PATHS = ['/login', '/reset-password'];
+
+// Baseline security headers applied to every response.
+function withSecurityHeaders(res: NextResponse): NextResponse {
+  res.headers.set('X-Content-Type-Options', 'nosniff');
+  res.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
+  res.headers.set('X-DNS-Prefetch-Control', 'off');
+  return res;
+}
 
 export async function middleware(request: NextRequest) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -9,10 +18,10 @@ export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   // API routes do their own auth checks; static assets are excluded via matcher.
-  if (path.startsWith('/api')) return NextResponse.next({ request });
+  if (path.startsWith('/api')) return withSecurityHeaders(NextResponse.next({ request }));
 
   // Not configured yet -> let pages render the setup notice.
-  if (!url || !key) return NextResponse.next({ request });
+  if (!url || !key) return withSecurityHeaders(NextResponse.next({ request }));
 
   let response = NextResponse.next({ request });
 
@@ -37,18 +46,24 @@ export async function middleware(request: NextRequest) {
   if (!user && !isPublic) {
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = '/login';
-    redirectUrl.searchParams.set('next', path);
-    return NextResponse.redirect(redirectUrl);
+    // Only pass through a safe, in-app path (defence against open-redirect seeding).
+    redirectUrl.search = '';
+    if (/^\/[^/\\]/.test(path)) redirectUrl.searchParams.set('next', path);
+    return withSecurityHeaders(NextResponse.redirect(redirectUrl));
   }
 
-  if (user && path === '/login') {
+  if (user && (path === '/login' || path === '/reset-password')) {
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = '/';
     redirectUrl.search = '';
-    return NextResponse.redirect(redirectUrl);
+    // Allow the recovery session to land on /reset-password when it carries auth params.
+    if (path === '/reset-password' && (request.nextUrl.searchParams.has('code') || request.nextUrl.hash)) {
+      return withSecurityHeaders(response);
+    }
+    if (path === '/login') return withSecurityHeaders(NextResponse.redirect(redirectUrl));
   }
 
-  return response;
+  return withSecurityHeaders(response);
 }
 
 export const config = {

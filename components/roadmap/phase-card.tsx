@@ -8,6 +8,7 @@ import { StatusControl, STATUS_ICON, STATUS_TEXT_CLASS } from './status-control'
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
+import { safeExternalUrl } from '@/lib/security/url';
 
 export type StatusHandler = (module: ModuleNode, status: ModuleStatus) => void;
 export type ReportHandler = (module: ModuleNode, unit: UnitNode, phase?: PhaseNode) => void;
@@ -25,8 +26,8 @@ export function ModuleRow({ module, onStatus, onReport, reportCount = 0, busy }:
           {module.progress?.completed_at && done ? ` · done ${format(new Date(module.progress.completed_at), 'MMM d')}` : ` · ${STATUS_META[module.status].hint}`}
         </p>
       </div>
-      {module.source_url && (
-        <a href={module.source_url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground" title="Open official source">
+      {safeExternalUrl(module.source_url) && (
+        <a href={safeExternalUrl(module.source_url)!} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground" title="Open official source">
           <ExternalLink className="h-3.5 w-3.5" />
         </a>
       )}
@@ -46,7 +47,7 @@ export function UnitRow({ unit, phase, onStatus, onReport, reportCounts, default
   const [open, setOpen] = useState(Boolean(defaultOpen));
   const isOpen = forceOpen || open;
   const Chevron = isOpen ? ChevronDown : ChevronRight;
-  const link = unit.source_urls?.[0];
+  const link = safeExternalUrl(unit.source_urls?.[0]);
   return (
     <div className="rounded-lg border bg-background" data-testid={`unit-${unit.key}`}>
       <button type="button" onClick={() => setOpen((o) => !o)} className="w-full flex items-center gap-3 px-3 py-2.5 text-left">
@@ -63,7 +64,7 @@ export function UnitRow({ unit, phase, onStatus, onReport, reportCounts, default
           </div>
         </div>
         {link && (
-          <a href={link} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="text-muted-foreground hover:text-foreground" title="Open on Coursera">
+          <a href={link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="text-muted-foreground hover:text-foreground" title="Open on Coursera">
             <ExternalLink className="h-4 w-4" />
           </a>
         )}
