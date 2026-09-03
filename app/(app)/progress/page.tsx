@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { format } from 'date-fns';
 import { Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, Legend } from 'recharts';
-import { Award, Brain, Lock, TrendingUp, Zap } from 'lucide-react';
+import { Award, Brain, Lock, Sparkles, TrendingUp, Trophy, Zap } from 'lucide-react';
 import { useAchievements } from '@/lib/hooks/useAchievements';
 import { useExerciseReports } from '@/lib/hooks/useExerciseReports';
 import { useCurriculumTree } from '@/lib/hooks/useCurriculum';
@@ -17,6 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { cn } from '@/lib/utils';
 import { SkillTree } from '@/components/progress/skill-tree';
 import { WeeklyQuests } from '@/components/dashboard/weekly-quests';
+import { achievementTone } from '@/lib/fun-roadmap';
 
 function ConfidenceTrends() {
   const { reports, isLoading } = useExerciseReports();
@@ -61,11 +62,13 @@ function ConfidenceTrends() {
   const trend = series.length >= 2 ? (series[series.length - 1].confidence || 0) - (series[0].confidence || 0) : 0;
 
   return (
-    <Card data-testid="confidence-trends">
+    <Card data-testid="confidence-trends" className="card-lift relative overflow-hidden border-sky-200/70 bg-gradient-to-br from-sky-50 via-white to-cyan-50/40 dark:border-sky-500/25 dark:from-sky-500/15 dark:via-card dark:to-card">
+      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sky-400 via-cyan-400 to-teal-400" />
+      <Brain className="pointer-events-none absolute -bottom-7 -right-5 h-28 w-28 text-sky-500 opacity-[0.06]" />
       <CardHeader className="pb-3">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <CardTitle className="text-base flex items-center gap-2"><Brain className="h-4 w-4 text-primary" /> Confidence trends</CardTitle>
+            <CardTitle className="text-base flex items-center gap-2"><span className="flex h-8 w-8 items-center justify-center rounded-xl bg-sky-500 text-white shadow-md shadow-sky-500/25"><Brain className="h-4 w-4" /></span> Confidence trends</CardTitle>
             <CardDescription>How your confidence and perceived difficulty evolve across exercise reports, per course.</CardDescription>
           </div>
           {units.length > 0 && (
@@ -99,9 +102,9 @@ function ConfidenceTrends() {
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={series} margin={{ top: 8, right: 12, left: -24, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} className="stroke-border" />
-                  <XAxis dataKey="date" tickLine={false} axisLine={false} fontSize={12} />
-                  <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tickLine={false} axisLine={false} fontSize={11} />
-                  <Tooltip contentStyle={{ borderRadius: 8, fontSize: 12 }} labelFormatter={(_, payload: any) => { const p = payload?.[0]?.payload; return p ? `${p.date} · ${p.activity || p.module}` : ''; }} />
+                  <XAxis dataKey="date" tickLine={false} axisLine={false} fontSize={12} tick={{ fill: 'hsl(var(--muted-foreground))' }} />
+                  <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tickLine={false} axisLine={false} fontSize={11} tick={{ fill: 'hsl(var(--muted-foreground))' }} />
+                  <Tooltip contentStyle={{ borderRadius: 12, borderColor: 'hsl(var(--border))', backgroundColor: 'hsl(var(--popover))', color: 'hsl(var(--popover-foreground))', fontSize: 12 }} labelFormatter={(_, payload: any) => { const p = payload?.[0]?.payload; return p ? `${p.date} · ${p.activity || p.module}` : ''; }} />
                   <Legend iconType="circle" wrapperStyle={{ fontSize: 12 }} />
                   <Line type="monotone" dataKey="confidence" name="Confidence" stroke="hsl(var(--primary))" strokeWidth={2.5} dot={{ r: 4 }} activeDot={{ r: 6 }} />
                   <Line type="monotone" dataKey="difficulty" name="Difficulty" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 4 }} activeDot={{ r: 6 }} />
@@ -136,9 +139,11 @@ function XpHistory() {
   }, [events]);
 
   return (
-    <Card data-testid="xp-history">
+    <Card data-testid="xp-history" className="card-lift relative overflow-hidden border-violet-200/70 bg-gradient-to-br from-violet-50 via-white to-fuchsia-50/40 dark:border-violet-500/25 dark:from-violet-500/15 dark:via-card dark:to-card">
+      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400" />
+      <Zap className="pointer-events-none absolute -bottom-7 -right-5 h-28 w-28 text-violet-500 opacity-[0.06]" />
       <CardHeader className="pb-3">
-        <CardTitle className="text-base flex items-center gap-2"><Zap className="h-4 w-4 text-primary" /> XP over time</CardTitle>
+        <CardTitle className="text-base flex items-center gap-2"><span className="flex h-8 w-8 items-center justify-center rounded-xl bg-violet-500 text-white shadow-md shadow-violet-500/25"><Zap className="h-4 w-4" /></span> XP over time</CardTitle>
         <CardDescription>{total} XP total · Level {level.level} ({level.title}) · {level.remaining} XP to next level</CardDescription>
       </CardHeader>
       <CardContent className="h-52">
@@ -154,9 +159,9 @@ function XpHistory() {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" vertical={false} className="stroke-border" />
-              <XAxis dataKey="date" tickLine={false} axisLine={false} fontSize={11} minTickGap={24} />
-              <YAxis tickLine={false} axisLine={false} fontSize={11} />
-              <Tooltip contentStyle={{ borderRadius: 8, fontSize: 12 }} formatter={(v: number, n: string) => [v, n === 'xp' ? 'Total XP' : 'Gained']} />
+              <XAxis dataKey="date" tickLine={false} axisLine={false} fontSize={11} minTickGap={24} tick={{ fill: 'hsl(var(--muted-foreground))' }} />
+              <YAxis tickLine={false} axisLine={false} fontSize={11} tick={{ fill: 'hsl(var(--muted-foreground))' }} />
+              <Tooltip contentStyle={{ borderRadius: 12, borderColor: 'hsl(var(--border))', backgroundColor: 'hsl(var(--popover))', color: 'hsl(var(--popover-foreground))', fontSize: 12 }} formatter={(v: number, n: string) => [v, n === 'xp' ? 'Total XP' : 'Gained']} />
               <Area type="monotone" dataKey="xp" stroke="hsl(var(--primary))" strokeWidth={2} fill="url(#xpFill)" />
             </AreaChart>
           </ResponsiveContainer>
@@ -174,59 +179,76 @@ export default function ProgressPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">Progress</h1>
-        <p className="text-sm text-muted-foreground">Achievements, XP and how your confidence grows over time.</p>
-      </div>
+      <Card className="pop-in card-lift relative overflow-hidden border-amber-200/70 bg-gradient-to-br from-amber-50 via-white to-rose-50 dark:border-amber-500/25 dark:from-amber-500/15 dark:via-card dark:to-rose-500/10">
+        <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-amber-400 via-rose-400 to-violet-500" />
+        <Trophy className="pointer-events-none absolute -right-7 -top-8 h-40 w-40 rotate-12 text-amber-500 opacity-[0.07]" />
+        <CardContent className="relative flex flex-col gap-5 p-6 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-start gap-4">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-500 text-white shadow-lg shadow-amber-500/30"><Trophy className="h-6 w-6" /></span>
+            <div>
+              <div className="mb-1 flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-amber-700 dark:text-amber-300"><Sparkles className="h-3.5 w-3.5" /> See how far you&apos;ve come</div>
+              <h1 className="text-3xl font-black tracking-tight md:text-4xl"><span className="text-gradient">Progress</span></h1>
+              <p className="mt-1 text-sm text-muted-foreground">Achievements, XP and how your confidence grows over time.</p>
+            </div>
+          </div>
+          <div className="rounded-2xl border border-white/70 bg-white/70 px-5 py-3 text-center shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-black/10">
+            <p className="text-3xl font-black tabular-nums text-amber-700 dark:text-amber-300">{earnedCount}<span className="text-lg text-muted-foreground">/{total}</span></p>
+            <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Badges unlocked</p>
+          </div>
+        </CardContent>
+      </Card>
 
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-3 pop-in">
         <div className="lg:col-span-2"><SkillTree tree={tree} /></div>
-        <WeeklyQuests />
+        <WeeklyQuests className="h-full border-rose-200/70 bg-gradient-to-br from-rose-50 via-white to-orange-50/40 dark:border-rose-500/25 dark:from-rose-500/15 dark:via-card dark:to-card" />
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-4 lg:grid-cols-2 pop-in">
         <XpHistory />
         <ConfidenceTrends />
       </div>
 
-      <Card data-testid="achievements">
+      <Card data-testid="achievements" className="card-lift pop-in relative overflow-hidden border-amber-200/70 bg-gradient-to-br from-amber-50/70 via-card to-rose-50/60 dark:border-amber-500/25 dark:from-amber-500/10 dark:via-card dark:to-rose-500/10">
+        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-400 via-rose-400 to-violet-400" />
         <CardHeader className="pb-3">
-          <CardTitle className="text-base flex items-center gap-2"><Award className="h-4 w-4 text-primary" /> Achievements</CardTitle>
+          <CardTitle className="text-base flex items-center gap-2"><span className="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-500 text-white shadow-md shadow-amber-500/25"><Award className="h-4 w-4" /></span> Achievements</CardTitle>
           <CardDescription>{earnedCount}/{total} unlocked</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {isLoading && <p className="text-sm text-muted-foreground">Loading…</p>}
           {earned.length > 0 && (
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {earned.map((a) => (
-                <div key={a.def.key} data-testid={`achievement-${a.def.key}`} className="rounded-xl border border-emerald-200 bg-emerald-50/60 p-4 flex gap-3">
-                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white"><AchievementIcon name={a.def.icon} className="h-5 w-5" /></span>
+              {earned.map((a, index) => {
+                const tone = achievementTone(index, true);
+                return <div key={a.def.key} data-testid={`achievement-${a.def.key}`} className={cn('card-lift rounded-xl border p-4 flex gap-3', tone.surface)}>
+                  <span className={cn('inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl shadow-md', tone.icon)}><AchievementIcon name={a.def.icon} className="h-5 w-5" /></span>
                   <div className="min-w-0">
                     <p className="text-sm font-semibold">{a.def.title}</p>
                     <p className="text-xs text-muted-foreground">{a.def.description}</p>
-                    <p className="text-[11px] text-emerald-700 mt-1">Unlocked {format(new Date(a.earnedAt!), 'MMM d, yyyy')} · +{a.def.xp_reward} XP</p>
+                    <p className={cn('text-[11px] mt-1', tone.text)}>Unlocked {format(new Date(a.earnedAt!), 'MMM d, yyyy')} · +{a.def.xp_reward} XP</p>
                   </div>
-                </div>
-              ))}
+                </div>;
+              })}
             </div>
           )}
           {locked.length > 0 && (
             <div className="space-y-2">
               {earned.length > 0 && <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Locked</p>}
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {locked.map((a) => (
-                  <div key={a.def.key} data-testid={`achievement-${a.def.key}`} className="rounded-xl border p-4 flex gap-3">
-                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-muted text-muted-foreground">{a.ratio > 0 ? <AchievementIcon name={a.def.icon} className="h-5 w-5" /> : <Lock className="h-4 w-4" />}</span>
+                {locked.map((a, index) => {
+                  const tone = achievementTone(index, false);
+                  return <div key={a.def.key} data-testid={`achievement-${a.def.key}`} className={cn('card-lift rounded-xl border p-4 flex gap-3', tone.surface)}>
+                    <span className={cn('inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border', a.ratio > 0 ? tone.soft : 'border-border bg-muted/70 text-muted-foreground')}>{a.ratio > 0 ? <AchievementIcon name={a.def.icon} className="h-5 w-5" /> : <Lock className="h-4 w-4" />}</span>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between gap-2">
                         <p className="text-sm font-semibold truncate">{a.def.title}</p>
                         <span className="text-[11px] text-muted-foreground tabular-nums">{a.current}/{a.target}</span>
                       </div>
                       <p className="text-xs text-muted-foreground">{a.def.description} · +{a.def.xp_reward} XP</p>
-                      <Progress value={Math.round(a.ratio * 100)} className="h-1.5 mt-2" />
+                      <Progress value={Math.round(a.ratio * 100)} className={cn('h-1.5 mt-2', tone.progress)} />
                     </div>
-                  </div>
-                ))}
+                  </div>;
+                })}
               </div>
             </div>
           )}
