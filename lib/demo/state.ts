@@ -10,6 +10,7 @@ const MAX_NOTES_LENGTH = 4000;
 const MAX_TAGS = 20;
 const MAX_TAG_LENGTH = 40;
 const MAX_MINUTES = 1440;
+const MAX_PERSISTED_RECORD_SCAN = 1000;
 
 const moduleStatusValues = ['not_started', 'learning', 'exercise', 'done'] as const;
 const projectStatusValues = ['idea', 'planned', 'in_progress', 'completed', 'archived'] as const;
@@ -68,8 +69,8 @@ export type DemoStorage = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
 const storedStateSchema = z.object({
   schemaVersion: z.literal(SCHEMA_VERSION),
   moduleStatusOverrides: z.record(z.unknown()),
-  logs: z.array(z.unknown()),
-  projects: z.array(z.unknown()),
+  logs: z.unknown().refine(Array.isArray, 'Expected logs array'),
+  projects: z.unknown().refine(Array.isArray, 'Expected projects array'),
 }).strip();
 
 const isModuleStatus = (value: unknown): value is ModuleStatus => moduleStatusValues.includes(value as ModuleStatus);
@@ -152,6 +153,21 @@ function sanitizeProject(value: unknown): DemoProject | null {
   };
 }
 
+/**
+ * Browser storage is untrusted: inspect a fixed number of raw records, then
+ * retain up to the collection's output limit. Invalid records do not consume
+ * the output limit, but nothing beyond the scan limit is semantically parsed.
+ */
+function collectSanitized<T>(records: unknown[], maximum: number, sanitize: (record: unknown) => T | null): T[] {
+  const collected: T[] = [];
+  const scanLength = Math.min(records.length, MAX_PERSISTED_RECORD_SCAN);
+  for (let index = 0; index < scanLength && collected.length < maximum; index++) {
+    const clean = sanitize(records[index]);
+    if (clean) collected.push(clean);
+  }
+  return collected;
+}
+
 function copyState(state: DemoState): DemoState {
   return {
     schemaVersion: SCHEMA_VERSION,
@@ -205,18 +221,8 @@ export function parseDemoState(serialized: string | null, allowedModuleIds: Set<
     if (allowedModuleIds.has(moduleId) && isModuleStatus(status)) moduleStatusOverrides[moduleId] = status;
   }
 
-  const logs = parsed.data.logs
-    .flatMap((log) => {
-      const clean = sanitizeLog(log, allowedModuleIds);
-      return clean ? [clean] : [];
-    })
-    .slice(0, MAX_LOGS);
-  const projects = parsed.data.projects
-    .flatMap((project) => {
-      const clean = sanitizeProject(project);
-      return clean ? [clean] : [];
-    })
-    .slice(0, MAX_PROJECTS);
+  const logs = collectSanitized(parsed.data.logs as unknown[], MAX_LOGS, (log) => sanitizeLog(log, allowedModuleIds));
+  const projects = collectSanitized(parsed.data.projects as unknown[], MAX_PROJECTS, sanitizeProject);
 
   return { schemaVersion: SCHEMA_VERSION, moduleStatusOverrides, logs, projects };
 }

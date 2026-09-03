@@ -99,6 +99,18 @@ describe('parseDemoState', () => {
 
     expect(parsed.projects).toEqual([validProject]);
   });
+
+  it('bounds persisted record validation while retaining valid entries after early invalid data', () => {
+    const invalidLog = { ...validLog, id: '', minutes: 0 };
+    const invalidProject = { ...validProject, id: '', status: 'published' };
+    const logs = [invalidLog, validLog, ...Array.from({ length: 998 }, () => invalidLog), { ...validLog, id: 'late-log' }];
+    const projects = [invalidProject, validProject, ...Array.from({ length: 998 }, () => invalidProject), { ...validProject, id: 'late-project' }];
+
+    const parsed = parseDemoState(JSON.stringify({ schemaVersion: 1, moduleStatusOverrides: {}, logs, projects }), allowedModuleIds);
+
+    expect(parsed.logs).toEqual([validLog]);
+    expect(parsed.projects).toEqual([validProject]);
+  });
 });
 
 describe('demoReducer', () => {
