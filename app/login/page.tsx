@@ -1,6 +1,7 @@
 'use client';
 
-import { FormEvent, Suspense, useEffect, useState } from 'react';
+import React, { FormEvent, Suspense, useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FlaskConical, Loader2, ShieldCheck, Sparkles } from 'lucide-react';
 import { createClient } from '@/lib/supabase/browser';
@@ -154,6 +155,20 @@ function LoginForm() {
                 {mode === 'signin' ? 'Sign in' : 'Create owner & sign in'}
               </Button>
             </form>
+
+            <div className="mt-6 border-t pt-5 space-y-3">
+              <p className="text-sm text-muted-foreground">
+                The owner tracker remains private. You can view Yuta&apos;s intentionally published read-only progress or try an isolated demo stored only in this browser.
+              </p>
+              <div className="flex flex-col gap-2 sm:flex-row sm:gap-4">
+                <Link href="/showcase" className="text-sm font-medium text-primary underline underline-offset-4 hover:text-primary/80">
+                  View Yuta&apos;s progress
+                </Link>
+                <Link href="/demo" className="text-sm font-medium text-primary underline underline-offset-4 hover:text-primary/80">
+                  Try guest demo
+                </Link>
+              </div>
+            </div>
 
             {ownerExists === false && (
               <button
