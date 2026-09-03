@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { createClient } from '@/lib/supabase/browser';
 import { weekDayKeys } from '@/lib/week';
+import { clampSettings, type PomodoroSettings } from '@/lib/focus';
 
 export type StudyLog = {
   id: string;
@@ -14,9 +15,15 @@ export type StudyLog = {
   module_id: string | null;
   project_id: string | null;
   created_at: string;
+  source?: 'manual' | 'focus' | string;
+  session_id?: string | null;
+  focus_intervals?: number;
 };
 
-export type OwnerSettings = { owner_id: string; display_name: string | null; weekly_goal_minutes: number; timezone: string };
+export type OwnerSettings = {
+  owner_id: string; display_name: string | null; weekly_goal_minutes: number; timezone: string;
+  focus_minutes?: number; short_break_minutes?: number; long_break_minutes?: number; long_break_every?: number;
+};
 
 export const STUDY_LOGS_KEY = ['study-logs'];
 export const SETTINGS_KEY = ['owner-settings'];
@@ -37,7 +44,7 @@ export function useStudyLogs() {
       const supabase = createClient();
       const { data, error } = await supabase
         .from('study_logs')
-        .select('id,logged_on,minutes,topic,notes,module_id,project_id,created_at')
+        .select('id,logged_on,minutes,topic,notes,module_id,project_id,created_at,source,session_id,focus_intervals')
         .order('logged_on', { ascending: false })
         .order('created_at', { ascending: false })
         .limit(3000);
@@ -67,7 +74,34 @@ export function useOwnerSettings() {
       return (data || null) as OwnerSettings | null;
     },
   });
-  return { ...q, settings: q.data, weeklyGoal: q.data?.weekly_goal_minutes ?? DEFAULT_WEEKLY_GOAL };
+  const pomodoro: PomodoroSettings = clampSettings({
+    focusMinutes: q.data?.focus_minutes,
+    shortBreakMinutes: q.data?.short_break_minutes,
+    longBreakMinutes: q.data?.long_break_minutes,
+    longBreakEvery: q.data?.long_break_every,
+  });
+  return { ...q, settings: q.data, weeklyGoal: q.data?.weekly_goal_minutes ?? DEFAULT_WEEKLY_GOAL, pomodoro };
+}
+
+export function useUpdatePomodoroSettings() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (input: PomodoroSettings) => {
+      const s = clampSettings(input);
+      const supabase = createClient();
+      const owner_id = await getUserId();
+      const { error } = await supabase.from('owner_settings').upsert({
+        owner_id,
+        focus_minutes: s.focusMinutes,
+        short_break_minutes: s.shortBreakMinutes,
+        long_break_minutes: s.longBreakMinutes,
+        long_break_every: s.longBreakEvery,
+      }, { onConflict: 'owner_id' });
+      if (error) throw new Error(error.message);
+      return s;
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: SETTINGS_KEY }),
+  });
 }
 
 export function useUpdateWeeklyGoal() {

@@ -74,7 +74,13 @@ module.exports = {
           md: 'calc(var(--radius) - 2px)',
           sm: 'calc(var(--radius) - 4px)'
         },
+        fontFamily: {
+          sans: ['Nunito', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        },
         keyframes: {
+          float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-4px)' } },
+          wiggle: { '0%, 100%': { transform: 'rotate(0deg)' }, '25%': { transform: 'rotate(-8deg)' }, '75%': { transform: 'rotate(8deg)' } },
+          shimmer: { '0%': { backgroundPosition: '200% 0' }, '100%': { backgroundPosition: '-200% 0' } },
           'accordion-down': {
             from: {
               height: '0'
@@ -93,6 +99,9 @@ module.exports = {
           }
         },
         animation: {
+          float: 'float 3s ease-in-out infinite',
+          wiggle: 'wiggle 0.5s ease-in-out',
+          shimmer: 'shimmer 2.5s linear infinite',
           'accordion-down': 'accordion-down 0.2s ease-out',
           'accordion-up': 'accordion-up 0.2s ease-out'
         }

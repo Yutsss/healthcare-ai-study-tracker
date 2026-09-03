@@ -3,7 +3,8 @@
 import { useMemo, useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import { toast } from 'sonner';
-import { Check, Clock, Loader2, Target, Timer, Trash2 } from 'lucide-react';
+import { Check, Clock, Loader2, Play, Target, Timer, Trash2 } from 'lucide-react';
+import Link from 'next/link';
 import { useDeleteStudyLog, useOwnerSettings, useStudyLogs, useUpdateWeeklyGoal } from '@/lib/hooks/useStudyLogs';
 import { useCurriculumTree } from '@/lib/hooks/useCurriculum';
 import { formatMinutes } from '@/lib/week';
@@ -48,9 +49,12 @@ export default function QuickLogPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">Quick Log</h1>
-        <p className="text-sm text-muted-foreground">Every study session counts toward your streak and weekly goal. Use the floating timer button to log a new one.</p>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight">Study Log</h1>
+          <p className="text-sm text-muted-foreground">Sessions are recorded automatically by Focus Mode — only active focus time counts toward your streak and weekly goal.</p>
+        </div>
+        <Button asChild data-testid="log-start-focus"><Link href="/focus"><Play className="h-4 w-4 mr-1" /> Start focus session</Link></Button>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">
@@ -83,7 +87,7 @@ export default function QuickLogPage() {
         </CardHeader>
         <CardContent className="space-y-5">
           {isLoading && <p className="text-sm text-muted-foreground">Loading…</p>}
-          {!isLoading && logs.length === 0 && <p className="text-sm text-muted-foreground py-6 text-center">No sessions yet. Tap the Quick Log button (bottom right) to log your first one.</p>}
+          {!isLoading && logs.length === 0 && <p className="text-sm text-muted-foreground py-6 text-center">No sessions yet. Start a Focus session (bottom-right button) and it will be saved here automatically.</p>}
           {grouped.map(([day, items]) => (
             <div key={day} className="space-y-1.5">
               <div className="flex items-center justify-between">
@@ -92,7 +96,7 @@ export default function QuickLogPage() {
               </div>
               {items.map((l) => (
                 <div key={l.id} className="flex items-center gap-3 rounded-md border bg-background px-3 py-2" data-testid={`log-${l.id}`}>
-                  <span className="inline-flex h-8 w-14 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary text-xs font-semibold tabular-nums">{formatMinutes(l.minutes)}</span>
+                  <span className="inline-flex h-8 w-14 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary text-xs font-semibold tabular-nums" title={l.source === 'focus' ? `Focus session · ${l.focus_intervals || 0} intervals` : 'Manual entry'}>{formatMinutes(l.minutes)}</span>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm truncate">{l.topic || (l.module_id && moduleTitles.get(l.module_id)) || 'Study session'}</p>
                     {(() => {
