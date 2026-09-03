@@ -9,6 +9,8 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { FocusLauncher } from '@/components/focus/focus-launcher';
 import { FocusSessionProvider } from '@/lib/hooks/useFocusSession';
+import { CelebrationProvider } from '@/components/celebration/celebration-provider';
+import { SoundToggle, ThemeToggle } from '@/components/app-shell/shell-toggles';
 
 const NAV: Array<{ href: string; label: string; icon: any; soon?: boolean; color: string }> = [
   { href: '/', label: 'Dashboard', icon: LayoutDashboard, color: 'bg-teal-100 text-teal-700 dark:bg-teal-500/20 dark:text-teal-300' },
@@ -83,6 +85,7 @@ export function AppShell({ email, children }: { email: string; children: React.R
 
   return (
     <FocusSessionProvider>
+    <CelebrationProvider>
     <div className="min-h-screen flex bg-background bg-mesh">
       <aside className="hidden md:flex w-64 shrink-0 flex-col border-r bg-card/80 backdrop-blur p-4 gap-6 sticky top-0 h-screen">
         <Link href="/" className="group flex items-center gap-2.5 px-2 font-extrabold tracking-tight text-lg">
@@ -92,9 +95,11 @@ export function AppShell({ email, children }: { email: string; children: React.R
         <nav className="flex flex-col gap-1">{navItems}</nav>
         <div className="mt-auto space-y-3">
           <LevelBadge />
-          <div className="flex items-center justify-between gap-2 px-1">
-            <span className="text-xs text-muted-foreground truncate" title={email} data-testid="user-email">{email}</span>
-            <Button variant="ghost" size="icon" onClick={signOut} title="Sign out" data-testid="signout-button"><LogOut className="h-4 w-4" /></Button>
+          <div className="flex items-center gap-1 rounded-xl border bg-muted/40 p-1">
+            <ThemeToggle className="h-8 w-8 rounded-lg" />
+            <SoundToggle className="h-8 w-8 rounded-lg" />
+            <span className="ml-auto text-[11px] text-muted-foreground truncate pr-1" title={email} data-testid="user-email">{email}</span>
+            <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg" onClick={signOut} title="Sign out" data-testid="signout-button"><LogOut className="h-4 w-4" /></Button>
           </div>
         </div>
       </aside>
@@ -113,6 +118,7 @@ export function AppShell({ email, children }: { email: string; children: React.R
                 </Link>
               );
             })}
+            <ThemeToggle />
             <Button variant="ghost" size="icon" onClick={signOut} title="Sign out"><LogOut className="h-4 w-4" /></Button>
           </nav>
         </header>
@@ -120,6 +126,7 @@ export function AppShell({ email, children }: { email: string; children: React.R
       </div>
       <FocusLauncher />
     </div>
+    </CelebrationProvider>
     </FocusSessionProvider>
   );
 }

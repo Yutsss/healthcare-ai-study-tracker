@@ -1,5 +1,7 @@
 const nextConfig = {
   output: 'standalone',
+  // Hide the Next.js dev indicator; it overlapped the sidebar controls in preview.
+  devIndicators: false,
   images: {
     unoptimized: true,
     remotePatterns: [

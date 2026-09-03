@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
+import { celebrate } from '@/lib/celebrate';
 import { createClient } from '@/lib/supabase/browser';
 import { currentWeekStartKey, questsForWeek, type QuestTemplate, type QuestType } from '@/lib/quests';
 import { weekDayKeys } from '@/lib/week';
@@ -106,7 +107,10 @@ export function useWeeklyQuests() {
         inflight.current.delete(q.id);
         if (!error) {
           changed = true;
-          if (completing) toast.success(`Quest complete: ${q.title}`, { description: `+${q.xp_reward} XP bonus` });
+          if (completing) {
+            celebrate('quest');
+            toast.success(`Quest complete: ${q.title}`, { description: `+${q.xp_reward} XP bonus`, duration: 6000 });
+          }
         }
       }
       if (changed) {
