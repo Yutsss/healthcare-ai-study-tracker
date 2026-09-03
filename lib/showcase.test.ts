@@ -100,6 +100,20 @@ describe('normalizePublicShowcase', () => {
     })).toBeNull();
   });
 
+  it.each([
+    ['generated_at', '2026-99-99'],
+    ['achievement earned_at', '2026-02-31'],
+    ['project timestamp', '2026-01-01T29:00:00Z'],
+  ])('rejects malformed %s values', (field, invalidDate) => {
+    const payload = field === 'generated_at'
+      ? { ...validPayload, generated_at: invalidDate }
+      : field === 'achievement earned_at'
+        ? { ...validPayload, achievements: [{ ...validPayload.achievements[0], earned_at: invalidDate }] }
+        : { ...validPayload, projects: [{ ...validPayload.projects[0], started_at: invalidDate }] };
+
+    expect(normalizePublicShowcase(payload)).toBeNull();
+  });
+
   it('does not expose public RPC errors', async () => {
     rpc.mockResolvedValue({ data: null, error: { message: 'database connection details' } });
 

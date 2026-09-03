@@ -4,7 +4,7 @@ import { createPublicClient } from '@/lib/supabase/public';
 
 const MAX_COLLECTION_ITEMS = 100;
 const MAX_COUNT = 1_000_000;
-const ISO_LIKE_DATE = /^\d{4}-\d{2}-\d{2}(?:[Tt ][0-2]\d:[0-5]\d(?::[0-5]\d(?:\.\d{1,6})?)?(?:Z|[+-][0-2]\d(?::?[0-5]\d)?)?)?$/;
+const ISO_LIKE_DATE = /^(\d{4})-(\d{2})-(\d{2})(?:[Tt ](?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d{1,6})?)?(?:Z|[+-](?:[01]\d|2[0-3])(?::?[0-5]\d)?)?)?$/;
 
 export type PublicShowcaseProjectStatus = 'idea' | 'planned' | 'in_progress' | 'completed' | 'archived';
 
@@ -36,7 +36,16 @@ export type PublicShowcase = {
 const boundedText = (maximum: number) => z.string().transform((value) => value.trim().slice(0, maximum));
 const nullableBoundedText = (maximum: number) => z.string().nullable().transform((value) => value === null ? null : value.trim().slice(0, maximum));
 const count = z.number().finite().int().nonnegative().transform((value) => Math.min(value, MAX_COUNT));
-const isoLikeDate = z.string().max(64).regex(ISO_LIKE_DATE);
+const isoLikeDate = z.string().max(64).regex(ISO_LIKE_DATE).refine((value) => {
+  const match = ISO_LIKE_DATE.exec(value);
+  if (!match) return false;
+
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const daysInMonth = [31, (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  return month >= 1 && month <= 12 && day >= 1 && day <= daysInMonth[month - 1];
+}, 'Invalid calendar date');
 
 function cappedArray<T extends z.ZodTypeAny>(itemSchema: T, maximum = MAX_COLLECTION_ITEMS) {
   return z.preprocess(
