@@ -5,7 +5,7 @@ import {
   DEMO_STORAGE_KEY,
   createDemoState,
   demoReducer,
-  loadDemoState,
+  parseDemoState,
   resetDemoState,
   saveDemoState,
   type DemoLog,
@@ -42,6 +42,7 @@ export function DemoProvider({ moduleIds, starterProjects, children }: DemoProvi
   const allowedModuleIdsRef = useRef<Set<string> | null>(null);
   const skipNextSaveRef = useRef(false);
   const [hydrated, setHydrated] = useState(false);
+  const [persistenceEnabled, setPersistenceEnabled] = useState(false);
   const [storageWarning, setStorageWarning] = useState<string | null>(null);
 
   if (!initialStateRef.current) initialStateRef.current = createDemoState(starterProjects);
@@ -51,11 +52,12 @@ export function DemoProvider({ moduleIds, starterProjects, children }: DemoProvi
 
   useEffect(() => {
     try {
-      const hasSavedState = window.localStorage.getItem(DEMO_STORAGE_KEY) !== null;
+      const serialized = window.localStorage.getItem(DEMO_STORAGE_KEY);
       dispatch({
         type: 'reset',
-        initial: hasSavedState ? loadDemoState(window.localStorage, allowedModuleIdsRef.current!) : initialStateRef.current!,
+        initial: serialized === null ? initialStateRef.current! : parseDemoState(serialized, allowedModuleIdsRef.current!),
       });
+      setPersistenceEnabled(true);
     } catch {
       setStorageWarning(STORAGE_WARNING);
     } finally {
@@ -64,7 +66,7 @@ export function DemoProvider({ moduleIds, starterProjects, children }: DemoProvi
   }, []);
 
   useEffect(() => {
-    if (!hydrated) return;
+    if (!hydrated || !persistenceEnabled) return;
     if (skipNextSaveRef.current) {
       skipNextSaveRef.current = false;
       return;
@@ -73,8 +75,9 @@ export function DemoProvider({ moduleIds, starterProjects, children }: DemoProvi
       saveDemoState(window.localStorage, state);
     } catch {
       setStorageWarning(STORAGE_WARNING);
+      setPersistenceEnabled(false);
     }
-  }, [hydrated, state]);
+  }, [hydrated, persistenceEnabled, state]);
 
   const setModuleStatus = useCallback((moduleId: string, status: ModuleStatus) => {
     if (allowedModuleIdsRef.current?.has(moduleId)) dispatch({ type: 'module/status', moduleId, status });

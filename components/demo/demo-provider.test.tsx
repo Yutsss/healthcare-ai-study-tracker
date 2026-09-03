@@ -1,8 +1,8 @@
 import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { PublicShell } from '@/components/public/public-shell';
-import { DEMO_STORAGE_KEY } from '@/lib/demo/state';
+import { DEMO_STORAGE_KEY, createDemoState } from '@/lib/demo/state';
 import { DemoApp, type DemoSeed } from './demo-app';
 
 const seed: DemoSeed = {
@@ -37,6 +37,10 @@ function openTab(name: 'Roadmap' | 'Study Log' | 'Projects' | 'Progress') {
 
 beforeEach(() => {
   window.localStorage.clear();
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
 });
 
 describe('interactive guest demo', () => {
@@ -132,5 +136,53 @@ describe('interactive guest demo', () => {
     expect(screen.getByRole('combobox', { name: 'Status for Safe clinical datasets' })).toHaveValue('not_started');
     openTab('Projects');
     expect(screen.getByRole('heading', { name: 'Triage helper' })).toBeInTheDocument();
+  });
+
+  it('keeps the demo usable but permanently disables persistence when hydration cannot read storage', async () => {
+    const setItem = vi.spyOn(Storage.prototype, 'setItem');
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      throw new DOMException('Storage read denied', 'SecurityError');
+    });
+
+    renderDemo();
+    expect(await screen.findByRole('status')).toHaveTextContent('Demo changes could not be saved in this browser.');
+
+    openTab('Roadmap');
+    fireEvent.change(screen.getByRole('combobox', { name: 'Status for Safe clinical datasets' }), { target: { value: 'done' } });
+    expect(screen.getByRole('combobox', { name: 'Status for Safe clinical datasets' })).toHaveValue('done');
+    await waitFor(() => expect(setItem).not.toHaveBeenCalled());
+  });
+
+  it('shows the generic storage warning when persistence fails', async () => {
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      throw new DOMException('Storage quota exceeded', 'QuotaExceededError');
+    });
+
+    renderDemo();
+
+    expect(await screen.findByRole('status')).toHaveTextContent('Demo changes could not be saved in this browser.');
+  });
+
+  it('shows the generic storage warning when reset cannot remove saved data', async () => {
+    vi.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {
+      throw new DOMException('Storage removal denied', 'SecurityError');
+    });
+
+    renderDemo();
+    fireEvent.click(screen.getByRole('button', { name: 'Reset demo' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Reset local demo' }));
+
+    expect(await screen.findByRole('status')).toHaveTextContent('Demo changes could not be saved in this browser.');
+  });
+
+  it('reads browser storage exactly once during hydration', async () => {
+    window.localStorage.setItem(DEMO_STORAGE_KEY, JSON.stringify(createDemoState(seed.starterProjects)));
+    const getItem = vi.spyOn(Storage.prototype, 'getItem');
+    const setItem = vi.spyOn(Storage.prototype, 'setItem');
+
+    renderDemo();
+
+    await waitFor(() => expect(setItem).toHaveBeenCalled());
+    expect(getItem).toHaveBeenCalledTimes(1);
   });
 });
