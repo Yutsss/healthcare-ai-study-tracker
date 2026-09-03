@@ -7,7 +7,9 @@
         "dev:no-reload": "next dev --hostname 0.0.0.0 --port 3000",
         "dev:webpack": "next dev --hostname 0.0.0.0 --port 3000",
         "build": "next build",
-        "start": "next start"
+        "start": "next start",
+        "test": "vitest run",
+        "test:watch": "vitest"
     },
     "dependencies": {
         "@hookform/resolvers": "5.1.1",
@@ -72,6 +74,9 @@
         "zod": "3.25.67"
     },
     "devDependencies": {
+        "@testing-library/dom": "10.4.1",
+        "@testing-library/jest-dom": "6.6.3",
+        "@testing-library/react": "16.3.0",
         "@types/canvas-confetti": "^1.9.0",
         "@types/lodash": "4.17.24",
         "@types/node": "^26.4.1",
@@ -79,9 +84,11 @@
         "@types/react-dom": "^19.2.5",
         "autoprefixer": "10.4.19",
         "globals": "16.2.0",
+        "jsdom": "26.1.0",
         "postcss": "8.5.26",
         "tailwindcss": "3.4.1",
-        "typescript": "5"
+        "typescript": "5",
+        "vitest": "3.2.4"
     },
     "resolutions": {
         "follow-redirects": "1.16.0",
