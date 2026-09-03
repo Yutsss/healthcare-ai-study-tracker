@@ -111,10 +111,10 @@ function LoginForm() {
           </p>
           <ul className="space-y-3 text-sm text-primary-foreground/90">
             <li className="flex items-start gap-2"><Sparkles className="h-4 w-4 mt-0.5" /> Earn XP, level up and keep your streak alive.</li>
-            <li className="flex items-start gap-2"><ShieldCheck className="h-4 w-4 mt-0.5" /> Owner-only access with row-level security on every table.</li>
+            <li className="flex items-start gap-2"><ShieldCheck className="h-4 w-4 mt-0.5" /> Private and secure — only you can access your lab.</li>
           </ul>
         </div>
-        <p className="text-xs text-primary-foreground/60">Private workspace · Supabase Auth</p>
+        <p className="text-xs text-primary-foreground/60">Private workspace</p>
       </section>
 
       <section className="flex items-center justify-center p-6 bg-muted/30">

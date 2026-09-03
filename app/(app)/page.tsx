@@ -84,8 +84,8 @@ export default function DashboardPage() {
 
       {error && (
         <Card className="border-destructive/40"><CardContent className="p-5 text-sm">
-          <p className="font-medium">Could not load curriculum: {(error as Error).message}</p>
-          <p className="text-muted-foreground mt-1">Make sure <code>supabase/migrations/001_init.sql</code> has been applied.</p>
+          <p className="font-medium">Could not load your data</p>
+          <p className="text-muted-foreground mt-1">Something went wrong. Please refresh and try again in a moment.</p>
         </CardContent></Card>
       )}
 

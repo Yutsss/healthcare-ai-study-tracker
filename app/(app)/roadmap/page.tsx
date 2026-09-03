@@ -99,9 +99,8 @@ export default function RoadmapPage() {
   if (error) {
     return (
       <Card><CardContent className="p-6 space-y-2">
-        <p className="font-medium">Could not load the curriculum</p>
-        <p className="text-sm text-muted-foreground">{(error as Error).message}</p>
-        <p className="text-sm text-muted-foreground">If the tables do not exist yet, apply <code>supabase/migrations/001_init.sql</code> in the Supabase SQL Editor.</p>
+        <p className="font-medium">Could not load your roadmap</p>
+        <p className="text-sm text-muted-foreground">Something went wrong. Please refresh and try again in a moment.</p>
       </CardContent></Card>
     );
   }

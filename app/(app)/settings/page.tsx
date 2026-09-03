@@ -112,15 +112,16 @@ export default function SettingsPage() {
       <Card data-testid="database-card">
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2"><Database className="h-4 w-4" /> Database</CardTitle>
-          <CardDescription>Row counts for your owner scope (via server, read-only).</CardDescription>
+          <CardDescription>Your current content counts.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">
           {status.isLoading && <p className="text-sm text-muted-foreground flex items-center gap-2"><Loader2 className="h-4 w-4 animate-spin" /> Checking…</p>}
           {status.isError && (
             <div className="rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm space-y-1">
-              <p className="font-medium flex items-center gap-2 text-amber-800"><AlertTriangle className="h-4 w-4" /> {schemaMissing ? 'Schema not applied yet' : 'Database check failed'}</p>
-              <p className="text-amber-900/80">{(status.error as Error).message}</p>
-              {schemaMissing && <p className="text-amber-900/80">Run <code>supabase/migrations/001_init.sql</code> in the Supabase SQL Editor, then refresh.</p>}
+              <p className="font-medium flex items-center gap-2 text-amber-800"><AlertTriangle className="h-4 w-4" /> {schemaMissing ? 'Not set up yet' : 'Could not load your data'}</p>
+              {schemaMissing
+                ? <p className="text-amber-900/80">Your workspace has not finished setting up yet. Please try again shortly.</p>
+                : <p className="text-amber-900/80">Something went wrong loading your data. Please refresh and try again.</p>}
             </div>
           )}
           {status.data && (
