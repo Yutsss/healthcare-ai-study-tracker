@@ -1,4 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
+import { MILESTONE_PHASE_MAP } from './milestoneMap';
 
 export type SeedFile = {
   schema_version?: number;
@@ -190,7 +191,24 @@ export async function importSeed(
     description: ms.competency_criteria ?? null,
     sort_order: ms.order ?? i + 1,
   }));
-  if (milestoneRows.length) await syncEntity(admin, 'milestones', ownerId, milestoneRows, dryRun, res.milestones);
+  if (milestoneRows.length) {
+    const milestoneIds = await syncEntity(admin, 'milestones', ownerId, milestoneRows, dryRun, res.milestones);
+    // link milestones -> phases (idempotent upsert on the join table)
+    const links: Array<{ owner_id: string; milestone_id: string; roadmap_item_id: string }> = [];
+    for (const [mKey, phaseKeys] of Object.entries(MILESTONE_PHASE_MAP)) {
+      const mId = milestoneIds.get(mKey);
+      if (!mId) continue;
+      for (const pKey of phaseKeys) {
+        const pId = roadmapIds.get(pKey);
+        if (!pId) { warnings.push(`Milestone ${mKey} references unknown phase ${pKey}`); continue; }
+        links.push({ owner_id: ownerId, milestone_id: mId, roadmap_item_id: pId });
+      }
+    }
+    if (!dryRun && links.length) {
+      const { error } = await admin.from('milestone_roadmap_items').upsert(links, { onConflict: 'milestone_id,roadmap_item_id', ignoreDuplicates: true });
+      if (error) throw new Error(`milestone_roadmap_items: ${error.message}`);
+    }
+  }
 
   // 5) starter projects
   const projectRows = (seed.starter_projects || []).map((p, i) => ({

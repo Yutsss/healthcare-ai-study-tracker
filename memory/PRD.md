@@ -24,8 +24,8 @@ NEXT_PUBLIC_SUPABASE_URL (PENDING from user), NEXT_PUBLIC_SUPABASE_PUBLISHABLE_K
 1. Foundation (env, schema, auth, shell) — CODE DONE, live test pending URL
 2. Seed import + Roadmap — CODE DONE, live test pending
 3. Continue card / self-report drawer / XP+streak basics — DONE (self-report drawer added: +15 XP, optional status change, previous reports)
-4. Full dashboard (week chart, heatmap, nearest achievements, sticky quick log) — TODO
-5. Projects board, Quick Log, Progress page, skill tree, weekly quests — TODO
+4. Full dashboard (week chart, heatmap, nearest achievements, sticky quick log, milestone badges) — DONE
+5. Quick Log (widget + /log page + weekly goal) DONE; Progress page (achievements, confidence trends, XP chart) DONE; Projects board, skill tree, weekly quests — TODO
 6. Curriculum Manager (CRUD/reorder/archive/restore, change log, JSON export) — TODO
 
 ## Key decisions
@@ -36,3 +36,8 @@ NEXT_PUBLIC_SUPABASE_URL (PENDING from user), NEXT_PUBLIC_SUPABASE_PUBLISHABLE_K
 ## Ops notes
 - package.json dev script heap raised to 1536MB (Next dev restarted itself at 512MB mid-compile -> blank page after login).
 - scripts/: check-db.mjs, seed-cli.mjs <email> <pw> preview|import, xp-check.mjs, progress-dump.mjs, reset-progress.mjs (wipes progress/XP/activity/reports/logs), apply-migrations.mjs.
+
+## Gamification v2 (session 3)
+- Achievements defined in code (lib/achievements.ts, 20 defs), synced to achievement_definitions per owner; unlocked client-side -> earned_achievements insert -> trigger awards xp_reward (003).
+- Milestone->phase mapping in lib/seed/milestoneMap.ts, written to milestone_roadmap_items on seed import.
+- Study logs: 1 XP/10min (max 30); delete removes XP/activity. Weekly goal in owner_settings.weekly_goal_minutes (default 300), week starts Monday.

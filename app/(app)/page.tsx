@@ -10,6 +10,7 @@ import { useActivity, useStreak, useXp, type ActivityEvent } from '@/lib/hooks/u
 import { STATUS_META, type ModuleStatus } from '@/lib/curriculum';
 import { StatusControl } from '@/components/roadmap/status-control';
 import { ExerciseReportDrawer, type ReportContext } from '@/components/roadmap/exercise-report-drawer';
+import { ActivityHeatmap, MilestoneBadges, NearestAchievements, WeekChart } from '@/components/dashboard/widgets';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
@@ -33,6 +34,7 @@ function activityText(e: ActivityEvent): string {
     case 'phase_completed': return `Phase complete: ${p.title}`;
     case 'study_logged': return `Logged ${p.minutes} min${p.topic ? ` on ${p.topic}` : ''}`;
     case 'exercise_reported': return `Exercise report: ${p.activity_title || p.module_title}`;
+    case 'achievement_earned': return `Achievement unlocked: ${p.title}${p.xp ? ` (+${p.xp} XP)` : ''}`;
     default: return e.event_type.replace(/_/g, ' ');
   }
 }
@@ -166,6 +168,17 @@ export default function DashboardPage() {
           </Card>
         </div>
       )}
+
+      {!empty && (
+        <div className="grid gap-4 lg:grid-cols-3">
+          <div className="lg:col-span-2"><WeekChart /></div>
+          <NearestAchievements />
+        </div>
+      )}
+
+      {!empty && <MilestoneBadges tree={tree} />}
+
+      {!empty && <ActivityHeatmap />}
 
       {!empty && tree && (
         <Card>

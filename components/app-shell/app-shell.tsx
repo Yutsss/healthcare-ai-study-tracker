@@ -8,13 +8,14 @@ import { useXp } from '@/lib/hooks/useGamification';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
+import { QuickLogWidget } from '@/components/quick-log/quick-log-widget';
 
 const NAV = [
   { href: '/', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/roadmap', label: 'Roadmap', icon: Map },
   { href: '/projects', label: 'Projects', icon: FolderKanban, soon: true },
-  { href: '/log', label: 'Quick Log', icon: Timer, soon: true },
-  { href: '/progress', label: 'Progress', icon: Trophy, soon: true },
+  { href: '/log', label: 'Quick Log', icon: Timer },
+  { href: '/progress', label: 'Progress', icon: Trophy },
   { href: '/curriculum', label: 'Curriculum', icon: BookOpenCheck, soon: true },
   { href: '/settings', label: 'Settings', icon: Settings },
 ];
@@ -101,8 +102,9 @@ export function AppShell({ email, children }: { email: string; children: React.R
             <Button variant="ghost" size="icon" onClick={signOut} title="Sign out"><LogOut className="h-4 w-4" /></Button>
           </nav>
         </header>
-        <main className="flex-1 p-4 md:p-8 max-w-7xl w-full mx-auto">{children}</main>
+        <main className="flex-1 p-4 md:p-8 pb-24 max-w-7xl w-full mx-auto">{children}</main>
       </div>
+      <QuickLogWidget />
     </div>
   );
 }
