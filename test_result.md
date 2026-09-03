@@ -29,6 +29,17 @@
 ##         -comment: "Detailed comment about status"
 ##
 ## frontend:
+  - task: "Exercise self-report drawer (roadmap module rows + dashboard Continue card): confidence/difficulty 1-5, time chips, learned/struggles notes, optional status change after save, previous reports list, +15 XP via DB trigger"
+    implemented: true
+    working: true
+    file: "components/roadmap/exercise-report-drawer.tsx, lib/hooks/useExerciseReports.ts, components/roadmap/phase-card.tsx, app/(app)/roadmap/page.tsx, app/(app)/page.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Verified via Playwright screenshots: submit -> row inserted, +15 XP in sidebar, status -> Exercise, badge count, previous report shown on reopen. Also raised dev heap (--max-old-space-size 512->1536) in package.json to stop Next dev auto-restarts mid-navigation."
 ##   - task: "Task name"
 ##     implemented: true
 ##     working: true  # or false or "NA"
@@ -194,3 +205,5 @@ agent_communication:
     message: "✅ BACKEND TESTING COMPLETE - ALL TESTS PASSED (19/19, 100% success rate). Comprehensive test suite created at /app/tests/backend_test.mjs covering: (1) Public endpoints: health, owner-exists, register-owner validation, 404 handling. (2) Authentication: Supabase sign-in with bearer token. (3) Protected endpoints: seed/preview, seed/import, seed/status with proper 401 rejection without auth. (4) Direct Supabase operations: module selection (265 rows), RLS enforcement (blocked spoofed owner_id), anonymous access denial, XP/activity triggers (module completion awards 20 XP + activity event), trigger idempotency. All API routes working correctly with proper authentication, authorization, validation, and error handling. Seed import is idempotent as expected. RLS policies are strict and secure. Gamification triggers functioning perfectly. No critical issues found. Backend is production-ready."
   - agent: "main"
     message: "Backend test agent: 19/19 passed. Main agent manually verified UI via screenshots: login -> dashboard (stats, continue card, activity, phase overview) -> roadmap (expand, status control persisted to DB, toast). Test progress rows wiped afterwards (scripts/reset-progress.mjs). Frontend automated testing NOT run (needs user permission)."
+  - agent: "main"
+    message: "Feature added: Exercise Self-Report drawer. Manually verified end to end; test rows wiped. Frontend automated test still pending user permission."

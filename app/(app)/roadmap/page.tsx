@@ -5,8 +5,10 @@ import Link from 'next/link';
 import { toast } from 'sonner';
 import { Loader2, Search, Upload } from 'lucide-react';
 import { useCurriculumTree, useSetModuleStatus } from '@/lib/hooks/useCurriculum';
-import { STATUS_META, type ModuleNode, type ModuleStatus, type NodeStatus, type PhaseNode } from '@/lib/curriculum';
+import { STATUS_META, type ModuleNode, type ModuleStatus, type NodeStatus, type PhaseNode, type UnitNode } from '@/lib/curriculum';
 import { PhaseCard } from '@/components/roadmap/phase-card';
+import { ExerciseReportDrawer, type ReportContext } from '@/components/roadmap/exercise-report-drawer';
+import { useExerciseReports } from '@/lib/hooks/useExerciseReports';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -50,6 +52,13 @@ export default function RoadmapPage() {
   const [query, setQuery] = useState('');
   const [openPhases, setOpenPhases] = useState<Set<string>>(new Set());
   const [initialised, setInitialised] = useState(false);
+  const [report, setReport] = useState<ReportContext>(null);
+  const { byModule } = useExerciseReports();
+  const reportCounts = useMemo(() => { const m = new Map<string, number>(); byModule.forEach((v, k) => m.set(k, v.length)); return m; }, [byModule]);
+
+  function onReport(module: ModuleNode, unit: UnitNode, phase?: PhaseNode) {
+    setReport({ module, unitTitle: unit.title, phaseLabel: phase?.phase_label });
+  }
 
   // Open the phase you should continue with by default
   useEffect(() => {
@@ -152,12 +161,16 @@ export default function RoadmapPage() {
             open={searching || openPhases.has(phase.id)}
             onToggle={() => togglePhase(phase.id)}
             onStatus={onStatus}
+            onReport={onReport}
+            reportCounts={reportCounts}
             busy={setStatus.isPending}
             forceOpenUnits={searching}
             openUnitIds={tree.continueTarget && tree.continueTarget.phase.id === phase.id ? new Set([tree.continueTarget.unit.id]) : undefined}
           />
         ))}
       </div>
+
+      <ExerciseReportDrawer context={report} onClose={() => setReport(null)} />
     </div>
   );
 }

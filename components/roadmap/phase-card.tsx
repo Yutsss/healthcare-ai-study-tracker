@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, ChevronRight, ExternalLink } from 'lucide-react';
+import { ChevronDown, ChevronRight, ClipboardPen, ExternalLink } from 'lucide-react';
 import { format } from 'date-fns';
 import { STATUS_META, type ModuleNode, type ModuleStatus, type UnitNode, type PhaseNode } from '@/lib/curriculum';
 import { StatusControl, STATUS_ICON, STATUS_TEXT_CLASS } from './status-control';
@@ -10,8 +10,9 @@ import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 
 export type StatusHandler = (module: ModuleNode, status: ModuleStatus) => void;
+export type ReportHandler = (module: ModuleNode, unit: UnitNode, phase?: PhaseNode) => void;
 
-export function ModuleRow({ module, onStatus, busy }: { module: ModuleNode; onStatus: StatusHandler; busy?: boolean }) {
+export function ModuleRow({ module, onStatus, onReport, reportCount = 0, busy }: { module: ModuleNode; onStatus: StatusHandler; onReport?: () => void; reportCount?: number; busy?: boolean }) {
   const Icon = STATUS_ICON[module.status];
   const done = module.status === 'done';
   return (
@@ -29,12 +30,19 @@ export function ModuleRow({ module, onStatus, busy }: { module: ModuleNode; onSt
           <ExternalLink className="h-3.5 w-3.5" />
         </a>
       )}
+      {onReport && (
+        <button type="button" onClick={onReport} title="Log an exercise self-report" data-testid={`report-${module.key}`}
+          className="relative inline-flex h-7 w-7 items-center justify-center rounded-md border text-muted-foreground hover:bg-muted hover:text-foreground">
+          <ClipboardPen className="h-3.5 w-3.5" />
+          {reportCount > 0 && <span className="absolute -top-1.5 -right-1.5 rounded-full bg-primary px-1 text-[9px] font-semibold text-primary-foreground leading-4 min-w-4 text-center">{reportCount}</span>}
+        </button>
+      )}
       <StatusControl value={module.status} onChange={(s) => onStatus(module, s)} disabled={busy} moduleKey={module.key} />
     </div>
   );
 }
 
-export function UnitRow({ unit, onStatus, defaultOpen, forceOpen, busy }: { unit: UnitNode; onStatus: StatusHandler; defaultOpen?: boolean; forceOpen?: boolean; busy?: boolean }) {
+export function UnitRow({ unit, phase, onStatus, onReport, reportCounts, defaultOpen, forceOpen, busy }: { unit: UnitNode; phase?: PhaseNode; onStatus: StatusHandler; onReport?: ReportHandler; reportCounts?: Map<string, number>; defaultOpen?: boolean; forceOpen?: boolean; busy?: boolean }) {
   const [open, setOpen] = useState(Boolean(defaultOpen));
   const isOpen = forceOpen || open;
   const Chevron = isOpen ? ChevronDown : ChevronRight;
@@ -63,7 +71,7 @@ export function UnitRow({ unit, onStatus, defaultOpen, forceOpen, busy }: { unit
       {isOpen && (
         <div className="border-t px-2 py-1.5 space-y-0.5">
           {unit.modules.length === 0 && <p className="px-3 py-2 text-xs text-muted-foreground">No modules in this course yet.</p>}
-          {unit.modules.map((m) => <ModuleRow key={m.id} module={m} onStatus={onStatus} busy={busy} />)}
+          {unit.modules.map((m) => <ModuleRow key={m.id} module={m} onStatus={onStatus} busy={busy} reportCount={reportCounts?.get(m.id) || 0} onReport={onReport ? () => onReport(m, unit, phase) : undefined} />)}
         </div>
       )}
     </div>
@@ -71,9 +79,9 @@ export function UnitRow({ unit, onStatus, defaultOpen, forceOpen, busy }: { unit
 }
 
 export function PhaseCard({
-  phase, open, onToggle, onStatus, openUnitIds, forceOpenUnits, busy,
+  phase, open, onToggle, onStatus, onReport, reportCounts, openUnitIds, forceOpenUnits, busy,
 }: {
-  phase: PhaseNode; open: boolean; onToggle: () => void; onStatus: StatusHandler;
+  phase: PhaseNode; open: boolean; onToggle: () => void; onStatus: StatusHandler; onReport?: ReportHandler; reportCounts?: Map<string, number>;
   openUnitIds?: Set<string>; forceOpenUnits?: boolean; busy?: boolean;
 }) {
   const Chevron = open ? ChevronDown : ChevronRight;
@@ -118,7 +126,7 @@ export function PhaseCard({
           <div className="space-y-2">
             {phase.units.length === 0 && <p className="text-sm text-muted-foreground">No courses in this phase yet.</p>}
             {phase.units.map((u) => (
-              <UnitRow key={u.id} unit={u} onStatus={onStatus} busy={busy} defaultOpen={openUnitIds?.has(u.id)} forceOpen={forceOpenUnits} />
+              <UnitRow key={u.id} unit={u} phase={phase} onStatus={onStatus} onReport={onReport} reportCounts={reportCounts} busy={busy} defaultOpen={openUnitIds?.has(u.id)} forceOpen={forceOpenUnits} />
             ))}
           </div>
         </div>

@@ -1,13 +1,15 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
 import { toast } from 'sonner';
-import { ArrowRight, BookOpenCheck, CheckCircle2, Flame, GraduationCap, Layers, Loader2, Sparkles, Trophy, Upload, Zap } from 'lucide-react';
+import { ArrowRight, BookOpenCheck, CheckCircle2, ClipboardPen, Flame, GraduationCap, Layers, Loader2, Sparkles, Trophy, Upload, Zap } from 'lucide-react';
 import { useCurriculumTree, useSetModuleStatus } from '@/lib/hooks/useCurriculum';
 import { useActivity, useStreak, useXp, type ActivityEvent } from '@/lib/hooks/useGamification';
 import { STATUS_META, type ModuleStatus } from '@/lib/curriculum';
 import { StatusControl } from '@/components/roadmap/status-control';
+import { ExerciseReportDrawer, type ReportContext } from '@/components/roadmap/exercise-report-drawer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
@@ -57,6 +59,7 @@ export default function DashboardPage() {
   const { streak } = useStreak();
   const activity = useActivity(10);
   const setStatus = useSetModuleStatus();
+  const [report, setReport] = useState<ReportContext>(null);
 
   const name = 'Yuta';
 
@@ -133,6 +136,9 @@ export default function DashboardPage() {
                       onError: (e: any) => toast.error('Could not update module', { description: e?.message }),
                     })}
                   />
+                  <Button variant="outline" size="sm" data-testid="continue-report" onClick={() => setReport({ module: target.module, unitTitle: target.unit.title, phaseLabel: target.phase.phase_label })}>
+                    <ClipboardPen className="h-3.5 w-3.5 mr-1" /> Log exercise
+                  </Button>
                   {target.module.source_url && (
                     <Button asChild variant="outline" size="sm"><a href={target.module.source_url} target="_blank" rel="noreferrer">Open course <ArrowRight className="h-3.5 w-3.5 ml-1" /></a></Button>
                   )}
@@ -182,6 +188,8 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       )}
+
+      <ExerciseReportDrawer context={report} onClose={() => setReport(null)} />
     </div>
   );
 }
