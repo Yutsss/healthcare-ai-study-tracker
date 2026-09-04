@@ -6,6 +6,7 @@ import { CelebrationProvider } from '@/components/celebration/celebration-provid
 import { LabShell } from '@/components/app-shell/lab-shell';
 import { DEMO_ROUTES } from '@/lib/lab/routes';
 import type { DemoStarterProject } from '@/lib/demo/state';
+import { DemoFocusSessionProvider } from '@/lib/demo/focus-session';
 import { DemoProvider, useDemo } from './demo-provider';
 
 function DemoShellFrame({ children }: { children: React.ReactNode }) {
@@ -39,7 +40,9 @@ export function DemoAppShell({
 }) {
   return (
     <DemoProvider moduleIds={moduleIds} starterProjects={starterProjects}>
-      <DemoShellFrame>{children}</DemoShellFrame>
+      <DemoFocusSessionProvider>
+        <DemoShellFrame>{children}</DemoShellFrame>
+      </DemoFocusSessionProvider>
     </DemoProvider>
   );
 }
