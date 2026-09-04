@@ -39,6 +39,17 @@ export type NewLabExerciseReport = {
   struggles: string;
 };
 
+export type LabProjectStatus = 'idea' | 'planned' | 'in_progress' | 'completed' | 'archived';
+export type LabProject = {
+  id: string; key: string | null; title: string; description: string | null; project_type: string | null;
+  status: LabProjectStatus; tags: string[]; github_url: string | null; demo_url: string | null; cover_image_url: string | null;
+  is_public: boolean; started_at: string | null; completed_at: string | null; sort_order: number; created_at: string | null; updated_at: string | null;
+};
+export type LabProjectInput = {
+  title: string; description?: string; project_type?: string; status: LabProjectStatus; tags: string[];
+  github_url?: string; demo_url?: string; cover_image_url?: string; is_public: boolean;
+};
+
 export type LabXpEvent = {
   id: string;
   amount: number;
