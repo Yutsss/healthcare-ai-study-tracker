@@ -5,7 +5,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { celebrate } from '@/lib/celebrate';
 import { createClient } from '@/lib/supabase/browser';
-import { currentWeekStartKey, questsForWeek, type QuestTemplate, type QuestType } from '@/lib/quests';
+import { currentWeekStartKey, questTemplatesToCreate, questsForWeek, type QuestTemplate, type QuestType } from '@/lib/quests';
 import { weekDayKeys } from '@/lib/week';
 import { useStudyLogs } from './useStudyLogs';
 import { useStreak } from './useGamification';
@@ -24,7 +24,11 @@ async function ensureWeekQuests(): Promise<QuestRow[]> {
   const userId = sess?.session?.user?.id;
   if (!userId) throw new Error('Not signed in');
   const week = currentWeekStartKey();
-  const templates = questsForWeek(week);
+  const existing = await supabase.from('weekly_quests').select('*').eq('week_start', week).order('created_at');
+  if (existing.error) throw new Error(existing.error.message);
+  const existingRows = (existing.data || []) as QuestRow[];
+  const templates = questTemplatesToCreate(week, existingRows.length);
+  if (templates.length === 0) return existingRows;
   // Idempotent: unique (owner_id, week_start, key). Never re-create or reset existing rows.
   const rows = templates.map((t) => ({
     owner_id: userId, week_start: week, key: t.key, title: t.title, description: t.description,

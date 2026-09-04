@@ -1,13 +1,15 @@
 'use client';
 
 import {
-  BookCheck, Brain, ClipboardPen, Crown, Flag, Flame, Footprints, GraduationCap, Hourglass, Landmark, Layers, Library,
-  Mountain, NotebookPen, Timer, Trophy, Zap, Award, type LucideIcon,
+  Activity, Award, BookCheck, Boxes, Brain, CalendarCheck, ClipboardPen, Clock3, Compass, Crown, Flag, Flame,
+  Footprints, Gauge, GraduationCap, Hourglass, Landmark, Layers, Library, Map, Mountain, NotebookPen, ScrollText,
+  SearchCheck, Sparkles, Telescope, Timer, Trophy, Zap, type LucideIcon,
 } from 'lucide-react';
 
 const ICONS: Record<string, LucideIcon> = {
-  BookCheck, Brain, ClipboardPen, Crown, Flag, Flame, Footprints, GraduationCap, Hourglass, Landmark, Layers, Library,
-  Mountain, NotebookPen, Timer, Trophy, Zap,
+  Activity, Award, BookCheck, Boxes, Brain, CalendarCheck, ClipboardPen, Clock3, Compass, Crown, Flag, Flame,
+  Footprints, Gauge, GraduationCap, Hourglass, Landmark, Layers, Library, Map, Mountain, NotebookPen, ScrollText,
+  SearchCheck, Sparkles, Telescope, Timer, Trophy, Zap,
 };
 
 export function AchievementIcon({ name, className }: { name: string; className?: string }) {

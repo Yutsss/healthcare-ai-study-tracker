@@ -123,8 +123,8 @@ export default function RoadmapPage() {
     <div className="space-y-6">
       <Card className="pop-in card-lift relative overflow-hidden border-violet-200/70 bg-gradient-to-br from-violet-50 via-white to-sky-50 dark:border-violet-500/25 dark:from-violet-500/15 dark:via-card dark:to-sky-500/10">
         <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-fun" />
-        <Route className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rotate-12 text-violet-500 opacity-[0.06]" />
-        <CardContent className="relative flex flex-col gap-6 p-6 pt-8 md:flex-row md:items-center md:justify-between">
+        <Route aria-hidden="true" className="pointer-events-none absolute right-[23rem] top-1/2 z-0 hidden h-32 w-32 -translate-y-1/2 rotate-12 text-violet-500 opacity-[0.04] xl:block" />
+        <CardContent className="relative z-10 flex flex-col gap-6 p-6 pt-8 md:flex-row md:items-center md:justify-between">
           <div className="flex items-start gap-4">
             <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-violet-500 text-white shadow-lg shadow-violet-500/30">
               <Route className="h-6 w-6" />
@@ -137,7 +137,7 @@ export default function RoadmapPage() {
               <p className="mt-1 text-sm text-muted-foreground">{t.phases} phases · {t.units} courses · {t.modules} modules</p>
             </div>
           </div>
-          <div className="rounded-2xl border border-white/70 bg-white/70 p-4 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-black/10 md:w-80">
+          <div className="relative z-20 rounded-2xl border border-white/70 bg-background/90 p-4 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-background/80 md:w-80">
             <div className="mb-2 flex items-end justify-between gap-4">
               <div>
                 <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Overall progress</p>
