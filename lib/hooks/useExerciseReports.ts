@@ -3,32 +3,13 @@
 import { useMemo } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { createClient } from '@/lib/supabase/browser';
+import type { LabExerciseReport, NewLabExerciseReport } from '@/lib/lab/types';
+export { EXERCISE_REPORT_XP } from '@/lib/gamification';
 
-export type ExerciseReport = {
-  id: string;
-  module_id: string;
-  activity_title: string | null;
-  confidence: number | null;
-  difficulty: number | null;
-  time_spent_minutes: number | null;
-  what_learned: string | null;
-  struggles: string | null;
-  created_at: string;
-};
-
-export type NewExerciseReport = {
-  moduleId: string;
-  activityTitle: string;
-  confidence: number;
-  difficulty: number;
-  timeSpentMinutes: number | null;
-  whatLearned: string;
-  struggles: string;
-};
+export type ExerciseReport = LabExerciseReport;
+export type NewExerciseReport = NewLabExerciseReport;
 
 export const REPORTS_KEY = ['exercise-reports'];
-export const EXERCISE_REPORT_XP = 15;
-
 export function useExerciseReports() {
   const q = useQuery({
     queryKey: REPORTS_KEY,

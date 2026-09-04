@@ -7,6 +7,7 @@ import { Check, Clock, Loader2, Play, Target, Timer, Trash2 } from 'lucide-react
 import Link from 'next/link';
 import { useDeleteStudyLog, useOwnerSettings, useStudyLogs, useUpdateWeeklyGoal } from '@/lib/hooks/useStudyLogs';
 import { useCurriculumTree } from '@/lib/hooks/useCurriculum';
+import { useExerciseReports } from '@/lib/hooks/useExerciseReports';
 import { formatMinutes } from '@/lib/week';
 import { WeekChart } from '@/components/dashboard/widgets';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -17,6 +18,7 @@ import { Label } from '@/components/ui/label';
 export default function QuickLogPage() {
   const { logs, weekMinutes, totalMinutes, sessions, isLoading } = useStudyLogs();
   const { weeklyGoal } = useOwnerSettings();
+  const { reports } = useExerciseReports();
   const updateGoal = useUpdateWeeklyGoal();
   const del = useDeleteStudyLog();
   const { tree } = useCurriculumTree();
@@ -78,7 +80,7 @@ export default function QuickLogPage() {
         </CardContent></Card>
       </div>
 
-      <WeekChart />
+      <WeekChart logs={logs} reports={reports} weeklyGoal={weeklyGoal} />
 
       <Card data-testid="log-history">
         <CardHeader className="pb-3">

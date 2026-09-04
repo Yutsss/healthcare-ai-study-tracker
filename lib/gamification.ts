@@ -27,6 +27,8 @@ export function studyLogXp(minutes: number): number {
   return Math.min(30, Math.max(1, Math.ceil(minutes / 10)));
 }
 
+export const EXERCISE_REPORT_XP = 15;
+
 export function levelFromXp(xpRaw: number): LevelInfo {
   const xp = Math.max(0, Math.floor(xpRaw || 0));
   const level = Math.floor(Math.sqrt(xp / 100)) + 1;

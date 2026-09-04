@@ -18,6 +18,7 @@ import { cn } from '@/lib/utils';
 import { SkillTree } from '@/components/progress/skill-tree';
 import { WeeklyQuests } from '@/components/dashboard/weekly-quests';
 import { achievementTone } from '@/lib/fun-roadmap';
+import { useWeeklyQuests } from '@/lib/hooks/useWeeklyQuests';
 
 function ConfidenceTrends() {
   const { reports, isLoading } = useExerciseReports();
@@ -174,6 +175,7 @@ function XpHistory() {
 export default function ProgressPage() {
   const { items, earnedCount, total, isLoading } = useAchievements();
   const { tree } = useCurriculumTree();
+  const weeklyQuests = useWeeklyQuests();
   const earned = items.filter((a) => a.earnedAt).sort((a, b) => (b.earnedAt || '').localeCompare(a.earnedAt || ''));
   const locked = items.filter((a) => !a.earnedAt).sort((a, b) => b.ratio - a.ratio);
 
@@ -200,7 +202,7 @@ export default function ProgressPage() {
 
       <div className="grid items-start gap-4 lg:grid-cols-3 pop-in">
         <div className="lg:col-span-2"><SkillTree tree={tree} /></div>
-        <WeeklyQuests className="border-rose-200/70 bg-gradient-to-br from-rose-50 via-white to-orange-50/40 dark:border-rose-500/25 dark:from-rose-500/15 dark:via-card dark:to-card" />
+        <WeeklyQuests quests={weeklyQuests.quests} isLoading={weeklyQuests.isLoading} weekStart={weeklyQuests.weekStart} className="border-rose-200/70 bg-gradient-to-br from-rose-50 via-white to-orange-50/40 dark:border-rose-500/25 dark:from-rose-500/15 dark:via-card dark:to-card" />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2 pop-in">

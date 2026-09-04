@@ -1,14 +1,20 @@
 'use client';
 
+import React from 'react';
 import { CheckCircle2, Swords } from 'lucide-react';
 import { format, addDays, parseISO } from 'date-fns';
-import { useWeeklyQuests } from '@/lib/hooks/useWeeklyQuests';
+import type { LabQuestView } from '@/lib/lab/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 
-export function WeeklyQuests({ className }: { className?: string } = {}) {
-  const { quests, completed, isLoading, weekStart } = useWeeklyQuests();
+export function WeeklyQuests({ quests, isLoading = false, weekStart, className }: {
+  quests: LabQuestView[];
+  isLoading?: boolean;
+  weekStart: string;
+  className?: string;
+}) {
+  const completed = quests.filter((quest) => Boolean(quest.completed_at)).length;
   const resets = format(addDays(parseISO(weekStart), 7), 'EEE, MMM d');
   return (
     <Card data-testid="weekly-quests" className={cn('card-lift relative h-fit self-start overflow-hidden', className)}>

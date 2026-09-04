@@ -3,6 +3,42 @@ import type { PhaseNode } from '@/lib/curriculum';
 import type { LevelInfo } from '@/lib/gamification';
 import type { QuestTemplate, QuestType } from '@/lib/quests';
 
+export type LabStudyLog = {
+  id: string;
+  logged_on: string;
+  minutes: number;
+  topic: string | null;
+  notes: string | null;
+  module_id: string | null;
+  project_id: string | null;
+  created_at: string;
+  source?: 'manual' | 'focus' | string;
+  session_id?: string | null;
+  focus_intervals?: number;
+};
+
+export type LabExerciseReport = {
+  id: string;
+  module_id: string;
+  activity_title: string | null;
+  confidence: number | null;
+  difficulty: number | null;
+  time_spent_minutes: number | null;
+  what_learned: string | null;
+  struggles: string | null;
+  created_at: string;
+};
+
+export type NewLabExerciseReport = {
+  moduleId: string;
+  activityTitle: string;
+  confidence: number;
+  difficulty: number;
+  timeSpentMinutes: number | null;
+  whatLearned: string;
+  struggles: string;
+};
+
 export type LabXpEvent = {
   id: string;
   amount: number;

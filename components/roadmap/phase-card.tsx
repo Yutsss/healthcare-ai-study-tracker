@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { CheckCircle2, ChevronDown, ChevronRight, ClipboardPen, ExternalLink, Sparkles } from 'lucide-react';
 import { format } from 'date-fns';
 import { STATUS_META, type ModuleNode, type ModuleStatus, type UnitNode, type PhaseNode } from '@/lib/curriculum';
