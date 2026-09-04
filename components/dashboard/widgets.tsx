@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
 import { format, parseISO, subDays } from 'date-fns';
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
@@ -204,7 +204,7 @@ export function MilestoneBadges({ tree }: { tree: CurriculumTree | null }) {
         <div className="grid gap-3 sm:grid-cols-2">
           {items.map((m) => (
             <div key={m.id} data-testid={`milestone-${m.key}`}
-              className={cn('relative rounded-xl border p-4 transition-colors', m.complete ? 'border-emerald-300 bg-gradient-to-br from-emerald-50 to-emerald-100/60 shadow-[0_0_0_3px_rgba(16,185,129,0.15)]' : 'bg-card')}>
+              className={cn('relative rounded-xl border p-4 transition-colors', m.complete ? 'border-emerald-300 bg-gradient-to-br from-emerald-50 to-emerald-100/60 shadow-[0_0_0_3px_rgba(16,185,129,0.15)] dark:border-emerald-500/30 dark:from-emerald-500/15 dark:to-card' : 'bg-card')}>
               <div className="flex items-center gap-3">
                 <div className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold',
                   m.complete ? 'border-emerald-500 bg-emerald-500 text-white' : m.percent > 0 ? 'border-primary text-primary' : 'border-muted-foreground/30 text-muted-foreground')}>
