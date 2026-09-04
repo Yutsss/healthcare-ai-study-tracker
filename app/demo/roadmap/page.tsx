@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useDemo } from '@/components/demo/demo-provider';
 import { RoadmapScreen } from '@/components/lab/roadmap-screen';
 import { DEMO_ROUTES } from '@/lib/lab/routes';

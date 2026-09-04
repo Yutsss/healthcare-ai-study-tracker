@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useDemo } from '@/components/demo/demo-provider';
 import { FocusScreen } from '@/components/lab/focus-screen';
 import { useDemoFocusSession } from '@/lib/demo/focus-session';

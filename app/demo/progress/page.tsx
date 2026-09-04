@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useDemo } from '@/components/demo/demo-provider';
 import { ProgressScreen } from '@/components/lab/progress-screen';
 

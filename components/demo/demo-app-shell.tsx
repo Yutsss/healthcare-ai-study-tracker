@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { usePathname } from 'next/navigation';
-import { CelebrationProvider } from '@/components/celebration/celebration-provider';
+import { DemoCelebrationProvider } from '@/components/celebration/celebration-provider';
 import { LabShell } from '@/components/app-shell/lab-shell';
 import { DEMO_ROUTES } from '@/lib/lab/routes';
 import type { DemoStarterProject } from '@/lib/demo/state';
@@ -13,7 +13,7 @@ function DemoShellFrame({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { progression, reset, storageWarning } = useDemo();
   return (
-    <CelebrationProvider>
+    <DemoCelebrationProvider level={progression.level}>
       <LabShell
         mode="demo"
         routes={DEMO_ROUTES}
@@ -25,7 +25,7 @@ function DemoShellFrame({ children }: { children: React.ReactNode }) {
       >
         {children}
       </LabShell>
-    </CelebrationProvider>
+    </DemoCelebrationProvider>
   );
 }
 

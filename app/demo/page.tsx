@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { DashboardScreen } from '@/components/lab/dashboard-screen';
 import { useDemo } from '@/components/demo/demo-provider';
 import { DEMO_ROUTES } from '@/lib/lab/routes';
