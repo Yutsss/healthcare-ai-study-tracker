@@ -63,7 +63,7 @@ export function DemoRoadmap({ seed }: { seed: Pick<DemoSeed, 'roadmap' | 'course
                     <select
                       aria-label={`Status for ${module.title}`}
                       className="h-9 w-full rounded-md border border-input bg-background px-3 text-sm"
-                      value={state.moduleStatusOverrides[module.id] ?? 'not_started'}
+                      value={state.moduleProgress[module.id]?.status ?? 'not_started'}
                       onChange={(event) => setModuleStatus(module.id, event.target.value as ModuleStatus)}
                     >
                       {statusOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}

@@ -48,6 +48,10 @@ export function DemoProjects() {
       githubUrl: form.githubUrl,
       demoUrl: form.demoUrl,
       coverImageUrl: existing?.coverImageUrl ?? null,
+      createdAt: existing?.createdAt ?? null,
+      updatedAt: existing?.updatedAt ?? null,
+      startedAt: existing?.startedAt ?? null,
+      completedAt: existing?.completedAt ?? null,
     });
     setEditingId(null);
     setForm(emptyForm);

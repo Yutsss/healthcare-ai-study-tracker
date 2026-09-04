@@ -4,6 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { PublicShell } from '@/components/public/public-shell';
 import { DEMO_STORAGE_KEY, createDemoState } from '@/lib/demo/state';
 import { DemoApp, type DemoSeed } from './demo-app';
+import { DemoProvider, useDemo } from './demo-provider';
 
 const seed: DemoSeed = {
   roadmap: [
@@ -26,6 +27,31 @@ function renderDemo() {
     <PublicShell mode="demo">
       <DemoApp seed={seed} />
     </PublicShell>,
+  );
+}
+
+function ProviderProbe() {
+  const { state, hydrated, addReport, updateSettings } = useDemo();
+  return (
+    <div>
+      <output data-testid="hydrated">{String(hydrated)}</output>
+      <output data-testid="provider-state">{JSON.stringify(state)}</output>
+      <button onClick={() => addReport({
+        moduleId: 'module-1', activityTitle: 'Safety drill', confidence: 4, difficulty: 3,
+        timeSpentMinutes: 20, whatLearned: 'Validated safely.', struggles: null,
+      }, new Date('2026-09-04T15:00:00.000Z'))}>Add report through provider</button>
+      <button onClick={() => updateSettings({
+        weeklyGoalMinutes: 420, focusMinutes: 45, shortBreakMinutes: 10, longBreakMinutes: 20, longBreakEvery: 3,
+      })}>Update demo settings</button>
+    </div>
+  );
+}
+
+function renderProviderProbe() {
+  return render(
+    <DemoProvider moduleIds={['module-1', 'module-2']} starterProjects={seed.starterProjects}>
+      <ProviderProbe />
+    </DemoProvider>,
   );
 }
 
@@ -69,7 +95,7 @@ describe('interactive guest demo', () => {
     expect(screen.getByText('Model evaluation')).toBeInTheDocument();
 
     fireEvent.change(screen.getByRole('combobox', { name: 'Status for Model evaluation' }), { target: { value: 'done' } });
-    await waitFor(() => expect(JSON.parse(window.localStorage.getItem(DEMO_STORAGE_KEY)!).moduleStatusOverrides).toEqual({ 'module-2': 'done' }));
+    await waitFor(() => expect(JSON.parse(window.localStorage.getItem(DEMO_STORAGE_KEY)!).moduleProgress['module-2'].status).toBe('done'));
 
     first.unmount();
     renderDemo();
@@ -184,5 +210,24 @@ describe('interactive guest demo', () => {
 
     await waitFor(() => expect(setItem).toHaveBeenCalled());
     expect(getItem).toHaveBeenCalledTimes(1);
+  });
+
+  it('exposes hydration, report, and settings actions through the complete local provider surface', async () => {
+    renderProviderProbe();
+
+    await waitFor(() => expect(screen.getByTestId('hydrated')).toHaveTextContent('true'));
+    fireEvent.click(screen.getByRole('button', { name: 'Add report through provider' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Update demo settings' }));
+
+    await waitFor(() => {
+      const state = JSON.parse(screen.getByTestId('provider-state').textContent || '{}');
+      expect(state.reports).toEqual([{
+        id: expect.any(String), moduleId: 'module-1', activityTitle: 'Safety drill', confidence: 4, difficulty: 3,
+        timeSpentMinutes: 20, whatLearned: 'Validated safely.', struggles: null, createdAt: '2026-09-04T15:00:00.000Z',
+      }]);
+      expect(state.settings).toEqual({
+        weeklyGoalMinutes: 420, focusMinutes: 45, shortBreakMinutes: 10, longBreakMinutes: 20, longBreakEvery: 3,
+      });
+    });
   });
 });
