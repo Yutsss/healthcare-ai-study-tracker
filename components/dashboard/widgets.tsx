@@ -194,27 +194,25 @@ export function NearestAchievements() {
 export function MilestoneBadges({ tree }: { tree: CurriculumTree | null }) {
   const { items, isLoading } = useMilestones(tree);
   return (
-    <Card data-testid="milestones">
+    <Card data-testid="milestones" className="h-fit">
       <CardHeader className="pb-3">
         <CardTitle className="text-base flex items-center gap-2"><Flag className="h-4 w-4 text-primary" /> Journey milestones</CardTitle>
         <CardDescription>Each milestone lights up when all of its phases are complete.</CardDescription>
       </CardHeader>
       <CardContent>
         {isLoading && <p className="text-sm text-muted-foreground">Loading…</p>}
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-2">
           {items.map((m) => (
             <div key={m.id} data-testid={`milestone-${m.key}`}
               className={cn('relative rounded-xl border p-4 transition-colors', m.complete ? 'border-emerald-300 bg-gradient-to-br from-emerald-50 to-emerald-100/60 shadow-[0_0_0_3px_rgba(16,185,129,0.15)]' : 'bg-card')}>
-              <div className="flex items-start gap-3">
+              <div className="flex items-center gap-3">
                 <div className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold',
                   m.complete ? 'border-emerald-500 bg-emerald-500 text-white' : m.percent > 0 ? 'border-primary text-primary' : 'border-muted-foreground/30 text-muted-foreground')}>
                   {m.complete ? <Award className="h-5 w-5" /> : m.index}
                 </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Milestone {m.index}</p>
-                  <p className={cn('text-sm font-semibold leading-snug', m.complete && 'text-emerald-800')}>{m.title}</p>
-                </div>
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Milestone {m.index}</p>
               </div>
+              <p className={cn('mt-3 text-sm font-semibold leading-snug', m.complete && 'text-emerald-800 dark:text-emerald-300')}>{m.title}</p>
               <Progress value={m.percent} className={cn('h-1.5 mt-3', m.complete && '[&>div]:bg-emerald-500')} />
               <div className="mt-1.5 flex items-center justify-between text-[11px] text-muted-foreground">
                 <span>{m.phasesDone}/{m.phases.length} phases</span>

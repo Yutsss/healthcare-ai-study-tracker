@@ -11,7 +11,7 @@ export function WeeklyQuests({ className }: { className?: string } = {}) {
   const { quests, completed, isLoading, weekStart } = useWeeklyQuests();
   const resets = format(addDays(parseISO(weekStart), 7), 'EEE, MMM d');
   return (
-    <Card data-testid="weekly-quests" className={cn('card-lift relative overflow-hidden', className)}>
+    <Card data-testid="weekly-quests" className={cn('card-lift relative h-fit self-start overflow-hidden', className)}>
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-rose-400 via-orange-400 to-amber-400" />
       <Swords className="pointer-events-none absolute -bottom-7 -right-5 h-28 w-28 text-rose-500 opacity-[0.06]" />
       <CardHeader className="pb-3">
