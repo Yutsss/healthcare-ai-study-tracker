@@ -30,7 +30,7 @@ export type DemoSeed = {
   starterProjects: DemoStarterProject[];
 };
 
-function DemoWorkspace({ seed }: { seed: DemoSeed }) {
+export function DemoWorkspace({ seed }: { seed: DemoSeed }) {
   const { reset, storageWarning } = useDemo();
   return (
     <div className="space-y-6">

@@ -1,5 +1,4 @@
-import { DemoApp, type DemoSeed } from '@/components/demo/demo-app';
-import { PublicShell } from '@/components/public/public-shell';
+import { DemoWorkspace, type DemoSeed } from '@/components/demo/demo-app';
 import courseSeed from '@/data/yutas-lab-course-seed.json';
 
 export default function DemoPage() {
@@ -34,5 +33,5 @@ export default function DemoPage() {
     })),
   };
 
-  return <PublicShell mode="demo"><DemoApp seed={seed} /></PublicShell>;
+  return <DemoWorkspace seed={seed} />;
 }
