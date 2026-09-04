@@ -52,9 +52,14 @@ export function useUpdateShowcaseSettings() {
         showcase_enabled: input.showcase_enabled === true,
         showcase_bio: input.showcase_bio.trim().slice(0, 500) || null,
       };
-      const { error } = await supabase.from('owner_settings').update(publication).eq('owner_id', ownerId);
-      if (error) throw new Error(error.message);
-      return publication;
+      const { data, error } = await supabase
+        .from('owner_settings')
+        .update(publication)
+        .eq('owner_id', ownerId)
+        .select('display_name,showcase_enabled,showcase_bio')
+        .single();
+      if (error || !data) throw new Error('Could not save showcase settings');
+      return data as ShowcaseSettings;
     },
     onSuccess: () => qc.invalidateQueries({ queryKey: SHOWCASE_SETTINGS_KEY }),
   });

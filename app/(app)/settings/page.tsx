@@ -105,16 +105,18 @@ export default function SettingsPage() {
   }
 
   async function saveShowcaseSettings() {
+    if (!showcase.isSuccess || !showcase.settings) return;
     try {
       await updateShowcase.mutateAsync({ showcase_enabled: showcaseEnabled, showcase_bio: showcaseBio });
       toast.success('Showcase settings saved');
-    } catch (e: any) {
-      toast.error('Could not save showcase settings', { description: e.message });
+    } catch {
+      toast.error('Could not save showcase settings', { description: 'Your changes were not saved. Please try again.' });
     }
   }
 
   const schemaMissing = status.isError && /relation|does not exist|schema cache|Could not find/i.test((status.error as Error)?.message || '');
   const result = imported || preview;
+  const hasLoadedShowcaseSettings = showcase.isSuccess && showcase.settings !== null;
 
   return (
     <div className="space-y-6 max-w-4xl">
@@ -140,23 +142,46 @@ export default function SettingsPage() {
           <CardDescription>Choose exactly what appears on your public portfolio page.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
+          {showcase.isLoading && (
+            <p role="status" className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Loader2 className="h-4 w-4 animate-spin" /> Loading showcase settings…
+            </p>
+          )}
+          {showcase.isError && (
+            <div role="alert" className="space-y-2 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
+              <p className="font-medium flex items-center gap-2"><AlertTriangle className="h-4 w-4" /> Could not load showcase settings</p>
+              <p>Your publication settings could not be loaded. They remain unchanged.</p>
+              <Button variant="outline" size="sm" onClick={() => showcase.refetch()} disabled={showcase.isFetching} aria-label="Retry loading showcase settings">
+                <RefreshCw className="h-3.5 w-3.5 mr-2" /> {showcase.isFetching ? 'Retrying…' : 'Retry'}
+              </Button>
+            </div>
+          )}
+          {showcase.isSuccess && !showcase.settings && (
+            <div role="alert" className="space-y-2 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
+              <p className="font-medium flex items-center gap-2"><AlertTriangle className="h-4 w-4" /> Showcase settings are unavailable</p>
+              <p>No publication settings were found. Nothing can be changed from this page.</p>
+              <Button variant="outline" size="sm" onClick={() => showcase.refetch()} disabled={showcase.isFetching} aria-label="Retry loading showcase settings">
+                <RefreshCw className="h-3.5 w-3.5 mr-2" /> {showcase.isFetching ? 'Retrying…' : 'Retry'}
+              </Button>
+            </div>
+          )}
           <div className="flex items-center justify-between gap-4 rounded-lg border p-3">
             <div className="space-y-1">
               <Label htmlFor="showcase-enabled" className="font-medium">Enable public showcase</Label>
               <p className="text-xs text-muted-foreground">Off by default. Your showcase stays private until you enable it.</p>
             </div>
-            <Switch id="showcase-enabled" checked={showcaseEnabled} onCheckedChange={setShowcaseEnabled} disabled={showcase.isLoading} data-testid="showcase-enabled" />
+            <Switch id="showcase-enabled" checked={showcaseEnabled} onCheckedChange={setShowcaseEnabled} disabled={!hasLoadedShowcaseSettings || updateShowcase.isPending} data-testid="showcase-enabled" />
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="showcase-bio">Public bio</Label>
-            <Textarea id="showcase-bio" value={showcaseBio} onChange={(event) => setShowcaseBio(event.target.value)} maxLength={500} rows={4} placeholder="A short introduction for your public showcase" data-testid="showcase-bio" />
+            <Textarea id="showcase-bio" value={showcaseBio} onChange={(event) => setShowcaseBio(event.target.value)} maxLength={500} rows={4} placeholder="A short introduction for your public showcase" disabled={!hasLoadedShowcaseSettings || updateShowcase.isPending} data-testid="showcase-bio" />
             <p className="text-xs text-muted-foreground">Up to 500 characters. Only include information you are comfortable sharing publicly.</p>
           </div>
           <div className="rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
             Enabling this shares your display name, public bio, selected progress, and only projects individually marked “Show in public showcase.”
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <Button onClick={saveShowcaseSettings} disabled={showcase.isLoading || updateShowcase.isPending} data-testid="showcase-save">
+            <Button onClick={saveShowcaseSettings} disabled={!hasLoadedShowcaseSettings || updateShowcase.isPending} data-testid="showcase-save">
               {updateShowcase.isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />} Save showcase settings
             </Button>
             <Button variant="outline" asChild><Link href="/showcase">Preview public showcase</Link></Button>
