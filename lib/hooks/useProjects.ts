@@ -8,12 +8,12 @@ export type ProjectStatus = 'idea' | 'planned' | 'in_progress' | 'completed' | '
 export type Project = {
   id: string; key: string | null; title: string; description: string | null; project_type: string | null;
   status: ProjectStatus; tags: string[]; github_url: string | null; demo_url: string | null; cover_image_url: string | null;
-  started_at: string | null; completed_at: string | null; sort_order: number; created_at: string; updated_at: string;
+  is_public: boolean; started_at: string | null; completed_at: string | null; sort_order: number; created_at: string; updated_at: string;
 };
 
 export type ProjectInput = {
   title: string; description?: string; project_type?: string; status: ProjectStatus; tags: string[];
-  github_url?: string; demo_url?: string; cover_image_url?: string;
+  github_url?: string; demo_url?: string; cover_image_url?: string; is_public: boolean;
 };
 
 export const PROJECTS_KEY = ['projects'];
@@ -25,7 +25,7 @@ async function userId() {
   return id;
 }
 
-function clean(input: ProjectInput) {
+export function cleanProjectInput(input: ProjectInput) {
   const title = input.title.trim().slice(0, 200);
   if (!title) throw new Error('Title is required');
   const today = new Date().toISOString().slice(0, 10);
@@ -38,6 +38,7 @@ function clean(input: ProjectInput) {
     github_url: safeExternalUrl(input.github_url),
     demo_url: safeExternalUrl(input.demo_url),
     cover_image_url: safeExternalUrl(input.cover_image_url),
+    is_public: input.is_public === true,
     _today: today,
   };
 }
@@ -58,7 +59,7 @@ export function useCreateProject() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (input: ProjectInput) => {
-      const c = clean(input);
+      const c = cleanProjectInput(input);
       const owner_id = await userId();
       const { _today, ...row } = c;
       const { data, error } = await createClient().from('projects').insert({
@@ -77,7 +78,7 @@ export function useUpdateProject() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async ({ id, input, existing }: { id: string; input: ProjectInput; existing: Project }) => {
-      const c = clean(input);
+      const c = cleanProjectInput(input);
       const { _today, ...row } = c;
       const patch: Record<string, unknown> = { ...row, manually_edited: true };
       if ((row.status === 'in_progress' || row.status === 'completed') && !existing.started_at) patch.started_at = _today;

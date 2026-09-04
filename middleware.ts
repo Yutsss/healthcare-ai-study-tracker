@@ -1,7 +1,6 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
-
-const PUBLIC_PATHS = ['/login', '/reset-password'];
+import { isPublicPagePath } from '@/lib/auth/public-paths';
 
 // Baseline security headers applied to every response.
 function withSecurityHeaders(res: NextResponse): NextResponse {
@@ -41,7 +40,7 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isPublic = PUBLIC_PATHS.some((p) => path === p || path.startsWith(p + '/'));
+  const isPublic = isPublicPagePath(path);
 
   if (!user && !isPublic) {
     const redirectUrl = request.nextUrl.clone();

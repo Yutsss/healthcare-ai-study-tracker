@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { Switch } from '@/components/ui/switch';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
@@ -25,7 +26,7 @@ const COLUMNS: Array<{ key: Column; label: string; hint: string; tone: string }>
 ];
 const colOf = (s: ProjectStatus): Column => (s === 'completed' ? 'completed' : s === 'in_progress' || s === 'planned' ? 'in_progress' : 'idea');
 
-const EMPTY: ProjectInput = { title: '', description: '', project_type: '', status: 'idea', tags: [], github_url: '', demo_url: '', cover_image_url: '' };
+const EMPTY: ProjectInput = { title: '', description: '', project_type: '', status: 'idea', tags: [], github_url: '', demo_url: '', cover_image_url: '', is_public: false };
 
 function ProjectDialog({ open, onOpenChange, initial, onSubmit, busy }: { open: boolean; onOpenChange: (o: boolean) => void; initial: ProjectInput; onSubmit: (v: ProjectInput) => Promise<void>; busy: boolean }) {
   const [v, setV] = useState<ProjectInput>(initial);
@@ -72,6 +73,13 @@ function ProjectDialog({ open, onOpenChange, initial, onSubmit, busy }: { open: 
             <div className="space-y-1.5"><Label htmlFor="p-demo">Demo URL</Label><Input id="p-demo" data-testid="project-demo" type="url" value={v.demo_url || ''} onChange={(e) => setV({ ...v, demo_url: e.target.value })} placeholder="https://…" /></div>
           </div>
           <div className="space-y-1.5"><Label htmlFor="p-cover">Cover image URL</Label><Input id="p-cover" data-testid="project-cover" type="url" value={v.cover_image_url || ''} onChange={(e) => setV({ ...v, cover_image_url: e.target.value })} placeholder="https://…/image.png" /></div>
+          <div className="rounded-lg border p-3 space-y-1.5">
+            <div className="flex items-center justify-between gap-3">
+              <Label htmlFor="p-public" className="font-medium">Show in public showcase</Label>
+              <Switch id="p-public" checked={v.is_public} onCheckedChange={(is_public) => setV({ ...v, is_public })} data-testid="project-public" />
+            </div>
+            <p className="text-xs text-muted-foreground">Private by default. Turn this on only for work you want displayed publicly when your showcase is enabled.</p>
+          </div>
           {err && <p role="alert" className="text-sm text-destructive" data-testid="project-error">{err}</p>}
         </div>
         <DialogFooter>
@@ -84,7 +92,7 @@ function ProjectDialog({ open, onOpenChange, initial, onSubmit, busy }: { open: 
 }
 
 function toInput(p: Project): ProjectInput {
-  return { title: p.title, description: p.description || '', project_type: p.project_type || '', status: p.status, tags: p.tags || [], github_url: p.github_url || '', demo_url: p.demo_url || '', cover_image_url: p.cover_image_url || '' };
+  return { title: p.title, description: p.description || '', project_type: p.project_type || '', status: p.status, tags: p.tags || [], github_url: p.github_url || '', demo_url: p.demo_url || '', cover_image_url: p.cover_image_url || '', is_public: p.is_public };
 }
 
 function Links({ p }: { p: Project }) {
@@ -136,6 +144,7 @@ export default function ProjectsPage() {
               <p className="text-sm font-semibold leading-snug">{p.title}</p>
               {p.project_type && <p className="text-[11px] text-muted-foreground">{p.project_type}</p>}
             </div>
+            {p.is_public && <Badge variant="secondary" className="text-[10px] px-1.5 py-0">Public</Badge>}
             <Links p={p} />
           </div>
           {p.description && <p className="text-xs text-muted-foreground line-clamp-3">{p.description}</p>}
