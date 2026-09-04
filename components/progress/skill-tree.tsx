@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Lock, Sparkles, Star } from 'lucide-react';
 import type { CurriculumTree, PhaseNode } from '@/lib/curriculum';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
