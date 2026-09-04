@@ -4,17 +4,12 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { createClient } from '@/lib/supabase/browser';
 import type { CurriculumTree, PhaseNode } from '@/lib/curriculum';
+import type { LabMilestoneView } from '@/lib/lab/types';
 
 export type MilestoneRow = { id: string; key: string | null; title: string; description: string | null; sort_order: number; achieved_at: string | null };
 type LinkRow = { milestone_id: string; roadmap_item_id: string };
 
-export type MilestoneView = MilestoneRow & {
-  phases: PhaseNode[];
-  phasesDone: number;
-  percent: number;
-  complete: boolean;
-  index: number;
-};
+export type MilestoneView = LabMilestoneView;
 
 export const MILESTONES_KEY = ['milestones'];
 

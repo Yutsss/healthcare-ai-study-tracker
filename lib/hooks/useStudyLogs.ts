@@ -5,6 +5,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { createClient } from '@/lib/supabase/browser';
 import { weekDayKeys } from '@/lib/week';
 import { clampSettings, type PomodoroSettings } from '@/lib/focus';
+export { studyLogXp } from '@/lib/gamification';
 
 export type StudyLog = {
   id: string;
@@ -166,9 +167,4 @@ export function useDeleteStudyLog() {
       qc.invalidateQueries({ queryKey: ['activity'] });
     },
   });
-}
-
-/** XP for a study log, mirrors the DB trigger (1 XP / 10 min, min 1, max 30). */
-export function studyLogXp(minutes: number): number {
-  return Math.min(30, Math.max(1, Math.ceil(minutes / 10)));
 }

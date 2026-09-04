@@ -22,6 +22,11 @@ export function xpForLevel(level: number): number {
   return 100 * Math.pow(Math.max(0, level - 1), 2);
 }
 
+/** XP for a study log, mirrors the database trigger (1 XP / 10 min, min 1, max 30). */
+export function studyLogXp(minutes: number): number {
+  return Math.min(30, Math.max(1, Math.ceil(minutes / 10)));
+}
+
 export function levelFromXp(xpRaw: number): LevelInfo {
   const xp = Math.max(0, Math.floor(xpRaw || 0));
   const level = Math.floor(Math.sqrt(xp / 100)) + 1;

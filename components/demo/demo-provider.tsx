@@ -1,6 +1,10 @@
 'use client';
 
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, useState } from 'react';
+import courseSeed from '@/data/yutas-lab-course-seed.json';
+import { buildDemoCurriculum } from '@/lib/demo/curriculum';
+import { deriveDemoProgression, type DemoProgression } from '@/lib/demo/progression';
+import type { CurriculumTree } from '@/lib/curriculum';
 import {
   createDemoState,
   demoReducer,
@@ -20,6 +24,8 @@ import {
 
 export type DemoContextValue = {
   state: DemoStateV2;
+  tree: CurriculumTree;
+  progression: DemoProgression;
   hydrated: boolean;
   storageWarning: string | null;
   setModuleStatus: (moduleId: string, status: ModuleStatus, now?: Date) => void;
@@ -55,6 +61,8 @@ export function DemoProvider({ moduleIds, starterProjects, children }: DemoProvi
   if (!allowedModuleIdsRef.current) allowedModuleIdsRef.current = new Set(moduleIds);
 
   const [state, dispatch] = useReducer(demoReducer, initialStateRef.current!);
+  const tree = useMemo(() => buildDemoCurriculum(courseSeed, state.moduleProgress), [state.moduleProgress]);
+  const progression = useMemo(() => deriveDemoProgression(state, tree), [state, tree]);
 
   useEffect(() => {
     try {
@@ -83,6 +91,21 @@ export function DemoProvider({ moduleIds, starterProjects, children }: DemoProvi
       setPersistenceEnabled(false);
     }
   }, [hydrated, persistenceEnabled, state]);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    const completedAt = new Date().toISOString();
+    for (const achievement of progression.achievements) {
+      if (achievement.complete && !achievement.earnedAt) {
+        dispatch({ type: 'achievement/earn', key: achievement.def.key, earnedAt: completedAt });
+      }
+    }
+    for (const quest of progression.quests) {
+      if (quest.complete && !quest.completed_at) {
+        dispatch({ type: 'quest/complete', key: quest.id, completedAt });
+      }
+    }
+  }, [hydrated, progression.achievements, progression.quests]);
 
   const setModuleStatus = useCallback((moduleId: string, status: ModuleStatus, now?: Date) => {
     if (allowedModuleIdsRef.current?.has(moduleId)) dispatch({ type: 'module/status', moduleId, status, now: now?.toISOString() });
@@ -117,6 +140,8 @@ export function DemoProvider({ moduleIds, starterProjects, children }: DemoProvi
 
   const value = useMemo<DemoContextValue>(() => ({
     state,
+    tree,
+    progression,
     hydrated,
     storageWarning,
     setModuleStatus,
@@ -128,7 +153,7 @@ export function DemoProvider({ moduleIds, starterProjects, children }: DemoProvi
     deleteProject,
     updateSettings,
     reset,
-  }), [state, hydrated, storageWarning, setModuleStatus, addReport, addLog, deleteLog, saveProject, setProjectStatus, deleteProject, updateSettings, reset]);
+  }), [state, tree, progression, hydrated, storageWarning, setModuleStatus, addReport, addLog, deleteLog, saveProject, setProjectStatus, deleteProject, updateSettings, reset]);
 
   return <DemoContext.Provider value={value}>{children}</DemoContext.Provider>;
 }

@@ -31,11 +31,12 @@ function renderDemo() {
 }
 
 function ProviderProbe() {
-  const { state, hydrated, addReport, updateSettings } = useDemo();
+  const { state, hydrated, progression, addReport, updateSettings, setModuleStatus } = useDemo();
   return (
     <div>
       <output data-testid="hydrated">{String(hydrated)}</output>
       <output data-testid="provider-state">{JSON.stringify(state)}</output>
+      <output data-testid="provider-xp">{progression.totalXp}</output>
       <button onClick={() => addReport({
         moduleId: 'module-1', activityTitle: 'Safety drill', confidence: 4, difficulty: 3,
         timeSpentMinutes: 20, whatLearned: 'Validated safely.', struggles: null,
@@ -43,6 +44,11 @@ function ProviderProbe() {
       <button onClick={() => updateSettings({
         weeklyGoalMinutes: 420, focusMinutes: 45, shortBreakMinutes: 10, longBreakMinutes: 20, longBreakEvery: 3,
       })}>Update demo settings</button>
+      <button onClick={() => {
+        ['module-001', 'module-002', 'module-003', 'module-004'].forEach((moduleId, index) => {
+          setModuleStatus(moduleId, 'done', new Date(`2026-09-04T08:${String(index).padStart(2, '0')}:00.000Z`));
+        });
+      }}>Complete canonical first course</button>
     </div>
   );
 }
@@ -228,6 +234,27 @@ describe('interactive guest demo', () => {
       expect(state.settings).toEqual({
         weeklyGoalMinutes: 420, focusMinutes: 45, shortBreakMinutes: 10, longBreakMinutes: 20, longBreakEvery: 3,
       });
+    });
+  });
+
+  it('persists earned achievements and completed weekly quests exactly once after local actions qualify', async () => {
+    render(
+      <DemoProvider
+        moduleIds={['module-001', 'module-002', 'module-003', 'module-004']}
+        starterProjects={[]}
+      >
+        <ProviderProbe />
+      </DemoProvider>,
+    );
+
+    await waitFor(() => expect(screen.getByTestId('hydrated')).toHaveTextContent('true'));
+    fireEvent.click(screen.getByRole('button', { name: 'Complete canonical first course' }));
+
+    await waitFor(() => {
+      const state = JSON.parse(screen.getByTestId('provider-state').textContent || '{}');
+      expect(Object.keys(state.earnedAchievements).sort()).toEqual(['first_module', 'first_unit']);
+      expect(Object.keys(state.completedQuests)).toEqual(['2026-08-31:modules_4']);
+      expect(screen.getByTestId('provider-xp')).toHaveTextContent('220');
     });
   });
 });

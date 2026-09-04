@@ -5,6 +5,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { createClient } from '@/lib/supabase/browser';
 import { ACHIEVEMENTS, achievementProgress, type AchievementProgress, type AchievementStats } from '@/lib/achievements';
+import type { LabAchievementView } from '@/lib/lab/types';
 import { useCurriculumTree } from './useCurriculum';
 import { useExerciseReports } from './useExerciseReports';
 import { useStudyLogs } from './useStudyLogs';
@@ -38,7 +39,7 @@ async function fetchAchievementState() {
   return { userId, defs: (defs.data || []) as DefRow[], earned: (earned.data || []) as EarnedRow[] };
 }
 
-export type AchievementView = AchievementProgress & { id: string | null; earnedAt: string | null };
+export type AchievementView = LabAchievementView;
 
 export function useAchievements({ unlock = true }: { unlock?: boolean } = {}) {
   const qc = useQueryClient();
