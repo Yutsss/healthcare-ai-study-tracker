@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, Suspense, useEffect, useState } from 'react';
+import React, { FormEvent, Suspense, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { FlaskConical, Loader2 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/browser';
@@ -28,15 +28,47 @@ function ResetForm() {
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
+  const recoveryExchange = useRef<ReturnType<ReturnType<typeof createClient>['auth']['exchangeCodeForSession']> | null>(null);
 
   useEffect(() => {
     if (!isSupabaseConfigured()) { setReady(true); return; }
     const supabase = createClient();
+    let cancelled = false;
     const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'PASSWORD_RECOVERY' || session) setHasSession(true);
     });
-    supabase.auth.getSession().then(({ data }) => { if (data.session) setHasSession(true); setReady(true); });
-    return () => sub.subscription.unsubscribe();
+
+    async function establishRecoverySession() {
+      const currentUrl = new URL(window.location.href);
+      const code = currentUrl.searchParams.get('code');
+
+      if (code) {
+        recoveryExchange.current ||= supabase.auth.exchangeCodeForSession(code);
+        const { data, error: exchangeError } = await recoveryExchange.current;
+        if (cancelled) return;
+
+        currentUrl.searchParams.delete('code');
+        window.history.replaceState(window.history.state, '', `${currentUrl.pathname}${currentUrl.search}${currentUrl.hash}`);
+        if (exchangeError || !data.session) {
+          setError('This reset link is invalid or expired. Request a new one.');
+        } else {
+          setHasSession(true);
+        }
+        setReady(true);
+        return;
+      }
+
+      const { data } = await supabase.auth.getSession();
+      if (cancelled) return;
+      if (data.session) setHasSession(true);
+      setReady(true);
+    }
+
+    void establishRecoverySession();
+    return () => {
+      cancelled = true;
+      sub.subscription.unsubscribe();
+    };
   }, []);
 
   if (!isSupabaseConfigured()) return <SetupRequired missing={missingPublicEnv()} />;
