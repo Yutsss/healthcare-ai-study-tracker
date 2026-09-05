@@ -41,6 +41,9 @@ export function clientKey(request: Request, scope: string): string {
  * curl, tests using Bearer) are allowed and rely on their own auth.
  */
 export function isSameOrigin(request: Request): boolean {
+  const fetchSite = request.headers.get('sec-fetch-site')?.toLowerCase();
+  if (fetchSite === 'cross-site') return false;
+
   const host = request.headers.get('host');
   if (!host) return false;
   const origin = request.headers.get('origin');

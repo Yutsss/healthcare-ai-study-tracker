@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
+import { timingSafeEqual } from 'node:crypto';
 import { createAdminClient, isAdminConfigured } from '@/lib/supabase/admin';
 import { getRequestUser } from '@/lib/supabase/request-user';
-import { isSupabaseConfigured } from '@/lib/supabase/env';
 import { importSeed, validateSeed, type SeedFile } from '@/lib/seed/importSeed';
 import { clientKey, isSameOrigin, rateLimit, tooManyRequests } from '@/lib/security/ratelimit';
 import bundledSeed from '@/data/yutas-lab-course-seed.json';
@@ -32,6 +32,21 @@ async function ownerExists(): Promise<boolean> {
   return (data?.users?.length ?? 0) > 0;
 }
 
+function hasValidSetupToken(request: Request): boolean {
+  const expected = process.env.OWNER_SETUP_TOKEN || '';
+  const provided = request.headers.get('x-setup-token') || '';
+  if (expected.length < 32 || provided.length !== expected.length) return false;
+  return timingSafeEqual(Buffer.from(provided), Buffer.from(expected));
+}
+
+function internalError(path: string, error: unknown) {
+  console.error('API request failed', {
+    path,
+    message: error instanceof Error ? error.message : 'Unknown error',
+  });
+  return json({ error: 'Internal error' }, 500);
+}
+
 // ---------------------------------------------------------------------------
 // GET
 // ---------------------------------------------------------------------------
@@ -42,8 +57,6 @@ export async function GET(request: Request, ctx: Ctx) {
       return json({
         ok: true,
         app: "Yuta's Lab",
-        supabaseConfigured: isSupabaseConfigured(),
-        adminConfigured: isAdminConfigured(),
         time: new Date().toISOString(),
       });
     }
@@ -76,8 +89,8 @@ export async function GET(request: Request, ctx: Ctx) {
     }
 
     return json({ error: `Not found: ${path}` }, 404);
-  } catch (e: any) {
-    return json({ error: e?.message || 'Internal error' }, 500);
+  } catch (error: unknown) {
+    return internalError(path, error);
   }
 }
 
@@ -92,17 +105,15 @@ export async function POST(request: Request, ctx: Ctx) {
 
     // First-run only: create the single owner account. Refuses if any user exists.
     if (path === '/auth/register-owner') {
-      if (!isAdminConfigured()) return json({ error: 'Supabase is not configured on the server' }, 503);
-
       // Throttle to blunt automated first-run claim / abuse.
       const rl = rateLimit(clientKey(request, 'register'), 5, 60 * 60 * 1000);
       if (!rl.allowed) return tooManyRequests(rl.retryAfter);
 
-      // Optional hard gate: when OWNER_SETUP_TOKEN is configured, require it.
-      const setupToken = process.env.OWNER_SETUP_TOKEN;
-      if (setupToken && request.headers.get('x-setup-token') !== setupToken) {
+      // A strong server-configured token is mandatory for the one-time bootstrap.
+      if (!hasValidSetupToken(request)) {
         return json({ error: 'Registration is closed.' }, 403);
       }
+      if (!isAdminConfigured()) return json({ error: 'Owner setup is unavailable.' }, 503);
 
       const body = await request.json().catch(() => ({}));
       const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
@@ -113,7 +124,12 @@ export async function POST(request: Request, ctx: Ctx) {
       if (await ownerExists()) return json({ error: 'Registration is closed.' }, 403);
 
       const admin = createAdminClient();
-      const { data, error } = await admin.auth.admin.createUser({ email, password, email_confirm: true });
+      const { data, error } = await admin.auth.admin.createUser({
+        email,
+        password,
+        email_confirm: true,
+        app_metadata: { owner_bootstrap: true },
+      });
       if (error) return json({ error: 'Could not create the owner account.' }, 400);
       return json({ ok: true, userId: data.user?.id }, 201);
     }
@@ -135,7 +151,7 @@ export async function POST(request: Request, ctx: Ctx) {
     }
 
     return json({ error: `Not found: ${path}` }, 404);
-  } catch (e: any) {
-    return json({ error: e?.message || 'Internal error' }, 500);
+  } catch (error: unknown) {
+    return internalError(path, error);
   }
 }

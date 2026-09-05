@@ -84,10 +84,15 @@ describe('LoginPage', () => {
     await screen.findByText('Create the owner account');
     fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'owner@example.com' } });
     fireEvent.change(screen.getByLabelText('Password'), { target: { value: 'safe-password' } });
+    fireEvent.change(screen.getByLabelText('Owner setup token'), { target: { value: 'a-secure-bootstrap-token-with-32-chars' } });
     fireEvent.submit(screen.getByTestId('login-form'));
 
     await waitFor(() => expect(fetch).toHaveBeenLastCalledWith('/api/auth/register-owner', expect.objectContaining({
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-setup-token': 'a-secure-bootstrap-token-with-32-chars',
+      },
       body: JSON.stringify({ email: 'owner@example.com', password: 'safe-password' }),
     })));
     expect(signInWithPassword).toHaveBeenCalledWith({ email: 'owner@example.com', password: 'safe-password' });

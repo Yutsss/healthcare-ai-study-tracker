@@ -32,6 +32,7 @@ function LoginForm() {
   const [ownerExists, setOwnerExists] = useState<boolean | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [setupToken, setSetupToken] = useState('');
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const [busy, setBusy] = useState(false);
@@ -59,7 +60,10 @@ function LoginForm() {
       if (mode === 'create') {
         const res = await fetch('/api/auth/register-owner', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'x-setup-token': setupToken,
+          },
           body: JSON.stringify({ email, password }),
         });
         const data = await res.json().catch(() => ({}));
@@ -148,6 +152,22 @@ function LoginForm() {
               </div>
                 <Input id="password" data-testid="password-input" type="password" autoComplete={mode === 'signin' ? 'current-password' : 'new-password'} minLength={8} required value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
+              {mode === 'create' && (
+                <div className="space-y-2">
+                  <Label htmlFor="owner-setup-token">Owner setup token</Label>
+                  <Input
+                    id="owner-setup-token"
+                    data-testid="owner-setup-token"
+                    type="password"
+                    autoComplete="off"
+                    minLength={32}
+                    required
+                    value={setupToken}
+                    onChange={(event) => setSetupToken(event.target.value)}
+                  />
+                  <p className="text-xs text-muted-foreground">Use the one-time token configured on the server.</p>
+                </div>
+              )}
               {error && <p role="alert" data-testid="login-error" className="text-sm text-destructive">{error}</p>}
               {notice && <p role="status" data-testid="login-notice" className="text-sm text-emerald-600">{notice}</p>}
               <Button type="submit" className="w-full" disabled={busy} data-testid="login-submit">
