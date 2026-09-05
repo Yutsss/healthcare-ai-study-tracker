@@ -132,6 +132,13 @@ OWNER_SETUP_TOKEN=replace-with-a-long-random-bootstrap-token
 
 The secret key is used only by server-side setup and import utilities. Do not expose it through a `NEXT_PUBLIC_` variable or commit the `.env` file. Generate `OWNER_SETUP_TOKEN` as a random value of at least 32 characters; it is required only when creating the first owner account.
 
+For password recovery on the hosted app, configure **Authentication → URL Configuration** in Supabase with an absolute URL (including `https://`):
+
+- Site URL: `https://www.yutslearningjourney.my.id`
+- Redirect URL: `https://www.yutslearningjourney.my.id/reset-password`
+
+Add `http://localhost:3000/reset-password` separately when testing recovery locally. Avoid scheme-less values such as `yutslearningjourney.my.id`; Supabase can interpret them as paths on its own domain.
+
 ### 3. Apply the database migrations
 
 First, run [`000_bootstrap_exec_sql.sql`](supabase/migrations/000_bootstrap_exec_sql.sql) once in the Supabase SQL Editor. It creates the restricted migration helper used by the repository.
