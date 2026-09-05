@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { isPublicPagePath } from './public-paths';
 
 describe('isPublicPagePath', () => {
-  it.each(['/login', '/reset-password', '/showcase', '/showcase/project', '/demo', '/demo/roadmap'])(
+  it.each(['/login', '/reset-password', '/showcase', '/showcase/project', '/demo', '/demo/roadmap', '/demo/focus', '/demo/log', '/demo/projects', '/demo/progress'])(
     'allows %s', (path) => expect(isPublicPagePath(path)).toBe(true),
   );
 

@@ -1,17 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { MilestoneBadges } from './widgets';
-
-const { useMilestones } = vi.hoisted(() => ({ useMilestones: vi.fn() }));
-
-vi.mock('@/lib/hooks/useMilestones', () => ({ useMilestones }));
 
 describe('MilestoneBadges', () => {
   it('uses a dark surface behind the light completed-milestone text', () => {
-    useMilestones.mockReturnValue({
-      isLoading: false,
-      items: [{
+    const items = [{
         id: 'milestone-1',
         key: 'foundation',
         index: 1,
@@ -20,11 +14,12 @@ describe('MilestoneBadges', () => {
         complete: true,
         percent: 100,
         phasesDone: 5,
-        phases: [{ id: 'phase-1' }],
-      }],
-    });
+        phases: [],
+        sort_order: 1,
+        achieved_at: '2026-09-01T00:00:00.000Z',
+      }];
 
-    render(<MilestoneBadges tree={null} />);
+    render(<MilestoneBadges items={items} />);
 
     const card = screen.getByTestId('milestone-foundation');
     expect(card).toHaveClass('dark:border-emerald-500/30');

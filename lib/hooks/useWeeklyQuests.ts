@@ -9,12 +9,10 @@ import { currentWeekStartKey, questTemplatesToCreate, questsForWeek, type QuestT
 import { weekDayKeys } from '@/lib/week';
 import { useStudyLogs } from './useStudyLogs';
 import { useStreak } from './useGamification';
+import type { LabQuestRow, LabQuestView } from '@/lib/lab/types';
 
-export type QuestRow = {
-  id: string; week_start: string; key: string; title: string; description: string | null; quest_type: QuestType;
-  target: number; progress: number; xp_reward: number; completed_at: string | null;
-};
-export type QuestView = QuestRow & { current: number; ratio: number; complete: boolean; template: QuestTemplate | undefined };
+export type QuestRow = LabQuestRow;
+export type QuestView = LabQuestView;
 
 export const QUESTS_KEY = ['weekly-quests'];
 

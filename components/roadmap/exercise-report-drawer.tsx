@@ -1,13 +1,13 @@
 'use client';
 
-import { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 import { Brain, Clock, Loader2, Mountain, Sparkles } from 'lucide-react';
 import type { ModuleNode, ModuleStatus } from '@/lib/curriculum';
 import { STATUS_META } from '@/lib/curriculum';
-import { EXERCISE_REPORT_XP, useCreateExerciseReport, useExerciseReports } from '@/lib/hooks/useExerciseReports';
-import { useSetModuleStatus } from '@/lib/hooks/useCurriculum';
+import { EXERCISE_REPORT_XP } from '@/lib/gamification';
+import type { LabExerciseReport, NewLabExerciseReport } from '@/lib/lab/types';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -52,13 +52,17 @@ function Scale({
   );
 }
 
-export function ExerciseReportDrawer({ context, onClose }: { context: ReportContext; onClose: () => void }) {
+export function ExerciseReportDrawer({ context, onClose, reports, onCreateReport, onSetModuleStatus, busy: externalBusy = false }: {
+  context: ReportContext;
+  onClose: () => void;
+  reports: LabExerciseReport[];
+  onCreateReport: (input: NewLabExerciseReport) => Promise<void>;
+  onSetModuleStatus: (moduleId: string, status: ModuleStatus) => Promise<void>;
+  busy?: boolean;
+}) {
   const open = Boolean(context);
   const module = context?.module;
-  const create = useCreateExerciseReport();
-  const setStatus = useSetModuleStatus();
-  const { byModule } = useExerciseReports();
-  const previous = module ? byModule.get(module.id) || [] : [];
+  const previous = module ? reports.filter((report) => report.module_id === module.id) : [];
 
   const [activityTitle, setActivityTitle] = useState('');
   const [confidence, setConfidence] = useState(0);
@@ -68,6 +72,7 @@ export function ExerciseReportDrawer({ context, onClose }: { context: ReportCont
   const [struggles, setStruggles] = useState('');
   const [after, setAfter] = useState<AfterStatus>('keep');
   const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   // Reset form whenever a new module is opened
   useEffect(() => {
@@ -82,7 +87,7 @@ export function ExerciseReportDrawer({ context, onClose }: { context: ReportCont
     setAfter(module.status === 'done' ? 'keep' : module.status === 'exercise' ? 'done' : 'exercise');
   }, [module?.id, module?.status]);
 
-  const busy = create.isPending || setStatus.isPending;
+  const busy = externalBusy || submitting;
 
   async function submit(e: FormEvent) {
     e.preventDefault();
@@ -93,16 +98,19 @@ export function ExerciseReportDrawer({ context, onClose }: { context: ReportCont
     if (mins !== null && (!Number.isFinite(mins) || mins < 0 || mins > 1440)) { setError('Time spent must be between 0 and 1440 minutes.'); return; }
 
     try {
-      await create.mutateAsync({ moduleId: module.id, activityTitle, confidence, difficulty, timeSpentMinutes: mins, whatLearned, struggles });
+      setSubmitting(true);
+      await onCreateReport({ moduleId: module.id, activityTitle, confidence, difficulty, timeSpentMinutes: mins, whatLearned, struggles });
       let statusNote = '';
       if (after !== 'keep' && after !== module.status) {
-        await setStatus.mutateAsync({ moduleId: module.id, status: after as ModuleStatus });
+        await onSetModuleStatus(module.id, after as ModuleStatus);
         statusNote = after === 'done' ? ` · module completed (+${module.xp_value} XP)` : ` · status → ${STATUS_META[after as ModuleStatus].label}`;
       }
       toast.success('Exercise report saved', { description: `+${EXERCISE_REPORT_XP} XP${statusNote}` });
       onClose();
     } catch (err: any) {
       setError(err?.message || 'Could not save the report');
+    } finally {
+      setSubmitting(false);
     }
   }
 

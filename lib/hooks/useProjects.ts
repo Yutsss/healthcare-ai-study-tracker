@@ -3,18 +3,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { createClient } from '@/lib/supabase/browser';
 import { safeExternalUrl } from '@/lib/security/url';
+import type { LabProject, LabProjectInput, LabProjectStatus } from '@/lib/lab/types';
 
-export type ProjectStatus = 'idea' | 'planned' | 'in_progress' | 'completed' | 'archived';
-export type Project = {
-  id: string; key: string | null; title: string; description: string | null; project_type: string | null;
-  status: ProjectStatus; tags: string[]; github_url: string | null; demo_url: string | null; cover_image_url: string | null;
-  is_public: boolean; started_at: string | null; completed_at: string | null; sort_order: number; created_at: string; updated_at: string;
-};
-
-export type ProjectInput = {
-  title: string; description?: string; project_type?: string; status: ProjectStatus; tags: string[];
-  github_url?: string; demo_url?: string; cover_image_url?: string; is_public: boolean;
-};
+export type ProjectStatus = LabProjectStatus;
+export type Project = LabProject;
+export type ProjectInput = LabProjectInput;
 
 export const PROJECTS_KEY = ['projects'];
 

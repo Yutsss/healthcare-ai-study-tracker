@@ -5,12 +5,8 @@ import Link from 'next/link';
 import { format, parseISO, subDays } from 'date-fns';
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { ArrowRight, Award, CalendarDays, Flag, Target } from 'lucide-react';
-import { useStudyLogs, useOwnerSettings } from '@/lib/hooks/useStudyLogs';
-import { useExerciseReports } from '@/lib/hooks/useExerciseReports';
-import { useStreak } from '@/lib/hooks/useGamification';
-import { useAchievements } from '@/lib/hooks/useAchievements';
-import { useMilestones } from '@/lib/hooks/useMilestones';
-import type { CurriculumTree } from '@/lib/curriculum';
+import type { LabAchievementView, LabExerciseReport, LabMilestoneView, LabStudyLog } from '@/lib/lab/types';
+import type { LabRouteMap } from '@/lib/lab/routes';
 import { dayKey, formatMinutes, weekDayKeys } from '@/lib/week';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -21,11 +17,7 @@ import { cn } from '@/lib/utils';
 // ---------------------------------------------------------------------------
 // This week chart + weekly goal
 // ---------------------------------------------------------------------------
-export function WeekChart() {
-  const { logs, weekMinutes } = useStudyLogs();
-  const { reports } = useExerciseReports();
-  const { weeklyGoal } = useOwnerSettings();
-
+export function WeekChart({ logs, reports, weeklyGoal }: { logs: LabStudyLog[]; reports: LabExerciseReport[]; weeklyGoal: number }) {
   const data = useMemo(() => {
     const keys = weekDayKeys();
     const today = dayKey(new Date());
@@ -37,6 +29,7 @@ export function WeekChart() {
   }, [logs, reports]);
 
   const exerciseWeek = data.reduce((s, d) => s + d.exercises, 0);
+  const weekMinutes = data.reduce((sum, day) => sum + day.logs, 0);
   const total = weekMinutes + exerciseWeek;
   const pct = Math.min(100, Math.round((total / Math.max(1, weeklyGoal)) * 100));
 
@@ -74,13 +67,15 @@ export function WeekChart() {
 // ---------------------------------------------------------------------------
 // Activity heatmap (last 16 weeks)
 // ---------------------------------------------------------------------------
-export function ActivityHeatmap({ weeks = 16 }: { weeks?: number }) {
-  const { data: dates, streak } = useStreak();
-  const { logs } = useStudyLogs();
-
+export function ActivityHeatmap({ activityDates, logs, streak, weeks = 16 }: {
+  activityDates: string[];
+  logs: LabStudyLog[];
+  streak: { current: number; longest: number };
+  weeks?: number;
+}) {
   const { grid, months, max } = useMemo(() => {
     const counts = new Map<string, number>();
-    for (const d of dates || []) { const k = dayKey(new Date(d)); counts.set(k, (counts.get(k) || 0) + 1); }
+    for (const d of activityDates) { const k = dayKey(new Date(d)); counts.set(k, (counts.get(k) || 0) + 1); }
     for (const l of logs) counts.set(l.logged_on, (counts.get(l.logged_on) || 0) + 1);
     const today = new Date();
     // end on Sunday of the current week so columns are full weeks (Mon..Sun)
@@ -104,7 +99,7 @@ export function ActivityHeatmap({ weeks = 16 }: { weeks?: number }) {
       cols.push(col);
     }
     return { grid: cols, months: months.filter((m, i, a) => a.findIndex((x) => x.label === m.label) === i), max };
-  }, [dates, logs, weeks]);
+  }, [activityDates, logs, weeks]);
 
   const level = (c: number) => {
     if (c <= 0) return 'bg-muted';
@@ -156,8 +151,16 @@ export function ActivityHeatmap({ weeks = 16 }: { weeks?: number }) {
 // ---------------------------------------------------------------------------
 // Nearest achievements
 // ---------------------------------------------------------------------------
-export function NearestAchievements() {
-  const { nearest, earnedCount, total, isLoading } = useAchievements();
+export function NearestAchievements({ items, isLoading, routes }: {
+  items: LabAchievementView[];
+  isLoading: boolean;
+  routes: LabRouteMap;
+}) {
+  const earnedCount = items.filter((item) => Boolean(item.earnedAt)).length;
+  const nearest = items.filter((item) => !item.earnedAt && !item.complete)
+    .sort((a, b) => b.ratio - a.ratio || a.target - b.target)
+    .slice(0, 3);
+  const total = items.length;
   return (
     <Card data-testid="nearest-achievements">
       <CardHeader className="pb-3 flex-row items-center justify-between space-y-0">
@@ -165,7 +168,7 @@ export function NearestAchievements() {
           <CardTitle className="text-base flex items-center gap-2"><Award className="h-4 w-4 text-primary" /> Nearest achievements</CardTitle>
           <CardDescription>{earnedCount}/{total} unlocked</CardDescription>
         </div>
-        <Button asChild variant="ghost" size="sm"><Link href="/progress">All <ArrowRight className="h-3.5 w-3.5 ml-1" /></Link></Button>
+        <Button asChild variant="ghost" size="sm"><Link href={routes.progress}>All <ArrowRight className="h-3.5 w-3.5 ml-1" /></Link></Button>
       </CardHeader>
       <CardContent className="space-y-4">
         {isLoading && <p className="text-sm text-muted-foreground">Loading…</p>}
@@ -191,8 +194,7 @@ export function NearestAchievements() {
 // ---------------------------------------------------------------------------
 // Milestone badges
 // ---------------------------------------------------------------------------
-export function MilestoneBadges({ tree }: { tree: CurriculumTree | null }) {
-  const { items, isLoading } = useMilestones(tree);
+export function MilestoneBadges({ items, isLoading = false }: { items: LabMilestoneView[]; isLoading?: boolean }) {
   return (
     <Card data-testid="milestones" className="h-fit">
       <CardHeader className="pb-3">

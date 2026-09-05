@@ -4,9 +4,10 @@ import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { createClient } from '@/lib/supabase/browser';
 import { computeStreak, levelFromXp } from '@/lib/gamification';
+import type { LabActivityEvent, LabXpEvent } from '@/lib/lab/types';
 
-export type XpEvent = { id: string; amount: number; source_type: string; source_id: string | null; reason: string | null; created_at: string };
-export type ActivityEvent = { id: string; event_type: string; entity_type: string | null; entity_id: string | null; payload: Record<string, any>; created_at: string };
+export type XpEvent = LabXpEvent;
+export type ActivityEvent = LabActivityEvent;
 
 export function useXp() {
   const q = useQuery({

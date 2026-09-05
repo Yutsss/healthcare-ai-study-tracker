@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { BookOpen, CheckCircle2, Circle, PenLine } from 'lucide-react';
 import { MODULE_STATUSES, STATUS_META, type ModuleStatus } from '@/lib/curriculum';
 import { cn } from '@/lib/utils';
