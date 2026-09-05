@@ -1,5 +1,6 @@
 const nextConfig = {
   output: 'standalone',
+  poweredByHeader: false,
   // Hide the Next.js dev indicator; it overlapped the sidebar controls in preview.
   devIndicators: false,
   images: {
@@ -30,13 +31,9 @@ const nextConfig = {
       {
         source: "/(.*)",
         headers: [
-          // NOTE: permissive framing is required for the Emergent preview iframe.
-          // For a locked-down production domain, change these to DENY / frame-ancestors 'self'.
-          { key: "X-Frame-Options", value: "ALLOWALL" },
-          { key: "Content-Security-Policy", value: "frame-ancestors *;" },
-          { key: "Access-Control-Allow-Origin", value: process.env.CORS_ORIGINS || "*" },
-          { key: "Access-Control-Allow-Methods", value: "GET, POST, PUT, DELETE, OPTIONS" },
-          { key: "Access-Control-Allow-Headers", value: "*" },
+          // The application is same-origin and must not be embedded by third-party sites.
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Content-Security-Policy", value: "frame-ancestors 'self';" },
           // Baseline hardening headers (safe for the preview):
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },

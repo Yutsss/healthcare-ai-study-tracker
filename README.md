@@ -127,9 +127,10 @@ Create a `.env` file in the project root:
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
 SUPABASE_SECRET_KEY=your-server-only-secret-key
+OWNER_SETUP_TOKEN=replace-with-a-long-random-bootstrap-token
 ```
 
-The secret key is used only by server-side setup and import utilities. Do not expose it through a `NEXT_PUBLIC_` variable or commit the `.env` file.
+The secret key is used only by server-side setup and import utilities. Do not expose it through a `NEXT_PUBLIC_` variable or commit the `.env` file. Generate `OWNER_SETUP_TOKEN` as a random value of at least 32 characters; it is required only when creating the first owner account.
 
 ### 3. Apply the database migrations
 
@@ -147,7 +148,7 @@ node scripts/apply-migrations.mjs
 yarn dev:no-reload
 ```
 
-Open [http://localhost:3000](http://localhost:3000), create the first owner account, and import the bundled curriculum from Settings.
+Open [http://localhost:3000](http://localhost:3000), create the first owner account using the configured owner setup token, and import the bundled curriculum from Settings.
 
 ### Useful checks
 
